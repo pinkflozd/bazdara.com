@@ -1,0 +1,34 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+
+<dom-module id="bazdara-page-404">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      :host paper-material {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      :host h1 {
+        font-weight: 200
+      }
+    </style>
+
+    <paper-material>
+      <h1>Stran ne obstaja</h1> Jebiga napaka 404. <a href="/">Poskusi z domačo stranjo.</a>
+    </paper-material>
+  </template>
+  <script>
+    Polymer({
+      is: 'bazdara-page-404'
+    });
+  </script>
+</dom-module>

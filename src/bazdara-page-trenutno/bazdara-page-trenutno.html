@@ -1,0 +1,509 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../highcharts-import/highcharts-import.html">
+<link rel="import" href="../styles/shared-styles.html">
+
+<dom-module id="bazdara-page-trenutno">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+      .gauge {
+        height: 150px;
+        width: 250px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .vreme_zdaj1 {
+        width: 128px;
+        height: 128px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .vreme_zdaj2 {
+        width: 128px;
+        height: 128px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -128px;
+      }
+    </style>
+
+    <iron-ajax auto url="https://x.bazdara.com/trenutno.php" handle-as="json" last-response="{{trenutno}}" debounce-duration="300"></iron-ajax>
+
+    <div class="container">
+      <h2 class="page-title">Trenutne razmere </h2>
+
+      <div class="card-columns">
+        <div class="card">
+          <div class="card-block text-xs-center">
+            <h4 class="card-title"><span class="live-smer-wi"></span> <span class="live-veter">{{trenutno.veter.ime}}</span> (<span id="live-smer">{{trenutno.veter.smer}}</span>°)</h4>
+            <h6 class="card-subtitle text-muted">Podatki v živo iz boje Vide</h6>
+          </div>
+          <div class="text-xs-center">
+            <iron-image src$="{{trenutno.vreme.zdaj_slika}}" preload class="vreme_zdaj1"></iron-image>
+            <iron-image src$="{{trenutno.vreme.zdaj_pojav}}" preload class="vreme_zdaj2"></iron-image>
+          </div>
+          <div class="card-block">
+            <div class="card-text text-xs-center">
+              <div class="display-2"><span id="live-temperatura">{{trenutno.temp.zdaj}}</span>°<span class="display-3">C</span>
+              </div>
+              {{trenutno.vreme.zdaj}}
+              <br>
+              <b>{{trenutno.veter.beaufort}}</b>
+              <br>
+              <span class="live-hitrost">{{trenutno.veter.zdaj}}</span>m/s (<span class="live-hitrost-km">{{trenutno.veter.zdaj_km}}</span>km/h)
+              <br> Sončni vzhod ob <strong>{{trenutno.soncni.vzhod}}</strong>, zahod ob <strong>{{trenutno.soncni.zahod}}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-block card-inverse text-xs-center" style="background-color:#1e88e5">
+          <blockquote class="card-blockquote blockquote">
+            <p>{{trenutno.pregovor}}</p>
+            <footer>
+              <small>
+                <cite title="Source Title">Piranski</cite> pregovor dneva
+              </small>
+            </footer>
+          </blockquote>
+        </div>
+
+        <div class="card text-xs-center">
+          <div class="card-block">
+            <h4 class="card-title">Veter</h4>
+            <div class="container-veter gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
+            <div class="text-xs-center" style="margin-top:-70px">
+              <span id="live-hitrost2" class="display-4">{{trenutno.veter.zdaj}}</span>
+              <br>
+              <div class="text-muted" style="margin-top:-15px">m/s</div>
+            </div>
+            <p class="card-text">
+              Sunki vetra: <b>{{trenutno.veter.sunek.zdaj}}</b> m/s ({{trenutno.veter.sunek.zdaj_km}}km/h)
+              <br /> Hitrost vetra: <b><span class="live-hitrost">{{trenutno.veter.zdaj}}</span>m/s</b> (<span class="live-hitrost-km">{{trenutno.veter.zdaj_km}}</span>km/h)
+              <br /> Rekord: {{trenutno.veter.sunek.max}} m/s <b>({{trenutno.veter.sunek.max_km}}km/h)</b>
+            </p>
+          </div>
+        </div>
+        <div class="card text-xs-center">
+          <div class="card-block">
+            <h4 class="card-title">Val</h4>
+            <div class="container-val gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
+            <div class="text-xs-center" style="margin-top:-70px">
+              <span id="live-val2" class="display-4">{{trenutno.val.zdaj}}</span>
+              <br>
+              <div class="text-muted" style="margin-top:-15px">m</div>
+            </div>
+            <p class="card-text">
+              Max višina: <b>{{trenutno.val.vrh.zdaj}}</b> m
+              <br /> Norm višina: <b><span class="live-val">{{trenutno.val.zdaj}}</span></b> m
+              <br /> Rekord: <b>{{trenutno.val.vrh.max}} m</b>
+            </p>
+          </div>
+        </div>
+        <div class="card text-xs-center">
+          <div class="card-block">
+            <h4 class="card-title">Zrak</h4>
+            <div class="container-temperatura gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
+            <div class="text-xs-center" style="margin-top:-70px">
+              <span id="live-temp" class="display-4">{{trenutno.temp.zdaj}}</span>
+              <br>
+              <div class="text-muted" style="margin-top:-15px">°C</div>
+            </div>
+            <p class="card-text">
+              Temperatura: <b><span class="live-temp2">{{trenutno.temp.zdaj}}</span></b> °C
+              <br> Vlažnost <b>{{trenutno.vlaga}}</b> %
+              <br /> Rekord: <b>{{trenutno.temp.max}}</b> °C
+            </p>
+          </div>
+        </div>
+        <div class="card text-xs-center">
+          <div class="card-block">
+            <h4 class="card-title">Morje</h4>
+            <div class="container-morje gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
+            <div class="text-xs-center" style="margin-top:-70px">
+              <span id="live-morje2" class="display-4">{{trenutno.morje.vrh.zdaj}}</span>
+              <br>
+              <div class="text-muted" style="margin-top:-15px">°C</div>
+            </div>
+            <p class="card-text">
+              Globina 2 m: <b><span class="live-morje">{{trenutno.morje.vrh.zdaj}}</span></b> °C
+              <br /> Globina 23 m: <b>{{trenutno.morje.dno.zdaj}}</b> °C
+              <br /> Rekord: <b>{{trenutno.morje.vrh.max}} °C</b>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'bazdara-page-trenutno',
+      properties: {
+        trenutno: {
+          type: Object
+        }
+      },
+      ready: function() {
+        // TODO09: Workaround for removed domReady event
+        var me = this;
+        setTimeout(function() {
+          me.domReady();
+        }, 1);
+      },
+      domReady: function() {
+
+
+        var gaugeOptions = {
+
+          chart: {
+            type: 'solidgauge',
+            backgroundColor: null,
+          },
+
+          title: null,
+          credits: {
+            enabled: false
+          },
+          exporting: {
+            enabled: false
+          },
+
+          pane: {
+            center: ['50%', '75%'],
+            size: '150%',
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+              backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+              innerRadius: '60%',
+              outerRadius: '100%',
+              shape: 'arc'
+            }
+          },
+
+          tooltip: {
+            enabled: false
+          },
+
+          // the value axis
+          yAxis: {
+            stops: [
+              [0.1, '#55BF3B'], // green
+              [0.4, '#DDDF0D'], // yellow
+              [0.7, '#DF5353'] // red
+            ],
+            lineWidth: 0,
+            minorTickInterval: null,
+            tickPixelInterval: 400,
+            tickWidth: 0,
+            labels: {
+              enabled: false
+            },
+          },
+
+          plotOptions: {
+            solidgauge: {
+              dataLabels: {
+                y: 5,
+                borderWidth: 0,
+                useHTML: true
+              }
+            }
+          }
+        };
+
+        var gaugeOptions2 = {
+
+          chart: {
+            type: 'solidgauge',
+            backgroundColor: null,
+          },
+
+          title: null,
+          credits: {
+            enabled: false
+          },
+          exporting: {
+            enabled: false
+          },
+
+          pane: {
+            center: ['50%', '75%'],
+            size: '150%',
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+              backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+              innerRadius: '60%',
+              outerRadius: '100%',
+              shape: 'arc'
+            }
+          },
+
+          tooltip: {
+            enabled: false
+          },
+
+          yAxis: {
+            stops: [
+              [0.1, '#C6E2FF'],
+              [0.4, '#DDDF0D'],
+              [0.7, '#DF5353']
+            ],
+            lineWidth: 0,
+            minorTickInterval: null,
+            tickPixelInterval: 400,
+            tickWidth: 0,
+            labels: {
+              enabled: false
+            },
+          },
+
+          plotOptions: {
+            solidgauge: {
+              dataLabels: {
+                y: 5,
+                borderWidth: 0,
+                useHTML: true
+              }
+            }
+          }
+        };
+
+        $('.container-temperatura').highcharts(Highcharts.merge(gaugeOptions2, {
+          yAxis: {
+            min: 2.5,
+            max: 31,
+          },
+
+          series: [{
+            name: 'Temperatura zraka',
+            data: [18.7],
+            dataLabels: {
+              enabled: false
+            },
+            tooltip: {
+              enabled: false
+            }
+          }]
+
+        }));
+
+        $('.container-veter').highcharts(Highcharts.merge(gaugeOptions, {
+          yAxis: {
+            min: 0,
+            max: 18.100000381469727,
+          },
+
+          series: [{
+            name: 'Hitrost Vetra',
+            data: [3.5],
+            dataLabels: {
+              enabled: false
+            },
+            tooltip: {
+              enabled: false
+            }
+          }]
+
+        }));
+
+        $('.container-morje').highcharts(Highcharts.merge(gaugeOptions2, {
+          yAxis: {
+            min: 8.899999618530273,
+            max: 30.100000381469727,
+          },
+
+          series: [{
+            name: 'Temperatura morja',
+            data: [18],
+            dataLabels: {
+              enabled: false
+            },
+            tooltip: {
+              enabled: false
+            }
+          }]
+
+        }));
+
+        $('.container-val').highcharts(Highcharts.merge(gaugeOptions, {
+          yAxis: {
+            min: 0,
+            max: 1.7999999523162842,
+          },
+
+          series: [{
+            name: 'Valovanje',
+            data: [0.3],
+            dataLabels: {
+              enabled: false
+            },
+            tooltip: {
+              enabled: false
+            }
+          }]
+
+        }));
+
+
+        // Bring life to the dials
+        setInterval(function() {
+
+          $.getJSON('https://www.bazdara.com/boja/live.json', function(data) {
+            $.each(data, function(key, val) {
+
+
+              var chart = $('.container-temperatura').highcharts(),
+                point,
+                newVal,
+                inc;
+              if (chart) {
+                if (key == 'temperatureAir') {
+                  newVal = val;
+                  var point = chart.series[0].points[0];
+                  point.update(newVal);
+                }
+              }
+
+              var chart = $('.container-veter').highcharts();
+              if (chart) {
+                if (key == 'currentWindSpeed') {
+                  newVal = val;
+                  var point = chart.series[0].points[0];
+                  point.update(newVal);
+                }
+              }
+
+              var chart = $('.container-morje').highcharts();
+              if (chart) {
+                if (key == 'temperatureSeaSurface') {
+                  newVal = val;
+                  var point = chart.series[0].points[0];
+                  point.update(newVal);
+                }
+              }
+
+              var chart = $('.container-val').highcharts();
+              if (chart) {
+                if (key == 'wavesHeight') {
+                  newVal = val;
+                  var point = chart.series[0].points[0];
+                  point.update(newVal);
+                }
+              }
+
+              var chart = $('#container-roza').highcharts();
+              if (chart) {
+                if (key == 'currentWindDirection') {
+                  newVal = val;
+                  var point = chart.series[0].points[0];
+                  point.update(newVal);
+                }
+
+                if (key == 'meanWindDirection') {
+                  newVal = val;
+                  var point = chart.series[1].points[0];
+                  point.update(newVal);
+                }
+              }
+              if (key == 'temperatureAir') {
+                $('#live-temperatura').empty();
+                $('#live-temperatura').append(data['temperatureAir']);
+
+                $('#live-temp').empty();
+                $('#live-temp').append(data['temperatureAir']);
+
+                $('.live-temp2').empty();
+                $('.live-temp2').append(data['temperatureAir']);
+              }
+              if (key == 'currentWindDirection') {
+                $('#live-smer').empty();
+                $('#live-smer').append(data['currentWindDirection']);
+
+              }
+              if (key == 'meanWindBeaufort') {
+                $('#live-bufor').empty();
+                $('#live-bufor').append(data['meanWindBeaufort']);
+              }
+              if (key == 'currentWindSpeed') {
+                $('.live-hitrost').empty();
+                $('.live-hitrost').append(data['currentWindSpeed']);
+
+                $('#live-hitrost2').empty();
+                $('#live-hitrost2').append(data['currentWindSpeed']);
+              }
+              if (key == 'currentWindSpeed') {
+                $('.live-hitrost-km').empty();
+                $('.live-hitrost-km').append((data['currentWindSpeed'] * 3.6).toFixed(1));
+              }
+              if (key == 'wavesHeight') {
+                $('.live-val').empty();
+                $('.live-val').append(data['wavesHeight']);
+
+                $('#live-val2').empty();
+                $('#live-val2').append(data['wavesHeight']);
+              }
+              if (key == 'wavesHeight') {
+                $('.live-morje').empty();
+                $('.live-morje').append(data['temperatureSeaSurface']);
+
+                $('#live-morje2').empty();
+                $('#live-morje2').append(data['temperatureSeaSurface']);
+              }
+              if (key == 'currentWindDirection') {
+                if (data['currentWindDirection'] >= "340.1" && data['currentWindDirection'] <= "360") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Tramontana");
+                } else if (data['currentWindDirection'] >= "0" && data['currentWindDirection'] <= "10") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Tramontana");
+                } else if (data['currentWindDirection'] >= "10.1" && data['currentWindDirection'] <= "30") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Burin");
+                } else if (data['currentWindDirection'] >= "30.1" && data['currentWindDirection'] <= "100") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Burja");
+                } else if (data['currentWindDirection'] >= "100.1" && data['currentWindDirection'] <= "120") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Levant");
+                } else if (data['currentWindDirection'] >= "120.1" && data['currentWindDirection'] <= "160") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Jugo");
+                } else if (data['currentWindDirection'] >= "160.1" && data['currentWindDirection'] <= "200") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Oštro");
+                } else if (data['currentWindDirection'] >= "200.1" && data['currentWindDirection'] <= "240") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Lebič");
+                } else if (data['currentWindDirection'] >= "240.1" && data['currentWindDirection'] <= "260") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Garbin");
+                } else if (data['currentWindDirection'] >= "260.1" && data['currentWindDirection'] <= "290") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Ponent");
+                } else if (data['currentWindDirection'] >= "290.1" && data['currentWindDirection'] <= "340") {
+                  $('.live-veter').empty();
+                  $('.live-veter').append("Maestral");
+                }
+              }
+
+            });
+          });
+        }, 3100);
+
+      }
+    });
+  </script>
+</dom-module>

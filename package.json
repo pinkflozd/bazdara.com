@@ -1,0 +1,12 @@
+{
+  "version": "0.5.0",
+  "description": "Bazdara",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pinkflozd/bazdara.git"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "private": true
+}

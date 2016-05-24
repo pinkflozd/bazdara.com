@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../styles/shared-styles.html">
+
+<dom-module id="bazdara-page-slika">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+    <div class="container">
+
+    <h2 class="page-title">Vremenska slika</h2>
+    <paper-material elevation="1" style="max-width: 720px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;">
+      <video controls preload autoplay loop poster="//y.bazdara.com/padavine.jpg" class="card-img"  style="padding:0.1em;width:100%;margin-bottom:-7px">
+                 <source src="//y.bazdara.com/padavine.mp4" type="video/mp4">
+                 <source src="//y.bazdara.com/padavine.webm" type="video/webm">
+                 <p>Please use a modern browser to view this video.</p>
+              </video>
+    </paper-material>
+  </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'bazdara-page-slika'
+    });
+  </script>
+</dom-module>
