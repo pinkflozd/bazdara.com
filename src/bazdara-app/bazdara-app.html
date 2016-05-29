@@ -10,8 +10,6 @@
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 
 <link rel="import" href="../../bower_components/font-roboto/roboto.html">
-<link rel="import" href="../font-import/font-import.html">
-
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
@@ -22,19 +20,12 @@
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-<link rel="import" href="../../bower_components/app-layout/app-scrollpos-control/app-scrollpos-control.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
 <link rel="import" href="../../bower_components/fullscreen-api/fullscreen-api.html">
 <link rel="import" href="../../bower_components/fullscreen-api/fullscreen-icon-button.html">
 
 <link rel="import" href="../app-icons/app-icons.html">
-<link rel="import" href="../bazdara-page-trenutno/bazdara-page-trenutno.html">
-<link rel="import" href="../bazdara-page-napoved/bazdara-page-napoved.html">
-<link rel="import" href="../bazdara-page-slika/bazdara-page-slika.html">
-<link rel="import" href="../bazdara-page-plimovanje/bazdara-page-plimovanje.html">
-<link rel="import" href="../bazdara-page-informacije/bazdara-page-informacije.html">
-<link rel="import" href="../bazdara-page-navigacija/bazdara-page-navigacija.html">
 <link rel="import" href="../bazdara-page-404/bazdara-page-404.html">
 
 
@@ -75,7 +66,6 @@
           overflow-x: hidden;
           border-right: 1px solid #ddd;
         }
-        ;
       }
 
       app-drawer app-header {
@@ -147,9 +137,7 @@
 
     <!-- setup routes -->
     <app-location route="{{route}}"></app-location>
-    <app-route route="{{route}}" pattern="/:page" data="{{pageData}}"></app-route>
-
-    <app-scrollpos-control selected="{{pageData.page}}"></app-scrollpos-control>
+    <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
 
     <app-drawer-layout drawer-width="310px" responsive-width="1500px">
       <!-- nav panel -->
@@ -163,13 +151,13 @@
           </app-header>
 
           <!-- nav menu -->
-          <iron-selector selected="[[pageData.page]]" attr-for-selected="data-page" on-iron-activate="_drawerSelected">
-            <a data-page="" href="/" onclick="ga('send', 'pageview', '/'');">Trenutne razmere</a>
-            <a data-page="napoved" href="/napoved" onclick="setInterval(function() {window.dispatchEvent(new Event('resize')) }, 1); ga('send', 'pageview', '/napoved');">Vremenska napoved</a>
-            <a data-page="slika" href="/slika" onclick="ga('send', 'pageview', '/slika');">Vremenska slika</a>
-            <a data-page="plimovanje" href="/plimovanje" onclick="setInterval(function() {window.dispatchEvent(new Event('resize')) }, 1); ga('send', 'pageview', '/plimovanje');">Plimovanje morja</a>
-            <a data-page="navigacija" href="/navigacija" onclick="setInterval(function() { document.querySelector('bazdara-page-navigacija').redrawMap(); }, 1); ga('send', 'pageview', '/navigacija');">Navigacija</a>
-            <a data-page="informacije" href="/informacije" onclick="ga('send', 'pageview', '/informacije');">Informacije</a>
+          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" on-iron-activate="_drawerSelected">
+            <a name="trenutno" href="/" onclick="ga('send', 'pageview', '/'');">Trenutne razmere</a>
+            <a name="napoved" href="/napoved" onclick="setInterval(function() {window.dispatchEvent(new Event('resize')) }, 1); ga('send', 'pageview', '/napoved');">Vremenska napoved</a>
+            <a name="slika" href="/slika" onclick="ga('send', 'pageview', '/slika');">Vremenska slika</a>
+            <a name="plimovanje" href="/plimovanje" onclick="setInterval(function() {window.dispatchEvent(new Event('resize')) }, 1); ga('send', 'pageview', '/plimovanje');">Plimovanje morja</a>
+            <a name="navigacija" href="/navigacija" onclick="ga('send', 'pageview', '/navigacija');">Kartografija</a>
+            <a name="informacije" href="/informacije" onclick="ga('send', 'pageview', '/informacije');">Informacije</a>
           </iron-selector>
         </app-header-layout>
       </app-drawer>
@@ -191,14 +179,14 @@
         </app-header>
       </app-header-layout>
 
-      <iron-pages selected="[[pageData.page]]" attr-for-selected="data-page" fallback-selection="404">
-        <bazdara-page-trenutno data-page=""></bazdara-page-trenutno>
-        <bazdara-page-napoved data-page="napoved"></bazdara-page-napoved>
-        <bazdara-page-slika data-page="slika"></bazdara-page-slika>
-        <bazdara-page-plimovanje data-page="plimovanje"></bazdara-page-plimovanje>
-        <bazdara-page-navigacija data-page="navigacija"></bazdara-page-navigacija>
-        <bazdara-page-informacije data-page="informacije"></bazdara-page-informacije>
-        <bazdara-page-404 data-page="404"></bazdara-page-404>
+      <iron-pages role="main" selected="[[page]]" attr-for-selected="name" fallback-selection="404">
+        <bazdara-page-trenutno name="trenutno"></bazdara-page-trenutno>
+        <bazdara-page-napoved name="napoved"></bazdara-page-napoved>
+        <bazdara-page-slika name="slika"></bazdara-page-slika>
+        <bazdara-page-plimovanje name="plimovanje"></bazdara-page-plimovanje>
+        <bazdara-page-navigacija name="navigacija"></bazdara-page-navigacija>
+        <bazdara-page-informacije name="informacije"></bazdara-page-informacije>
+        <bazdara-page-404 name="404"></bazdara-page-404>
       </iron-pages>
     </app-drawer-layout>
   </template>
@@ -217,13 +205,28 @@
         liveslika: {
           type: String,
           value: 'https://y.bazdara.com/si_piranpunta_hq.jpg'
-        }
+        },
+
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged'
+        },
+
       },
 
-      attached: function() {
-        if (!this.route.path) {
-          this.set('route.path', '/');
-        }
+      observers: [
+        '_routePageChanged(routeData.page)'
+      ],
+
+      _routePageChanged: function(page) {
+        this.page = page || 'trenutno';
+      },
+
+      _pageChanged: function(page) {
+        // load page import on demand.
+        this.importHref(
+          this.resolveUrl('../bazdara-page-' + page + '/bazdara-page-' + page + '.html'), null, null, true);
       },
 
       _drawerSelected: function() {
@@ -231,13 +234,6 @@
       },
 
       ready: function() {
-        // TODO09: Workaround for removed domReady event
-        var me = this;
-        setTimeout(function() {
-          me.domReady();
-        }, 1);
-      },
-      domReady: function() {
         setInterval(function() {
           var spletna = document.getElementById('tooltip_1');
           spletna.src = 'https://y.bazdara.com/si_piranpunta_hq.jpg?rand=' + Math.random();;

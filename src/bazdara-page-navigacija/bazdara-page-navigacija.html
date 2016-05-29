@@ -55,7 +55,7 @@
         _map: undefined,
 
         _baseLayer: undefined,
-        _navionics: undefined,
+        _arso: undefined,
 
         ready: function() {
           // TODO09: Workaround for removed domReady event
@@ -75,24 +75,38 @@
 
           var map = L.map(this.$.map, {
             maxBounds: mybounds,
-            zoom: 10,
+            zoom: 15,
             minZoom: 5,
             maxZoom: 18
           });
 
           this._map = map;
-          map.setView([45.5282, 13.5681], 10);
+          map.setView([45.5282, 13.5681], 15);
           var baseLayer = L.tileLayer('https://tile.bazdara.com/{z}/{x}/{y}.png', {
-            attribution: '<a href="https://www.bazdara.com">Bazdara</a>, © <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a>'
+            attribution: '<a href="https://www.bazdara.com">Bazdara</a> | <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a>'
           });
           this._baseLayer = baseLayer;
           this._baseLayer.addTo(map);
 
-          // var navionics = L.tileLayer('https://backend.navionics.io/tile/{z}/{x}/{y}?LAYERS=config_1_1_1&TRANSPARENT=TRUE&navtoken=TmF2aW9uaWNzX3dlYmFwaV8wMTk4Myt3d3cuYmF6ZGFyYS5jb20rbDJidTJqbGwzZGk=', {
-          //   attribution: 'Navionics'
-          // });
-          // this._navionics = navionics;
-          // this._navionics.addTo(map);
+           var arso = L.tileLayer('https://x.bazdara.com/navigacija.php?z={z}&x={x}&y={y}&r=mapnik', {
+             attribution: '| Arso',
+             tms: true,
+             minZoom: 14,
+             maxNativeZoom: 16,
+             transparent: true,
+             opacity: 0.75
+           });
+           this._arso = arso;
+           this._arso.addTo(map);
+
+           L.Icon.Default.imagePath = '/images/map';
+
+           var track = new L.KML("/data/data.xml", {async: true});
+           this._map.addLayer(track);
+
+           //var izobate = new L.KML("/data/izobate.kml", {async: true});
+           //this._map.addLayer(izobate);
+           //this._map.addControl(new L.Control.Layers({}, {'Izobate':izobate}));
 
           var geometWind = L.tileLayer.wms("https://x.bazdara.com/geomet/", {
             layers: 'GDPS.ETA_UU',
@@ -109,6 +123,8 @@
             attribution: "Environment Canada",
             opacity: 0.40
           });
+
+          this._map.addControl(new L.Control.Layers({}, {'Boje in svetilniki':track, 'Veter':geometWind, 'Padavine':geometRain}));
 
           var lc = L.control.locate({
             position: 'topleft', // set the location of the control
@@ -146,7 +162,8 @@
             },
             locateOptions: {
               enableHighAccuracy: true,
-              maxZoom: 16
+              maxZoom: 16,
+              minZoom: 14,
             } // define location options e.g enableHighAccuracy: true or maxZoom: 10
           }).addTo(map);
 
@@ -272,7 +289,7 @@
           map = this._map;
           startingZoom = map.getZoom();
           bounds = map.getPixelBounds();
-          tileSize = this._baseLayer._getTileSize();
+          tileSize = '256';
           roundedTileBounds = L.bounds(bounds.min.divideBy(tileSize)._floor(), bounds.max.divideBy(tileSize)._floor());
           tilesInScreen = [];
           for (j = _i = _ref = roundedTileBounds.min.y, _ref1 = roundedTileBounds.max.y; _ref <= _ref1 ? _i <= _ref1 : _i >= _ref1; j = _ref <= _ref1 ? ++_i : --_i) {
@@ -364,9 +381,6 @@
           tilePoint = this._createNormalizedTilePoint(x, y, z);
           return tilePoint.x + ", " + tilePoint.y + ", " + tilePoint.z;
         }
-
-
-
 
 
       });

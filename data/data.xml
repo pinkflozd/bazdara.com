@@ -1,0 +1,1795 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>svet_RU</name>
+    <Style id="yellow">
+      <IconStyle>
+        <scale>1.0</scale>
+        <heading>0</heading>
+        <Icon>
+          <href>/images/map/yellow-icon.png</href>
+        </Icon>
+        <hotSpot x="13" y="-41" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+    </Style>
+    <Style id="green">
+      <IconStyle>
+        <scale>1.0</scale>
+        <heading>0</heading>
+        <Icon>
+          <href>/images/map/green-icon.png</href>
+        </Icon>
+        <hotSpot x="13" y="-41" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+    </Style>
+    <Style id="red">
+      <IconStyle>
+        <scale>1.0</scale>
+        <heading>0</heading>
+        <Icon>
+          <href>/images/map/red-icon.png</href>
+        </Icon>
+        <hotSpot x="13" y="-41" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+    </Style>
+    <Style id="silver">
+      <IconStyle>
+        <scale>1.0</scale>
+        <heading>0</heading>
+        <Icon>
+          <href>/images/map/silver-icon.png</href>
+        </Icon>
+        <hotSpot x="13" y="-41" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+    </Style>
+    <Style id="white">
+      <IconStyle>
+        <scale>1.0</scale>
+        <heading>0</heading>
+        <Icon>
+          <href>/images/map/white-icon.png</href>
+        </Icon>
+        <hotSpot x="13" y="-41" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+    </Style>
+    <Style id="wreck">
+      <IconStyle>
+        <scale>1.0</scale>
+        <heading>0</heading>
+        <Icon>
+          <href>/images/map/wreck-icon.png</href>
+        </Icon>
+        <hotSpot x="16" y="-25" xunits="pixels" yunits="pixels"/>
+      </IconStyle>
+    </Style>
+    <Folder>
+      <name>Potopljene barke</name>
+      <Placemark>
+        <name>Destantni čoln Kec</name>
+        <styleUrl>#wreck</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BE">
+            <SimpleData name="Name">45</SimpleData>
+            <SimpleData name="OBJ_OPIS">Rt Petelin</SimpleData>
+            <SimpleData name="LUC_NAC">B.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">7</SimpleData>
+            <SimpleData name="LUC_D_M">6</SimpleData>
+            <SimpleData name="LUC_B">B</SimpleData>
+            <SimpleData name="ST_NAC">45</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.578946,45.554144</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>svet_RU</name>
+      <Placemark>
+        <name>76</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">76</SimpleData>
+            <SimpleData name="OBJ_OPIS">Oceanografska boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">4</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">76</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.550718571826307,45.54870787716473</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>22</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">22</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 3. rumena boja, E</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.K.1s</SimpleData>
+            <SimpleData name="LUC_H_m">2</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">22</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.739849246838661,45.567010831344298</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>21</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">21</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 2. rumena boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.K.1s</SimpleData>
+            <SimpleData name="LUC_H_m">2</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">21</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.737262985104673,45.566944313280196</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>20</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">20</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 1. rumena boja, W</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.K.1s</SimpleData>
+            <SimpleData name="LUC_H_m">2</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">20</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.735494085038914,45.56686692033476</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>19</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">19</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, pokrita smer, zadnja luc</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.K.</SimpleData>
+            <SimpleData name="LUC_H_m">12</SimpleData>
+            <SimpleData name="LUC_D_M">10</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">19</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.748822836709877,45.565633262615833</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>18</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">18</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, pokrita smer, sprednja luc</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.K.</SimpleData>
+            <SimpleData name="LUC_H_m">8</SimpleData>
+            <SimpleData name="LUC_D_M">10</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">18</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.747000648721881,45.565597122985956</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>6</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">6</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni spomenik, 5. boja, S</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">6</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.706201616050757,45.586546605687815</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>5</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">5</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni spomenik, 4. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">5</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.702282435399118,45.588175130029356</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>4</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">4</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni spomenik, 3. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">4</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.700729614102752,45.591233036427546</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>3</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">3</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni spomenik, 2. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">3</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.706130064056444,45.594659665098874</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>2</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">2</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni spomenik, 1. boja, N</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">2</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.711385912311782,45.595172283626646</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>54</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">54</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 1. boja, E</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">54</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.641849353067787,45.534345047973083</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>55</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">55</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 2. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">55</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.633135471500424,45.534667768074101</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>56</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">56</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 3. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">56</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.627148259992444,45.536243486263906</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>58</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">58</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 5. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">58</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.621008394455169,45.537971339752566</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>57</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">57</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 4. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">57</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.62147965515425,45.538549313831368</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>59</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">59</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 6. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">59</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.618112789892155,45.541555637462217</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>60</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">60</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 7. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">60</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.613417182505993,45.54192396772342</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>62</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">62</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 9. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">62</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.606029793462916,45.538998123221077</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>61</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">61</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 8. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">61</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.60582860469596,45.539778429359039</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>63</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">63</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 10. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">63</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.602136076135936,45.539123890099098</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>64</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">64</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni rezervat, 11. boja, W</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">64</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.599374028442604,45.535263682562196</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>69</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">69</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni spomenik, 1. boja, E</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">69</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.568475991995101,45.531715639034879</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>70</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">70</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni spomenik, 2. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">70</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.563866823812537,45.532013138912134</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>71</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">71</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni spomenik, 3. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">71</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.561161999334853,45.530596532609032</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>72</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">72</SimpleData>
+            <SimpleData name="OBJ_OPIS">Naravni spomenik, 4. boja, S</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">72</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.563905364398654,45.528111210835633</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>87</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">87</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 1. boja, NW</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.6s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">87</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.581944639094427,45.497211113348058</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>88</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">88</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 2. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.6s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">88</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.579621516679879,45.495614373079768</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>89</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">89</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 3. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.6s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">89</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.577796392269997,45.494021241806173</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>90</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">90</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 4. boja</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.6s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">90</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.575910864633324,45.492308429867187</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>91</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">91</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 5. boja, SW</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.Bl.6s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">91</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.573855903486987,45.490548390213853</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>23</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">23</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 4. rumena boja, E</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.K.1s</SimpleData>
+            <SimpleData name="LUC_H_m">2</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">23</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.742587820266781,45.567230283191421</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>24</name>
+        <styleUrl>#yellow</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RU">
+            <SimpleData name="Name">24</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 5. rumena boja, E</SimpleData>
+            <SimpleData name="LUC_NAC">Ru.K.1s</SimpleData>
+            <SimpleData name="LUC_H_m">2</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Ru</SimpleData>
+            <SimpleData name="ST_NAC">24</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.744358046381169,45.567399165539776</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>svet_BE</name>
+      <Placemark>
+        <name>45</name>
+        <styleUrl>#white</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BE">
+            <SimpleData name="Name">45</SimpleData>
+            <SimpleData name="OBJ_OPIS">Rt Petelin</SimpleData>
+            <SimpleData name="LUC_NAC">B.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">7</SimpleData>
+            <SimpleData name="LUC_D_M">6</SimpleData>
+            <SimpleData name="LUC_B">B</SimpleData>
+            <SimpleData name="ST_NAC">45</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.65607192872295,45.541585167841767</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>1</name>
+        <styleUrl>#white</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BE">
+            <SimpleData name="Name">1</SimpleData>
+            <SimpleData name="OBJ_OPIS">Oznaka plitvine</SimpleData>
+            <SimpleData name="LUC_NAC">B.K(9)15s</SimpleData>
+            <SimpleData name="LUC_H_m">8</SimpleData>
+            <SimpleData name="LUC_D_M">8</SimpleData>
+            <SimpleData name="LUC_B">B</SimpleData>
+            <SimpleData name="ST_NAC">1</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.699713603395763,45.591166126315308</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8</name>
+        <styleUrl>#white</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BE">
+            <SimpleData name="Name">8</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, pristopna boja</SimpleData>
+            <SimpleData name="LUC_NAC">B.DBl.10s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">6</SimpleData>
+            <SimpleData name="LUC_B">B</SimpleData>
+            <SimpleData name="ST_NAC">8</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.699136360835867,45.564538501125789</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>73</name>
+        <styleUrl>#white</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BE">
+            <SimpleData name="Name">73</SimpleData>
+            <SimpleData name="OBJ_OPIS">Rt Madona</SimpleData>
+            <SimpleData name="LUC_NAC">B.Izo.4s</SimpleData>
+            <SimpleData name="LUC_H_m">10</SimpleData>
+            <SimpleData name="LUC_D_M">15</SimpleData>
+            <SimpleData name="OPOMBA">(8M)</SimpleData>
+            <SimpleData name="LUC_B">B</SimpleData>
+            <SimpleData name="ST_NAC">73</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.563162230758751,45.530240448749616</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>svet_BREZ</name>
+      <Placemark>
+        <name>30</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">30</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen II, privezna boja, E</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">30</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.731976122223406,45.559421994067101</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>29</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">29</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen II, privezna boja, W</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">29</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.731256690078263,45.559446982123319</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>65</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">65</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 1. boja, NW</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">65</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.593477868747293,45.530979836234543</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>67</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">67</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 3. boja, SW</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">67</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.590767973743475,45.529269824010029</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>68</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">68</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 4. boja, SE</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">68</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.596687923033123,45.527479951058019</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>66</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">66</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 2. boja, NE</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">66</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.598787808230865,45.529839941742274</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>33</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">33</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen II, 3. bela boja, E</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">33</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.744913884291684,45.558725738352265</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>32</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">32</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen II, 2. bela boja</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">32</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.744451452156452,45.558750572269886</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>31</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">31</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen II, 1. bela boja, W</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">31</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.74380411204023,45.558851370407936</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>42</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">42</SimpleData>
+            <SimpleData name="OBJ_OPIS">Ladjedelnica, privezna boja, SW</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">42</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.665467168545581,45.540736939437906</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>41</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">41</SimpleData>
+            <SimpleData name="OBJ_OPIS">Ladjedelnica, privezna boja, SE</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">41</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.666401580159977,45.540576300300351</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>43</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">43</SimpleData>
+            <SimpleData name="OBJ_OPIS">Ladjedelnica, privezna boja, NE</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">43</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.666248856426938,45.544004642348341</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>44</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">44</SimpleData>
+            <SimpleData name="OBJ_OPIS">Ladjedelnica, privezna boja, NW</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">44</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.664022502112978,45.543002812803984</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>80</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">80</SimpleData>
+            <SimpleData name="OBJ_OPIS">Privezna boja, W</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">80</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.581052767627774,45.512550769183946</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>81</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">81</SimpleData>
+            <SimpleData name="OBJ_OPIS">Privezna boja, E</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">81</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.583394143462838,45.512138452097361</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>92</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">92</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 6. boja, SE</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">92</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.578999796871242,45.485225945685031</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>93</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">93</SimpleData>
+            <SimpleData name="OBJ_OPIS">Obmocje gojenja marikultur, 7. boja, NE</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">93</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.585172211122087,45.494407966214318</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>94</name>
+        <styleUrl>#silver</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_BREZ">
+            <SimpleData name="Name">94</SimpleData>
+            <SimpleData name="OBJ_OPIS">Piketo, boja</SimpleData>
+            <SimpleData name="LUC_NAC">-</SimpleData>
+            <SimpleData name="LUC_H_m">0</SimpleData>
+            <SimpleData name="LUC_D_M">0</SimpleData>
+            <SimpleData name="LUC_B">-</SimpleData>
+            <SimpleData name="ST_NAC">94</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.592098912247103,45.485082148474802</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>svet_RD</name>
+      <Placemark>
+        <name>17</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">17</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, E stran</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">5</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">17</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.746647863545563,45.56602488734606</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>85</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">85</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina, N valobran</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl(2)5s</SimpleData>
+            <SimpleData name="LUC_H_m">7</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">85</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.594640695735775,45.505541067726881</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>78</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">78</SimpleData>
+            <SimpleData name="OBJ_OPIS">Mandrac Bernardin, vhod, S</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.3s</SimpleData>
+            <SimpleData name="LUC_H_m">6</SimpleData>
+            <SimpleData name="LUC_D_M">3</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">78</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.573951231061011,45.514175466769437</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>77</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">77</SimpleData>
+            <SimpleData name="OBJ_OPIS">Rt Bernardin</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">9</SimpleData>
+            <SimpleData name="LUC_D_M">3</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">77</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.573026080610925,45.513784045211139</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>74</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">74</SimpleData>
+            <SimpleData name="OBJ_OPIS">Mestno pristanisce, glava W valobrana</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.3s</SimpleData>
+            <SimpleData name="LUC_H_m">7</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">74</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.566405099447469,45.526186070595514</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>47</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">47</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina, glava N valobrana</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl(2)10s</SimpleData>
+            <SimpleData name="LUC_H_m">6</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="OPOMBA">ugasnjen</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">47</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.654246816672471,45.537357224962356</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>46</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">46</SimpleData>
+            <SimpleData name="OBJ_OPIS">Carinski pomol, glava</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.3s</SimpleData>
+            <SimpleData name="LUC_H_m">6</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">46</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.655226315730948,45.539258536634463</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>38</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">38</SimpleData>
+            <SimpleData name="OBJ_OPIS">Mestno pristanisce, glava N pomola</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl(2)10s</SimpleData>
+            <SimpleData name="LUC_H_m">7</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">38</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.72220751483794,45.548386570253228</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>36</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">36</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina, W valobran</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">7</SimpleData>
+            <SimpleData name="LUC_D_M">3</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">36</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.725702439761614,45.550521278960375</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>7</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">7</SimpleData>
+            <SimpleData name="OBJ_OPIS">Pristan, glava S pomola</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl(2)6s</SimpleData>
+            <SimpleData name="LUC_H_m">5</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">7</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.725895609703132,45.579675662964831</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>34</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">34</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen I, 1. par, N boja</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.2s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">34</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.727193163120891,45.553144018955678</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>27</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">27</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen II, 2. par, N boja</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.2s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">27</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.730077770567791,45.558909193922403</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>25</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">25</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen II, 1. par, N boja</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.2s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">25</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.725375165733803,45.558812592029518</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>15</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">15</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 4. par, N boja</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">15</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.733340917762597,45.565794948172417</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>13</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">13</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 3. par, N boja</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">13</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.727001182225273,45.565748035289076</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>11</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">11</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 2. par, N boja</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">11</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.720860908001514,45.565807199553824</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>9</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">9</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 1. par, N boja</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">9</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.714130720885697,45.565891785009676</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>50</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">50</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina vhod, 1. par, N boja</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">50</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.651830626205649,45.536855786662528</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>52</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">52</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina vhod, 2. par, N boja</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">52</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.653684952106289,45.537081874306367</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>83</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">83</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina vhod, N</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">8</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">83</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.59130378422658,45.506205437977094</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>48</name>
+        <styleUrl>#red</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_RD">
+            <SimpleData name="Name">48</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina vhod, oznaka novega nasipa</SimpleData>
+            <SimpleData name="LUC_NAC">R.Bl(2)10s</SimpleData>
+            <SimpleData name="LUC_H_m">2</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">R</SimpleData>
+            <SimpleData name="ST_NAC">48</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.651741209852565,45.537187011869413</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>svet_ZE</name>
+      <Placemark>
+        <name>86</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">86</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina, S valobran</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl(2)5s</SimpleData>
+            <SimpleData name="LUC_H_m">7</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">86</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.594572800589336,45.505318039907536</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>82</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">82</SimpleData>
+            <SimpleData name="OBJ_OPIS">Pomol Portoroz, glava</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.2s</SimpleData>
+            <SimpleData name="LUC_H_m">6</SimpleData>
+            <SimpleData name="LUC_D_M">6</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">82</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.589807785984297,45.512523637851139</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>79</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">79</SimpleData>
+            <SimpleData name="OBJ_OPIS">Mandrac Bernardin, vhod, N</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.3s</SimpleData>
+            <SimpleData name="LUC_H_m">6</SimpleData>
+            <SimpleData name="LUC_D_M">3</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">79</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.574056251070557,45.514510988795109</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>75</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">75</SimpleData>
+            <SimpleData name="OBJ_OPIS">Mestno pristanisce, glava E precnega pomola</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.3s</SimpleData>
+            <SimpleData name="LUC_H_m">7</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">75</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.566881449744832,45.526131246880702</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>49</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">49</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina, glava S valobrana</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl(2)10s</SimpleData>
+            <SimpleData name="LUC_H_m">6</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">49</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.653844796985135,45.536439191585941</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>39</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">39</SimpleData>
+            <SimpleData name="OBJ_OPIS">Mestno pristanisce, glava S pomola</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">7</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">39</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.723818471840216,45.547771093510264</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>40</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">40</SimpleData>
+            <SimpleData name="OBJ_OPIS">Mestno pristanisce, glava carinskega pomola</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">6</SimpleData>
+            <SimpleData name="LUC_D_M">3</SimpleData>
+            <SimpleData name="OPOMBA">ugasnjen</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">40</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.723835422936977,45.54817230036825</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>37</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">37</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina, E valobran</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl(2)5s</SimpleData>
+            <SimpleData name="LUC_H_m">7</SimpleData>
+            <SimpleData name="LUC_D_M">3</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">37</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.726379059437186,45.550446052768045</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>35</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">35</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen I, 1. par, S boja</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.2s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">35</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.725661196008453,45.551171566615245</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>26</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">26</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen II, 1. par, S boja</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.2s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">26</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.726060891509299,45.557168571272655</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>28</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">28</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen II, 2. par, S boja</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.2s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">28</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.729876152606227,45.557275534414757</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>10</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">10</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 1. par, S boja</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">10</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.714459151704826,45.563933775595821</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>12</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">12</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 2. par, S boja</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">12</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.7208804945545,45.564145682132597</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>14</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">14</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 3. par, S boja</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">14</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.727527612641088,45.564332552787477</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>16</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">16</SimpleData>
+            <SimpleData name="OBJ_OPIS">Bazen III, 4. par, S boja</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.5s</SimpleData>
+            <SimpleData name="LUC_H_m">3</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">16</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.733376623534905,45.564540537994283</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>51</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">51</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina vhod, 1. par, S boja</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">51</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.651674120180484,45.536389404476289</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>53</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">53</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina vhod, 2. par, S boja</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">1</SimpleData>
+            <SimpleData name="LUC_D_M">1</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">53</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.652672767128854,45.536568858388662</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>84</name>
+        <styleUrl>#green</styleUrl>
+        <ExtendedData>
+          <SchemaData schemaUrl="#svet_ZE">
+            <SimpleData name="Name">84</SimpleData>
+            <SimpleData name="OBJ_OPIS">Marina vhod, S</SimpleData>
+            <SimpleData name="LUC_NAC">Z.Bl.4s</SimpleData>
+            <SimpleData name="LUC_H_m">8</SimpleData>
+            <SimpleData name="LUC_D_M">4</SimpleData>
+            <SimpleData name="LUC_B">Z</SimpleData>
+            <SimpleData name="ST_NAC">84</SimpleData>
+          </SchemaData>
+        </ExtendedData>
+        <Point>
+          <coordinates>13.591021265293248,45.505461810815341</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+  </Document>
+</kml>

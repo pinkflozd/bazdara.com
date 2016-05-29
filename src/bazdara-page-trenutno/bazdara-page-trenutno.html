@@ -45,7 +45,7 @@
       <div class="card-columns">
         <div class="card">
           <div class="card-block text-xs-center">
-            <h4 class="card-title"><span class="live-smer-wi"></span> <span class="live-veter">{{trenutno.veter.ime}}</span> (<span id="live-smer">{{trenutno.veter.smer}}</span>°)</h4>
+            <h4 class="card-title"><span class="live-smer-wi"></span> <span class="live-veter">{{trenutno.veter.ime}}</span> (<span id="liveSmer">{{trenutno.veter.smer}}</span>°)</h4>
             <h6 class="card-subtitle text-muted">Podatki v živo iz boje Vide</h6>
           </div>
           <div class="text-xs-center">
@@ -54,11 +54,11 @@
           </div>
           <div class="card-block">
             <div class="card-text text-xs-center">
-              <div class="display-2"><span id="live-temperatura">{{trenutno.temp.zdaj}}</span>°<span class="display-3">C</span>
+              <div class="display-2"><span id="liveTemperatura">{{trenutno.temp.zdaj}}</span>°<span class="display-3">C</span>
               </div>
               {{trenutno.vreme.zdaj}}
               <br>
-              <b>{{trenutno.veter.beaufort}}</b>
+              {{trenutno.veter.moc}} <b>{{trenutno.veter.beaufort}}</b>
               <br>
               <span class="live-hitrost">{{trenutno.veter.zdaj}}</span>m/s (<span class="live-hitrost-km">{{trenutno.veter.zdaj_km}}</span>km/h)
               <br> Sončni vzhod ob <strong>{{trenutno.soncni.vzhod}}</strong>, zahod ob <strong>{{trenutno.soncni.zahod}}</strong>
@@ -80,7 +80,7 @@
         <div class="card text-xs-center">
           <div class="card-block">
             <h4 class="card-title">Veter</h4>
-            <div class="container-veter gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
+            <div id="containerVeter" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
             <div class="text-xs-center" style="margin-top:-70px">
               <span id="live-hitrost2" class="display-4">{{trenutno.veter.zdaj}}</span>
               <br>
@@ -96,7 +96,7 @@
         <div class="card text-xs-center">
           <div class="card-block">
             <h4 class="card-title">Val</h4>
-            <div class="container-val gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
+            <div id="containerVal" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
             <div class="text-xs-center" style="margin-top:-70px">
               <span id="live-val2" class="display-4">{{trenutno.val.zdaj}}</span>
               <br>
@@ -112,14 +112,14 @@
         <div class="card text-xs-center">
           <div class="card-block">
             <h4 class="card-title">Zrak</h4>
-            <div class="container-temperatura gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
+            <div id="containerTemperatura" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
             <div class="text-xs-center" style="margin-top:-70px">
-              <span id="live-temp" class="display-4">{{trenutno.temp.zdaj}}</span>
+              <span id="liveTemp" class="display-4">{{trenutno.temp.zdaj}}</span>
               <br>
               <div class="text-muted" style="margin-top:-15px">°C</div>
             </div>
             <p class="card-text">
-              Temperatura: <b><span class="live-temp2">{{trenutno.temp.zdaj}}</span></b> °C
+              Temperatura: <b><span id="liveTemp2">{{trenutno.temp.zdaj}}</span></b> °C
               <br> Vlažnost <b>{{trenutno.vlaga}}</b> %
               <br /> Rekord: <b>{{trenutno.temp.max}}</b> °C
             </p>
@@ -128,7 +128,7 @@
         <div class="card text-xs-center">
           <div class="card-block">
             <h4 class="card-title">Morje</h4>
-            <div class="container-morje gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
+            <div id="containerMorje" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
             <div class="text-xs-center" style="margin-top:-70px">
               <span id="live-morje2" class="display-4">{{trenutno.morje.vrh.zdaj}}</span>
               <br>
@@ -281,7 +281,11 @@
           }
         };
 
-        $('.container-temperatura').highcharts(Highcharts.merge(gaugeOptions2, {
+        new Highcharts.Chart(Highcharts.merge(gaugeOptions2, {
+          chart: {
+            renderTo : 'containerTemperatura'
+          },
+
           yAxis: {
             min: 2.5,
             max: 31,
@@ -300,7 +304,11 @@
 
         }));
 
-        $('.container-veter').highcharts(Highcharts.merge(gaugeOptions, {
+        new Highcharts.Chart(Highcharts.merge(gaugeOptions, {
+          chart: {
+            renderTo : 'containerVeter'
+          },
+
           yAxis: {
             min: 0,
             max: 18.100000381469727,
@@ -319,7 +327,11 @@
 
         }));
 
-        $('.container-morje').highcharts(Highcharts.merge(gaugeOptions2, {
+        new Highcharts.Chart(Highcharts.merge(gaugeOptions2, {
+          chart: {
+            renderTo : 'containerMorje'
+          },
+
           yAxis: {
             min: 8.899999618530273,
             max: 30.100000381469727,
@@ -338,7 +350,11 @@
 
         }));
 
-        $('.container-val').highcharts(Highcharts.merge(gaugeOptions, {
+        new Highcharts.Chart(Highcharts.merge(gaugeOptions2, {
+          chart: {
+            renderTo : 'containerVal'
+          },
+
           yAxis: {
             min: 0,
             max: 1.7999999523162842,
@@ -365,7 +381,7 @@
             $.each(data, function(key, val) {
 
 
-              var chart = $('.container-temperatura').highcharts(),
+              var chart = $('#containerTemperatura').highcharts(),
                 point,
                 newVal,
                 inc;
@@ -377,7 +393,7 @@
                 }
               }
 
-              var chart = $('.container-veter').highcharts();
+              var chart = $('#containerVeter').highcharts();
               if (chart) {
                 if (key == 'currentWindSpeed') {
                   newVal = val;
@@ -386,7 +402,7 @@
                 }
               }
 
-              var chart = $('.container-morje').highcharts();
+              var chart = $('#containerMorje').highcharts();
               if (chart) {
                 if (key == 'temperatureSeaSurface') {
                   newVal = val;
@@ -395,7 +411,7 @@
                 }
               }
 
-              var chart = $('.container-val').highcharts();
+              var chart = $('#containerVal').highcharts();
               if (chart) {
                 if (key == 'wavesHeight') {
                   newVal = val;
@@ -404,33 +420,19 @@
                 }
               }
 
-              var chart = $('#container-roza').highcharts();
-              if (chart) {
-                if (key == 'currentWindDirection') {
-                  newVal = val;
-                  var point = chart.series[0].points[0];
-                  point.update(newVal);
-                }
-
-                if (key == 'meanWindDirection') {
-                  newVal = val;
-                  var point = chart.series[1].points[0];
-                  point.update(newVal);
-                }
-              }
               if (key == 'temperatureAir') {
-                $('#live-temperatura').empty();
-                $('#live-temperatura').append(data['temperatureAir']);
+                $('#liveTemperatura').empty();
+                $('#liveTemperatura').append(data['temperatureAir']);
 
-                $('#live-temp').empty();
-                $('#live-temp').append(data['temperatureAir']);
+                $('#liveTemp').empty();
+                $('#liveTemp').append(data['temperatureAir']);
 
-                $('.live-temp2').empty();
-                $('.live-temp2').append(data['temperatureAir']);
+                $('#liveTemp2').empty();
+                $('#liveTemp2').append(data['temperatureAir']);
               }
               if (key == 'currentWindDirection') {
-                $('#live-smer').empty();
-                $('#live-smer').append(data['currentWindDirection']);
+                $('#liveSmer').empty();
+                $('#liveSmer').append(data['currentWindDirection']);
 
               }
               if (key == 'meanWindBeaufort') {
