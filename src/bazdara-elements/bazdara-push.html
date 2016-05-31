@@ -1,0 +1,26 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-toggle-button/paper-toggle-button.html">
+
+<dom-module id="bazdara-push">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .push {
+        display: block;
+        padding: 12px 16px;
+        font-size: 18px;
+        color: var(--paper-grey-800);
+      }
+    </style>
+    <div class="push">
+      <paper-toggle-button disabled>Obvestilo ob neurju</paper-toggle-button>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'bazdara-push'
+    });
+  </script>
+</dom-module>

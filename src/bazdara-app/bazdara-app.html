@@ -3,6 +3,8 @@
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 
+<link rel="import" href="../../bower_components/platinum-sw/platinum-sw-elements.html">
+
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
@@ -14,6 +16,8 @@
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
 <link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+
 
 <link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
@@ -26,6 +30,7 @@
 <link rel="import" href="../../bower_components/fullscreen-api/fullscreen-icon-button.html">
 
 <link rel="import" href="../app-icons/app-icons.html">
+<link rel="import" href="../bazdara-elements/bazdara-push.html">
 <link rel="import" href="../bazdara-page-404/bazdara-page-404.html">
 
 
@@ -59,6 +64,10 @@
         z-index: 1002;
       }
 
+      paper-toast {
+        z-index: 1003;
+      }
+
       app-drawer {
         --app-drawer-width: 310px;
         --app-drawer-content-container: {
@@ -80,8 +89,7 @@
       iron-selector > a {
         display: block;
         padding: 12px 16px;
-        font-size: 20px;
-        font-weight: 300;
+        font-size: 18px;
         color: var(--paper-grey-800);
       }
 
@@ -103,6 +111,10 @@
         border-bottom: 1px solid #ddd;
         background-color: var(--app-secondary-color);
         color: #fff;
+      }
+
+      bazdara-push {
+        margin-top: auto;
       }
 
       h1 {
@@ -135,9 +147,16 @@
       }
     </style>
 
+
+
     <!-- setup routes -->
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
+
+    <platinum-sw-register auto-register skip-waiting clients-claim href="/service-worker.js" on-service-worker-installed="displayInstalledToast" on-service-worker-updated="displayUpdatedToast">
+      <platinum-sw-cache default-cache-strategy="networkFirst">
+      </platinum-sw-cache>
+    </platinum-sw-register>
 
     <app-drawer-layout drawer-width="310px" responsive-width="1500px">
       <!-- nav panel -->
@@ -149,16 +168,16 @@
             </a>
             <paper-tooltip for="tooltip_1" offset="-190">Klikni za live Spletna kamera Piran (Punta)</paper-tooltip>
           </app-header>
-
           <!-- nav menu -->
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" on-iron-activate="_drawerSelected">
-            <a name="trenutno" href="/" onclick="ga('send', 'pageview', '/'');">Trenutne razmere</a>
-            <a name="napoved" href="/napoved" onclick="setInterval(function() {window.dispatchEvent(new Event('resize')) }, 1); ga('send', 'pageview', '/napoved');">Vremenska napoved</a>
-            <a name="slika" href="/slika" onclick="ga('send', 'pageview', '/slika');">Vremenska slika</a>
-            <a name="plimovanje" href="/plimovanje" onclick="setInterval(function() {window.dispatchEvent(new Event('resize')) }, 1); ga('send', 'pageview', '/plimovanje');">Plimovanje morja</a>
-            <a name="navigacija" href="/navigacija" onclick="ga('send', 'pageview', '/navigacija');">Kartografija</a>
-            <a name="informacije" href="/informacije" onclick="ga('send', 'pageview', '/informacije');">Informacije</a>
+            <a name="trenutno" href="/">Trenutne razmere</a>
+            <a name="napoved" href="/napoved">Vremenska napoved</a>
+            <a name="slika" href="/slika">Vremenska slika</a>
+            <a name="plimovanje" href="/plimovanje">Plimovanje morja</a>
+            <a name="navigacija" href="/navigacija">Kartografija</a>
+            <a name="informacije" href="/informacije">Informacije</a>
           </iron-selector>
+          <bazdara-push></bazdara-push>
         </app-header-layout>
       </app-drawer>
 
@@ -189,6 +208,12 @@
         <bazdara-page-404 name="404"></bazdara-page-404>
       </iron-pages>
     </app-drawer-layout>
+
+    <paper-toast id="cachingComplete" duration="6000" text="Predpomnjenje končano. Program bo deloval brez internet povezave.">
+    </paper-toast>
+
+    <paper-toast id="cachingUpdated" duration="6000" text="Nova verzija nameščena. Stran se bo osvežila.">
+    </paper-toast>
   </template>
 
   <script>
@@ -198,13 +223,11 @@
       properties: {
         trenutno: {
           type: Object
-        }
-      },
+        },
 
-      properties: {
         liveslika: {
           type: String,
-          value: 'https://y.bazdara.com/si_piranpunta_hq.jpg'
+          value: 'https://x.bazdara.com/si_piranpunta_hq.jpg'
         },
 
         page: {
@@ -227,18 +250,68 @@
         // load page import on demand.
         this.importHref(
           this.resolveUrl('../bazdara-page-' + page + '/bazdara-page-' + page + '.html'), null, null, true);
+        ga('send', 'pageview', '/' + page);
       },
 
       _drawerSelected: function() {
-        if (!this.$.drawer.persistent) this.$.drawer.close();
+        if (!this.$.drawer.persistent) {
+          this.$.drawer.close();
+        }
       },
 
       ready: function() {
         setInterval(function() {
           var spletna = document.getElementById('tooltip_1');
-          spletna.src = 'https://y.bazdara.com/si_piranpunta_hq.jpg?rand=' + Math.random();;
+          spletna.src = 'https://x.bazdara.com/si_piranpunta_hq.jpg?rand=' + Math.random();;
         }, 300000);
+
+        window.onerror = (msg, file, line, column, error = null) => {
+          try {
+            if (error) {
+              msg = error.stack;
+            }
+
+            ga('send', 'event', 'error', `${file}:${line}`, msg);
+          } catch (e) {
+            // no-op
+          }
+        };
+
+        const load = window.chrome.loadTimes();
+        let fp = (load.firstPaintTime - load.startLoadTime) * 1000;
+        if (fp) {
+          ga('send', 'timing', 'load', 'firstpaint', fp);
+        }
+
+      },
+
+      displayInstalledToast: function() {
+        this.$.cachingComplete.show();
+      },
+
+      displayUpdatedToast: function() {
+        this.$.cachingUpdated.show();
+        setInterval(function() {
+          window.location.reload()
+        }, 5000);
+      },
+
+      created: function() {
+        // created
+      },
+      attached: function() {
+        //this._activateToolBarButtons();
+      },
+      detached: function() {
+        //this._deactivateToolBarButtons();
+      },
+      _activateToolBarButtons: function() {
+        // show toolbar buttons unique to this page...
+      },
+      _deactivateToolBarButtons: function() {
+        // hide toolbar buttons unique to this page...
       }
+
     });
   </script>
 </dom-module>
