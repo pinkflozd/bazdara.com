@@ -46,8 +46,24 @@
   <script>
       Polymer({
         is: 'bazdara-page-navigacija',
+        
         properties: {
+          loading: {
+            type: Boolean,
+            value: false,
+            notify: true
+          }
+        },
 
+        observers: [
+          '_lockScroll(isLoading)'
+        ],
+        _lockScroll: function(isLoading) {
+          if (isLoading) {
+            document.body.style.overflow = 'hidden';
+          } else {
+            document.body.style.overflow = 'visible';
+          }
         },
 
         /**
@@ -158,11 +174,11 @@
             },
             showPopup: true, // display a popup when the user click on the inner marker
             strings: {
-              title: "Show me where I am", // title of the locate control
-              metersUnit: "meters", // string for metric units
+              title: "Pokaži kje se nahajam", // title of the locate control
+              metersUnit: "metrov", // string for metric units
               feetUnit: "feet", // string for imperial units
-              popup: "You are within {distance} {unit} from this point", // text to appear if user clicks on circle
-              outsideMapBoundsMsg: "You seem located outside the boundaries of the map" // default message for onLocationOutsideMapBounds
+              popup: "Ti si v območju {distance} {unit} od te točke", // text to appear if user clicks on circle
+              outsideMapBoundsMsg: "Zgleda da se nahajaš izven območja zemljevida" // default message for onLocationOutsideMapBounds
             },
             locateOptions: {
               enableHighAccuracy: true,
@@ -175,7 +191,7 @@
             states: [{
               stateName: 'windOn', // name the state
               icon: '<i class="fa fa-long-arrow-down"></i>', // and define its properties
-              title: 'Add Wind Layer', // like its title
+              title: 'Dodaj vertrove', // like its title
               onClick: function(btn, map) { // and its callback
                 geometWind.addTo(map);
                 btn.state('windOff'); // change state on click!
@@ -183,7 +199,7 @@
             }, {
               stateName: 'windOff',
               icon: '<i class="fa fa-long-arrow-down" style="color:#FC8428"></i>',
-              title: 'Remove Wind Layer',
+              title: 'Odstrani vetrove',
               onClick: function(btn, map) {
                 map.removeLayer(geometWind)
                 btn.state('windOn');
@@ -196,7 +212,7 @@
             states: [{
               stateName: 'rainOn', // name the state
               icon: '<i class="fa fa-cloud"></i>', // and define its properties
-              title: 'Add rain Layer', // like its title
+              title: 'Dodaj radar padavin', // like its title
               onClick: function(btn, map) { // and its callback
                 geometRain.addTo(map);
                 btn.state('rainOff'); // change state on click!
@@ -204,7 +220,7 @@
             }, {
               stateName: 'rainOff',
               icon: '<i class="fa fa-cloud" style="color:#FC8428"></i>',
-              title: 'Remove rain Layer',
+              title: 'Odstrani radar padavin',
               onClick: function(btn, map) {
                 map.removeLayer(geometRain)
                 btn.state('rainOn');
@@ -217,14 +233,14 @@
             states: [{
               stateName: 'cacheOn', // name the state
               icon: 'fa-download', // and define its properties
-              title: 'Cache visible map', // like its title
+              title: 'Shrani vidni zemljevid na napravo', // like its title
               onClick: function(btn, map) { // and its callback
                 if (map.getZoom() > 10) {
                   document.querySelector('bazdara-page-navigacija').downloadTiles();
                   this.disable();
                   btn.state('cacheOff'); // change state on click!
                 } else {
-                  toast0.text = 'Map size is too big. Try a bigger zoom.';
+                  toast0.text = 'Temljevid je pre velik. Probaj z večjim zoomom';
                   toast0.open();
                 }
               }

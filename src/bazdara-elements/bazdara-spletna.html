@@ -1,0 +1,48 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
+
+<dom-module id="bazdara-spletna">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <a id="tooltip_1" href="http://www.whatsupcams.com/wgt/si_piranpunta/768/480/true/" target="_blank">
+      <picture style="width:310px; height:192px;">
+        <source id="spletna1" type="image/webp" srcset="{{spletna1}}" style="width:310px; height:192px;">
+        <img id="spletna2" src="{{spletna2}}" style="width:310px; height:192px;">
+      </picture>
+    </a>
+    <paper-tooltip for="tooltip_1" offset="-190">Klikni za live Spletna kamera Piran (Punta)</paper-tooltip>
+  </template>
+  <script>
+    Polymer({
+      is: 'bazdara-spletna',
+
+      properties: {
+        spletna1: {
+          type: String,
+          value: 'https://x.bazdara.com/si_piranpunta_hq.webp'
+        },
+        spletna2: {
+          type: String,
+          value: 'https://x.bazdara.com/si_piranpunta_hq.jpg'
+        },
+
+      },
+
+      ready: function() {
+        setInterval(function() {
+          var spletna1 = document.getElementById('spletna1');
+          var spletna2 = document.getElementById('spletna2');
+          spletna1.srcset = 'https://x.bazdara.com/si_piranpunta_hq.webp?rand=' + Math.random();
+          spletna2.src = 'https://x.bazdara.com/si_piranpunta_hq.jpg?rand=' + Math.random();
+        }, 300000);
+      }
+
+    });
+  </script>
+</dom-module>

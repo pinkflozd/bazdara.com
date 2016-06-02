@@ -1,0 +1,45 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/platinum-sw/platinum-sw-elements.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+
+<dom-module id="bazdara-cache">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-toast {
+        z-index: 1003;
+      }
+    </style>
+
+    <platinum-sw-register auto-register skip-waiting clients-claim href="/service-worker.js" on-service-worker-installed="displayInstalledToast" on-service-worker-updated="displayUpdatedToast">
+      <platinum-sw-cache default-cache-strategy="networkFirst">
+      </platinum-sw-cache>
+    </platinum-sw-register>
+
+    <paper-toast id="cachingComplete" duration="6000" text="Predpomnjenje končano. Program bo deloval brez internet povezave.">
+    </paper-toast>
+
+    <paper-toast id="cachingUpdated" duration="6000" text="Nova verzija nameščena. Program se bo osvežil!">
+    </paper-toast>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'bazdara-cache',
+
+      displayInstalledToast: function() {
+        this.$.cachingComplete.show();
+      },
+
+      displayUpdatedToast: function() {
+        this.$.cachingUpdated.show();
+        setInterval(function() {
+          window.location.reload()
+        }, 3000);
+      },
+    });
+  </script>
+</dom-module>

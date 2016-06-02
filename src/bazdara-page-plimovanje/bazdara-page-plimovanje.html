@@ -21,6 +21,26 @@
   <script>
     Polymer({
       is: 'bazdara-page-plimovanje',
+      
+      properties: {
+        loading: {
+          type: Boolean,
+          value: false,
+          notify: true
+        }
+      },
+
+      observers: [
+        '_lockScroll(isLoading)'
+      ],
+      _lockScroll: function(isLoading) {
+        if (isLoading) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'visible';
+        }
+      },
+
       ready: function() {
         // TODO09: Workaround for removed domReady event
         var me = this;

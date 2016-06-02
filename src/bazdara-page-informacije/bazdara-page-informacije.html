@@ -19,7 +19,27 @@
   </template>
   <script>
     Polymer({
-      is: 'bazdara-page-informacije'
+      is: 'bazdara-page-informacije',
+      
+      properties: {
+        loading: {
+          type: Boolean,
+          value: false,
+          notify: true
+        }
+      },
+
+      observers: [
+        '_lockScroll(isLoading)'
+      ],
+      _lockScroll: function(isLoading) {
+        if (isLoading) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'visible';
+        }
+      },
+
     });
   </script>
 </dom-module>

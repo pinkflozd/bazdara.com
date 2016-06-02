@@ -1,5 +1,4 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
 <dom-module id="bazdara-page-404">
   <template>
@@ -7,28 +6,57 @@
       :host {
         display: block;
       }
-
-      :host paper-material {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        margin-left: 20px;
-        margin-right: 20px;
-        padding: 20px;
-        text-align: center;
+      h1  {
+        margin: 0;
+        font-size: 72px
+      }
+      .errors {
+        padding-top: calc(50vh - 170px)
       }
 
-      :host h1 {
-        font-weight: 200
-      }
     </style>
 
-    <paper-material>
-      <h1>Stran ne obstaja</h1> Jebiga napaka 404. <a href="/">Poskusi z domačo stranjo.</a>
-    </paper-material>
+    <div class="404" style="height: calc(100vh - 130px);
+    width: 100%;
+    background-size: cover;
+    background-image: url(/images/slike/404.jpg);
+    background-position: center center;
+    text-align:center; color: #FFF; ">
+
+<div class="errors">
+<h1>404</h1>
+<h2>Stran ne obstaja</h2>
+<p><a href="/">Poskusi z domačo stranjo.</a></p>
+</div>
+    </div>
+
   </template>
   <script>
     Polymer({
-      is: 'bazdara-page-404'
+      is: 'bazdara-page-404',
+      properties: {
+        loading: {
+          type: Boolean,
+          value: false,
+          notify: true
+        }
+      },
+
+      attached: function() {
+        //this._activateToolBarButtons();
+      },
+
+      observers: [
+        '_lockScroll(isLoading)'
+      ],
+      _lockScroll: function(isLoading) {
+        if (isLoading) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'visible';
+        }
+      },
+
     });
   </script>
 </dom-module>

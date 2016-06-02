@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../styles/shared-styles.html">
 
 <dom-module id="bazdara-page-slika">
@@ -9,24 +10,48 @@
         display: block;
       }
     </style>
+<iron-ajax auto url="https://x.bazdara.com/trenutno.php?slika=1" handle-as="json" last-response="{{slika}}" loading="{{loading}}"></iron-ajax>
+
     <div class="container">
 
-    <h2 class="page-title">Vremenska slika</h2>
-    <paper-material elevation="1" style="max-width: 720px;
+      <h2 class="page-title">Vremenska slika</h2>
+      <paper-material elevation="1" style="max-width: 720px;
   display: block;
   margin-left: auto;
   margin-right: auto;">
-      <video controls preload autoplay loop poster="//y.bazdara.com/padavine.jpg" class="card-img"  style="padding:0.1em;width:100%;margin-bottom:-7px">
-                 <source src="//y.bazdara.com/padavine.mp4" type="video/mp4">
-                 <source src="//y.bazdara.com/padavine.webm" type="video/webm">
-                 <p>Please use a modern browser to view this video.</p>
-              </video>
-    </paper-material>
-  </div>
+        <video controls autoplay loop poster$="[[slika.poster]]" class="card-img" style="padding:0.1em;width:100%;margin-bottom:-7px">
+          <source src="https://x.bazdara.com/padavine.webm" type="video/webm">
+          <source src="https://x.bazdara.com/padavine.mp4" type="video/mp4">
+          <p>Please use a modern browser to view this video.</p>
+        </video>
+      </paper-material>
+    </div>
   </template>
   <script>
     Polymer({
-      is: 'bazdara-page-slika'
+      is: 'bazdara-page-slika',
+      properties: {
+        slika: {
+          type: Object
+        },
+        loading: {
+          type: Boolean,
+          value: false,
+          notify: true
+        }
+      },
+
+      observers: [
+        '_lockScroll(isLoading)'
+      ],
+      _lockScroll: function(isLoading) {
+        if (isLoading) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'visible';
+        }
+      },
+
     });
   </script>
 </dom-module>

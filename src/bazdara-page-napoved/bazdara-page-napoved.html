@@ -15,7 +15,7 @@
         margin-top: 15px
       }
     </style>
-    <iron-ajax auto url="https://x.bazdara.com/trenutno.php?napoved=1" handle-as="json" last-response="{{napoved}}" debounce-duration="300"></iron-ajax>
+    <iron-ajax auto url="https://x.bazdara.com/trenutno.php?napoved=1" handle-as="json" last-response="{{napoved}}" loading="{{loading}}"></iron-ajax>
 
     <div class="container">
 
@@ -53,6 +53,22 @@
       properties: {
         napoved: {
           type: Object
+        },
+        loading: {
+          type: Boolean,
+          value: false,
+          notify: true
+        }
+      },
+
+      observers: [
+        '_lockScroll(isLoading)'
+      ],
+      _lockScroll: function(isLoading) {
+        if (isLoading) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'visible';
         }
       },
 

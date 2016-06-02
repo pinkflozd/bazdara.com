@@ -1,23 +1,18 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
 
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 
-<link rel="import" href="../../bower_components/platinum-sw/platinum-sw-elements.html">
-
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 
 <link rel="import" href="../../bower_components/font-roboto/roboto.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
-<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
-<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
-
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
 <link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
@@ -31,12 +26,15 @@
 
 <link rel="import" href="../app-icons/app-icons.html">
 <link rel="import" href="../bazdara-elements/bazdara-push.html">
+<link rel="import" href="../bazdara-elements/bazdara-cache.html">
+<link rel="import" href="../bazdara-elements/bazdara-spletna.html">
 <link rel="import" href="../bazdara-page-404/bazdara-page-404.html">
+<link rel="import" href="../styles/shared-styles.html">
 
 
 <dom-module id="bazdara-app">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
         --app-primary-color: #fff;
         --app-secondary-color: var(--paper-blue-600);
@@ -44,6 +42,27 @@
         display: block;
         font-family: 'Roboto', sans-serif;
         background-color: var(--paper-grey-50);
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #fafafa;
+        z-index: 999;
+      }
+
+      @media (min-width: 1440px) {
+        /* make page title smaller */
+        .overlay {
+          left: 310px;
+        }
       }
 
       a {
@@ -62,10 +81,6 @@
 
       #drawer {
         z-index: 1002;
-      }
-
-      paper-toast {
-        z-index: 1003;
       }
 
       app-drawer {
@@ -108,7 +123,6 @@
       }
 
       .main-header {
-        border-bottom: 1px solid #ddd;
         background-color: var(--app-secondary-color);
         color: #fff;
       }
@@ -122,6 +136,7 @@
         font-weight: 200;
         text-align: center;
         margin-top: 10px
+        margin-bottom: .5rem;
       }
 
       @media (min-width: 360px) {
@@ -145,28 +160,28 @@
         margin-left: 20px;
         font-size: 2em
       }
+
+      paper-spinner {
+        width: 96px;
+        height: 96px;
+        --paper-spinner-stroke-width: 8px;
+      }
     </style>
 
-
+    <div class="overlay" hidden$="[[!isLoading]]">
+      <paper-spinner active></paper-spinner>
+    </div>
 
     <!-- setup routes -->
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
 
-    <platinum-sw-register auto-register skip-waiting clients-claim href="/service-worker.js" on-service-worker-installed="displayInstalledToast" on-service-worker-updated="displayUpdatedToast">
-      <platinum-sw-cache default-cache-strategy="networkFirst">
-      </platinum-sw-cache>
-    </platinum-sw-register>
-
-    <app-drawer-layout drawer-width="310px" responsive-width="1500px">
+    <app-drawer-layout drawer-width="310px" responsive-width="1440px">
       <!-- nav panel -->
       <app-drawer swipe-open id="drawer">
         <app-header-layout has-scrolling-region>
           <app-header fixed>
-            <a href="http://www.whatsupcams.com/wgt/si_piranpunta/768/480/true/" target="_blank">
-              <iron-image id="tooltip_1" style="width:310px; height:192px; cursor:pointer;" sizing="cover" preload fade src="{{liveslika}}"></iron-image>
-            </a>
-            <paper-tooltip for="tooltip_1" offset="-190">Klikni za live Spletna kamera Piran (Punta)</paper-tooltip>
+            <bazdara-spletna></bazdara-spletna>
           </app-header>
           <!-- nav menu -->
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" on-iron-activate="_drawerSelected">
@@ -199,21 +214,18 @@
       </app-header-layout>
 
       <iron-pages role="main" selected="[[page]]" attr-for-selected="name" fallback-selection="404">
-        <bazdara-page-trenutno name="trenutno"></bazdara-page-trenutno>
-        <bazdara-page-napoved name="napoved"></bazdara-page-napoved>
-        <bazdara-page-slika name="slika"></bazdara-page-slika>
-        <bazdara-page-plimovanje name="plimovanje"></bazdara-page-plimovanje>
-        <bazdara-page-navigacija name="navigacija"></bazdara-page-navigacija>
-        <bazdara-page-informacije name="informacije"></bazdara-page-informacije>
+        <bazdara-page-trenutno name="trenutno" loading="{{isLoading}}"></bazdara-page-trenutno>
+        <bazdara-page-napoved name="napoved" loading="{{isLoading}}"></bazdara-page-napoved>
+        <bazdara-page-slika name="slika" loading="{{isLoading}}"></bazdara-page-slika>
+        <bazdara-page-plimovanje name="plimovanje" loading="{{isLoading}}"></bazdara-page-plimovanje>
+        <bazdara-page-navigacija name="navigacija" loading="{{isLoading}}"></bazdara-page-navigacija>
+        <bazdara-page-informacije name="informacije" loading="{{isLoading}}"></bazdara-page-informacije>
         <bazdara-page-404 name="404"></bazdara-page-404>
       </iron-pages>
     </app-drawer-layout>
 
-    <paper-toast id="cachingComplete" duration="6000" text="Predpomnjenje končano. Program bo deloval brez internet povezave.">
-    </paper-toast>
+    <bazdara-cache></bazdara-cache>
 
-    <paper-toast id="cachingUpdated" duration="6000" text="Nova verzija nameščena. Stran se bo osvežila.">
-    </paper-toast>
   </template>
 
   <script>
@@ -223,11 +235,6 @@
       properties: {
         trenutno: {
           type: Object
-        },
-
-        liveslika: {
-          type: String,
-          value: 'https://x.bazdara.com/si_piranpunta_hq.jpg'
         },
 
         page: {
@@ -260,42 +267,8 @@
       },
 
       ready: function() {
-        setInterval(function() {
-          var spletna = document.getElementById('tooltip_1');
-          spletna.src = 'https://x.bazdara.com/si_piranpunta_hq.jpg?rand=' + Math.random();;
-        }, 300000);
-
-        window.onerror = (msg, file, line, column, error = null) => {
-          try {
-            if (error) {
-              msg = error.stack;
-            }
-
-            ga('send', 'event', 'error', `${file}:${line}`, msg);
-          } catch (e) {
-            // no-op
-          }
-        };
-
-        const load = window.chrome.loadTimes();
-        let fp = (load.firstPaintTime - load.startLoadTime) * 1000;
-        if (fp) {
-          ga('send', 'timing', 'load', 'firstpaint', fp);
-        }
-
+        //ready
       },
-
-      displayInstalledToast: function() {
-        this.$.cachingComplete.show();
-      },
-
-      displayUpdatedToast: function() {
-        this.$.cachingUpdated.show();
-        setInterval(function() {
-          window.location.reload()
-        }, 5000);
-      },
-
       created: function() {
         // created
       },
@@ -304,12 +277,6 @@
       },
       detached: function() {
         //this._deactivateToolBarButtons();
-      },
-      _activateToolBarButtons: function() {
-        // show toolbar buttons unique to this page...
-      },
-      _deactivateToolBarButtons: function() {
-        // hide toolbar buttons unique to this page...
       }
 
     });

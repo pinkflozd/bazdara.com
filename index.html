@@ -53,8 +53,23 @@
     }
   </script>
 
-  <script>
+  <style>
+    html {
+      overflow-y: scroll;
+    }
 
+    body {
+      margin: 0;
+    }
+  </style>
+
+  <link rel="import" href="/src/bazdara-app/bazdara-app.html" async>
+</head>
+
+<body>
+  <bazdara-app></bazdara-app>
+
+  <script>
     // Load webcomponentsjs polyfill if browser does not support native Web Components
     (function() {
       'use strict';
@@ -83,31 +98,6 @@
       }
     })();
 
-    // load pre-caching service worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/service-worker.js');
-      });
-    }
-  </script>
-
-  <style>
-    html {
-      overflow-y: scroll;
-    }
-
-    body {
-      margin: 0;
-    }
-  </style>
-
-  <link rel="import" href="/src/bazdara-app/bazdara-app.html" async>
-</head>
-
-<body>
-  <bazdara-app></bazdara-app>
-
-  <script>
     (function(i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r;
       i[r] = i[r] || function() {
@@ -118,7 +108,7 @@
       a.async = 1;
       a.src = g;
       m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-68400284-1', 'auto');
     ga('send', 'pageview');
