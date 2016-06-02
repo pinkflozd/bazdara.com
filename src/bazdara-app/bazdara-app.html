@@ -187,7 +187,8 @@
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" on-iron-activate="_drawerSelected">
             <a name="trenutno" href="/">Trenutne razmere</a>
             <a name="napoved" href="/napoved">Vremenska napoved</a>
-            <a name="slika" href="/slika">Vremenska slika</a>
+            <a name="padavine" href="/padavine">Napoved padavin</a>
+            <a name="veter" href="/veter">Napoved vetra</a>
             <a name="plimovanje" href="/plimovanje">Plimovanje morja</a>
             <a name="navigacija" href="/navigacija">Kartografija</a>
             <a name="informacije" href="/informacije">Informacije</a>
@@ -216,7 +217,8 @@
       <iron-pages role="main" selected="[[page]]" attr-for-selected="name" fallback-selection="404">
         <bazdara-page-trenutno name="trenutno" loading="{{isLoading}}"></bazdara-page-trenutno>
         <bazdara-page-napoved name="napoved" loading="{{isLoading}}"></bazdara-page-napoved>
-        <bazdara-page-slika name="slika" loading="{{isLoading}}"></bazdara-page-slika>
+        <bazdara-page-padavine name="padavine" loading="{{isLoading}}"></bazdara-page-padavine>
+        <bazdara-page-veter name="veter" loading="{{isLoading}}"></bazdara-page-veter>
         <bazdara-page-plimovanje name="plimovanje" loading="{{isLoading}}"></bazdara-page-plimovanje>
         <bazdara-page-navigacija name="navigacija" loading="{{isLoading}}"></bazdara-page-navigacija>
         <bazdara-page-informacije name="informacije" loading="{{isLoading}}"></bazdara-page-informacije>
