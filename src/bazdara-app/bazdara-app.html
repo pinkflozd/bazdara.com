@@ -26,7 +26,7 @@
 <link rel="import" href="../bazdara-elements/bazdara-push.html">
 <link rel="import" href="../bazdara-elements/bazdara-cache.html">
 <link rel="import" href="../bazdara-elements/bazdara-spletna.html">
-<link rel="import" href="../bazdara-page-404/bazdara-page-404.html">
+<link rel="import" href="../bazdara-page/bazdara-page-404.html">
 <link rel="import" href="../styles/shared-styles.html">
 
 
@@ -257,7 +257,7 @@
       _pageChanged: function(page) {
         // load page import on demand.
         this.importHref(
-          this.resolveUrl('../bazdara-page-' + page + '/bazdara-page-' + page + '.html'), null, null, true);
+          this.resolveUrl('../bazdara-page/bazdara-page-' + page + '.html'), null, null, true);
         ga('send', 'pageview', '/' + page);
 
       },

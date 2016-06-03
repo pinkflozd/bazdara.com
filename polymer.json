@@ -2,12 +2,12 @@
   "entrypoint": "index.html",
   "shell": "src/bazdara-app/bazdara-app.html",
   "fragments": [
-    "src/bazdara-page-trenutno/bazdara-page-trenutno.html",
-    "src/bazdara-page-napoved/bazdara-page-napoved.html",
-    "src/bazdara-page-informacije/bazdara-page-informacije.html",
-    "src/bazdara-page-plimovanje/bazdara-page-plimovanje.html",
-    "src/bazdara-page-veter/bazdara-page-veter.html",
-    "src/bazdara-page-padavine/bazdara-page-padavine.html",
-    "src/bazdara-page-navigacija/bazdara-page-navigacija.html"
+    "src/bazdara-page/bazdara-page-trenutno.html",
+    "src/bazdara-page/bazdara-page-napoved.html",
+    "src/bazdara-page/bazdara-page-informacije.html",
+    "src/bazdara-page/bazdara-page-plimovanje.html",
+    "src/bazdara-page/bazdara-page-veter.html",
+    "src/bazdara-page/bazdara-page-padavine.html",
+    "src/bazdara-page/bazdara-page-navigacija.html"
   ]
 }
