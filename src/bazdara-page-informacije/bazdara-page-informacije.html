@@ -20,13 +20,22 @@
   <script>
     Polymer({
       is: 'bazdara-page-informacije',
-      
+
       properties: {
         loading: {
           type: Boolean,
           value: false,
           notify: true
         }
+      },
+
+      genTitle: function() {
+        var title = 'Informacije';
+        document.title = title + ' | Bazdara';
+      },
+      attached: function() {
+        var self = this;
+        self.genTitle();
       },
 
       observers: [

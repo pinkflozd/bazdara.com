@@ -1,8 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
-<link rel="import" href="../bazdara-import/highcharts-import.html">
 <link rel="import" href="../bazdara-import/jquery-import.html">
+<link rel="import" href="../bazdara-import/highcharts-import.html">
 <link rel="import" href="../styles/shared-styles.html">
 
 <dom-module id="bazdara-page-trenutno">
@@ -54,8 +54,7 @@
               <div class="display-2"><span id="liveTemperatura">[[trenutno.temp.zdaj]]</span>°<span class="display-3">C</span>
               </div>
               [[trenutno.vreme.zdaj]]
-              <br>
-              [[trenutno.veter.moc]] <b>[[trenutno.veter.beaufort]]</b>
+              <br> [[trenutno.veter.moc]] <b>[[trenutno.veter.beaufort]]</b>
               <br>
               <span class="live-hitrost">[[trenutno.veter.zdaj]]</span>m/s (<span class="live-hitrost-km">[[trenutno.veter.zdaj_km]]</span>km/h)
               <br> Sončni vzhod ob <strong>[[trenutno.soncni.vzhod]]</strong>, zahod ob <strong>[[trenutno.soncni.zahod]]</strong>
@@ -155,6 +154,15 @@
           value: false,
           notify: true
         }
+      },
+
+      genTitle: function() {
+        var title = 'Trenutno vreme Piran, podatki v živo za morjeplovce';
+        document.title = title + ' | Bazdara';
+      },
+      attached: function() {
+        var self = this;
+        self.genTitle();
       },
 
       observers: [
@@ -297,7 +305,7 @@
 
         new Highcharts.Chart(Highcharts.merge(gaugeOptions2, {
           chart: {
-            renderTo : 'containerTemperatura'
+            renderTo: 'containerTemperatura'
           },
 
           yAxis: {
@@ -320,7 +328,7 @@
 
         new Highcharts.Chart(Highcharts.merge(gaugeOptions, {
           chart: {
-            renderTo : 'containerVeter'
+            renderTo: 'containerVeter'
           },
 
           yAxis: {
@@ -343,7 +351,7 @@
 
         new Highcharts.Chart(Highcharts.merge(gaugeOptions2, {
           chart: {
-            renderTo : 'containerMorje'
+            renderTo: 'containerMorje'
           },
 
           yAxis: {
@@ -366,7 +374,7 @@
 
         new Highcharts.Chart(Highcharts.merge(gaugeOptions2, {
           chart: {
-            renderTo : 'containerVal'
+            renderTo: 'containerVal'
           },
 
           yAxis: {

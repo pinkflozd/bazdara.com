@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
-<link rel="import" href="../bazdara-import/highcharts-import.html">
 <link rel="import" href="../bazdara-import/jquery-import.html">
+<link rel="import" href="../bazdara-import/highcharts-import.html">
 <link rel="import" href="../styles/shared-styles.html">
 
 <dom-module id="bazdara-page-plimovanje">
@@ -13,7 +13,7 @@
     </style>
     <div class="container">
 
-    <h2 class="page-title">Plimovanje morja</h2>
+      <h2 class="page-title">Plimovanje morja</h2>
       <paper-material id="plima" elevation="1">
         <div id="graf-plima" style="width:100%;"></div>
       </paper-material>
@@ -40,6 +40,15 @@
         } else {
           document.body.style.overflow = 'visible';
         }
+      },
+
+      genTitle: function() {
+        var title = 'Plimovanje morja Piranski zaliv';
+        document.title = title + ' | Bazdara';
+      },
+      attached: function() {
+        var self = this;
+        self.genTitle();
       },
 
       ready: function() {
@@ -384,10 +393,16 @@
 
             // make the container smaller and add a second container for the master chart
             var $container = $('#graf-plima')
-              .css({position: 'relative', width: '100%'});
+              .css({
+                position: 'relative',
+                width: '100%'
+              });
 
             var $detailContainer = $('<div id="detail-container">')
-              .css({height: '260', width: '100%'})
+              .css({
+                height: '260',
+                width: '100%'
+              })
               .appendTo($container);
 
             var $masterContainer = $('<div id="master-container">')

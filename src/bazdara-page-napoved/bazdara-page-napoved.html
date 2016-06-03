@@ -1,8 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bazdara-import/highcharts-import.html">
 <link rel="import" href="../bazdara-import/jquery-import.html">
+<link rel="import" href="../bazdara-import/highcharts-import.html">
 <link rel="import" href="../styles/shared-styles.html">
 
 <dom-module id="bazdara-page-napoved">
@@ -30,15 +30,15 @@
           <div class="card">
             <div class="card-block">
               <h4 class="card-title">Napoved za danes</h4>
-              <p class="card-text">{{napoved.danes}}</p>
-              <p class="card-text"><small class="text-muted">Posodobitev: {{napoved.danes_posodobitev}}</small></p>
+              <p class="card-text">[[napoved.danes]]</p>
+              <p class="card-text"><small class="text-muted">Posodobitev: [[napoved.danes_posodobitev]]</small></p>
             </div>
           </div>
           <div class="card">
             <div class="card-block">
               <h4 class="card-title">Napoved za jutri</h4>
-              <p class="card-text">{{napoved.jutri}}</p>
-              <p class="card-text"><small class="text-muted">Posodobitev: {{napoved.jutri_posodobitev}}</small></p>
+              <p class="card-text">[[napoved.jutri]]</p>
+              <p class="card-text"><small class="text-muted">Posodobitev: [[napoved.jutri_posodobitev]]</small></p>
             </div>
           </div>
         </div>
@@ -71,6 +71,15 @@
         } else {
           document.body.style.overflow = 'visible';
         }
+      },
+
+      genTitle: function() {
+        var title = 'Vremenska napoved za Primorje za 48ur';
+        document.title = title + ' | Bazdara';
+      },
+      attached: function() {
+        var self = this;
+        self.genTitle();
       },
 
       ready: function() {

@@ -19,10 +19,8 @@
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/app-layout/app-scrollpos-control/app-scrollpos-control.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-
-<link rel="import" href="../../bower_components/fullscreen-api/fullscreen-api.html">
-<link rel="import" href="../../bower_components/fullscreen-api/fullscreen-icon-button.html">
 
 <link rel="import" href="../app-icons/app-icons.html">
 <link rel="import" href="../bazdara-elements/bazdara-push.html">
@@ -55,7 +53,7 @@
         align-items: center;
         justify-content: center;
         background: #fafafa;
-        z-index: 999;
+        z-index: 998;
       }
 
       @media (min-width: 1440px) {
@@ -135,8 +133,7 @@
         font-size: 2.0em;
         font-weight: 200;
         text-align: center;
-        margin-top: 10px
-        margin-bottom: .5rem;
+        margin-top: 10px margin-bottom: .5rem;
       }
 
       @media (min-width: 360px) {
@@ -176,6 +173,8 @@
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
 
+    <app-scrollpos-control selected="{{routeData.page}}"></app-scrollpos-control>
+
     <app-drawer-layout drawer-width="310px" responsive-width="1440px">
       <!-- nav panel -->
       <app-drawer swipe-open id="drawer">
@@ -187,9 +186,9 @@
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" on-iron-activate="_drawerSelected">
             <a name="trenutno" href="/">Trenutne razmere</a>
             <a name="napoved" href="/napoved">Vremenska napoved</a>
+            <a name="plimovanje" href="/plimovanje">Plimovanje morja</a>
             <a name="padavine" href="/padavine">Napoved padavin</a>
             <a name="veter" href="/veter">Napoved vetra</a>
-            <a name="plimovanje" href="/plimovanje">Plimovanje morja</a>
             <a name="navigacija" href="/navigacija">Kartografija</a>
             <a name="informacije" href="/informacije">Informacije</a>
           </iron-selector>
@@ -204,7 +203,7 @@
           <app-toolbar>
             <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>
             <h4 condensed-title>Bazdara</h4>
-            <fullscreen-icon-button></fullscreen-icon-button>
+            <!-- google signin -->
           </app-toolbar>
 
           <!-- bottom toolbar -->
@@ -260,6 +259,7 @@
         this.importHref(
           this.resolveUrl('../bazdara-page-' + page + '/bazdara-page-' + page + '.html'), null, null, true);
         ga('send', 'pageview', '/' + page);
+
       },
 
       _drawerSelected: function() {
@@ -268,18 +268,20 @@
         }
       },
 
-      ready: function() {
+
+
+      //ready: function() {
         //ready
-      },
-      created: function() {
+      //},
+      //created: function() {
         // created
-      },
-      attached: function() {
+      //},
+      //attached: function() {
         //this._activateToolBarButtons();
-      },
-      detached: function() {
+      //},
+      //detached: function() {
         //this._deactivateToolBarButtons();
-      }
+      //}
 
     });
   </script>

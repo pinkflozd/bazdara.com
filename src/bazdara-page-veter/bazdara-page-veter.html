@@ -12,14 +12,14 @@
         display: block;
       }
 
-      :host #map {
+      :host #map2 {
         height: calc(100vh - 130px);
         width: 100%;
         border: none;
       }
     </style>
 
-<div id="map"></div>
+    <div id="map2"></div>
 
   </template>
   <script>
@@ -36,6 +36,8 @@
         }
       },
 
+      _map2: undefined,
+
       observers: [
         '_lockScroll(isLoading)'
       ],
@@ -47,6 +49,17 @@
         }
       },
 
+      genTitle: function() {
+        var title = 'Radarska animacija in napoved hitrosti vetra';
+        document.title = title + ' | Bazdara';
+      },
+      attached: function() {
+        var self = this;
+        self.genTitle();
+      },
+
+
+
       ready: function() {
         // TODO09: Workaround for removed domReady event
         var me = this;
@@ -54,102 +67,108 @@
           me.domReady();
         }, 1);
       },
+
+
+
       domReady: function() {
-        var map = L.map('map', {
-    zoom: 8,
-    timeDimension: true,
-    timeDimensionOptions: {
-        // times: "2014-12-01T06:00:00Z,2014-12-01T09:00:00Z,2014-12-01T12:00:00Z,2014-12-01T15:00:00Z,2014-12-01T18:00:00Z,2014-12-01T21:00:00Z,2014-12-02T00:00:00Z,2014-12-02T03:00:00Z,2014-12-02T06:00:00Z,2014-12-02T09:00:00Z,2014-12-02T12:00:00Z,2014-12-02T15:00:00Z,2014-12-02T18:00:00Z,2014-12-02T21:00:00Z,2014-12-03T00:00:00Z,2014-12-03T03:00:00Z,2014-12-03T06:00:00Z,2014-12-03T09:00:00Z,2014-12-03T12:00:00Z,2014-12-03T15:00:00Z,2014-12-03T18:00:00Z,2014-12-03T21:00:00Z,2014-12-04T00:00:00Z,2014-12-04T03:00:00Z,2014-12-04T06:00:00Z,2014-12-04T12:00:00Z,2014-12-04T18:00:00Z,2014-12-05T00:00:00Z,2014-12-05T06:00:00Z,2014-12-05T12:00:00Z,2014-12-05T18:00:00Z,2014-12-06T00:00:00Z,2014-12-06T06:00:00Z,2014-12-06T12:00:00Z,2014-12-06T18:00:00Z,2014-12-07T00:00:00Z,2014-12-07T06:00:00Z,2014-12-07T12:00:00Z,2014-12-07T18:00:00Z,2014-12-08T00:00:00Z,2014-12-08T06:00:00Z,2014-12-08T12:00:00Z,2014-12-08T18:00:00Z,2014-12-09T00:00:00Z,2014-12-09T06:00:00Z,2014-12-09T12:00:00Z,2014-12-09T18:00:00Z,2014-12-10T00:00:00Z,2014-12-10T06:00:00Z"
-    },
-    center: [45.5282, 13.5681],
-});
-
-L.Control.TimeDimensionCustom = L.Control.TimeDimension.extend({
-
-});
-var timeDimensionControl = new L.Control.TimeDimensionCustom({
-  speedSlider: false,
-    playerOptions: {
-
-    }
-}).addTo(map);
-
-var lc = L.control.locate({
-  position: 'topleft', // set the location of the control
-  layer: undefined, // use your own layer for the location marker, creates a new layer by default
-  drawCircle: true, // controls whether a circle is drawn that shows the uncertainty about the location
-  setView: 'untilPan', // automatically sets the map view to the user's location, enabled if `follow` is true
-  keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
-  stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
-  remainActive: false, // if true locate control remains active on click even if the user's location is in view.
-  markerClass: L.circleMarker, // L.circleMarker or L.marker
-  circleStyle: {}, // change the style of the circle around the user's location
-  markerStyle: {},
-  followCircleStyle: {}, // set difference for the style of the circle around the user's location while following
-  followMarkerStyle: {},
-  icon: 'fa fa-map-marker', // class for icon, fa-location-arrow or fa-map-marker
-  iconLoading: 'fa fa-spinner fa-spin', // class for loading icon
-  iconElementTag: 'span', // tag for the icon element, span or i
-  circlePadding: [0, 0], // padding around accuracy circle, value is passed to setBounds
-  metric: true, // use metric or imperial units
-  onLocationError: function(err) {
-    alert(err.message)
-    toast0.text = 'Can\'t find your location.';
-    toast0.open();
-  }, // define an error callback function
-  onLocationOutsideMapBounds: function(context) { // called when outside map boundaries
-    alert(context.options.strings.outsideMapBoundsMsg);
-  },
-  showPopup: true, // display a popup when the user click on the inner marker
-  strings: {
-    title: "Pokaži kje se nahajam", // title of the locate control
-    metersUnit: "metrov", // string for metric units
-    feetUnit: "feet", // string for imperial units
-    popup: "Ti si v območju {distance} {unit} od te točke", // text to appear if user clicks on circle
-    outsideMapBoundsMsg: "Zgleda da se nahajaš izven območja zemljevida" // default message for onLocationOutsideMapBounds
-  },
-  locateOptions: {
-    enableHighAccuracy: true,
-    maxZoom: 16,
-    minZoom: 14,
-  } // define location options e.g enableHighAccuracy: true or maxZoom: 10
-}).addTo(map);
+        var map2 = L.map('map2', {
+          zoom: 8,
+          timeDimension: true,
+          fullscreenControl: true,
+          timeDimensionOptions: {
+            // times: "2014-12-01T06:00:00Z,2014-12-01T09:00:00Z,2014-12-01T12:00:00Z,2014-12-01T15:00:00Z,2014-12-01T18:00:00Z,2014-12-01T21:00:00Z,2014-12-02T00:00:00Z,2014-12-02T03:00:00Z,2014-12-02T06:00:00Z,2014-12-02T09:00:00Z,2014-12-02T12:00:00Z,2014-12-02T15:00:00Z,2014-12-02T18:00:00Z,2014-12-02T21:00:00Z,2014-12-03T00:00:00Z,2014-12-03T03:00:00Z,2014-12-03T06:00:00Z,2014-12-03T09:00:00Z,2014-12-03T12:00:00Z,2014-12-03T15:00:00Z,2014-12-03T18:00:00Z,2014-12-03T21:00:00Z,2014-12-04T00:00:00Z,2014-12-04T03:00:00Z,2014-12-04T06:00:00Z,2014-12-04T12:00:00Z,2014-12-04T18:00:00Z,2014-12-05T00:00:00Z,2014-12-05T06:00:00Z,2014-12-05T12:00:00Z,2014-12-05T18:00:00Z,2014-12-06T00:00:00Z,2014-12-06T06:00:00Z,2014-12-06T12:00:00Z,2014-12-06T18:00:00Z,2014-12-07T00:00:00Z,2014-12-07T06:00:00Z,2014-12-07T12:00:00Z,2014-12-07T18:00:00Z,2014-12-08T00:00:00Z,2014-12-08T06:00:00Z,2014-12-08T12:00:00Z,2014-12-08T18:00:00Z,2014-12-09T00:00:00Z,2014-12-09T06:00:00Z,2014-12-09T12:00:00Z,2014-12-09T18:00:00Z,2014-12-10T00:00:00Z,2014-12-10T06:00:00Z"
+          },
+          center: [45.5282, 13.5681],
+        });
 
 
-// https://ogcie.iblsoft.com/metocean/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-var testWMS = "https://ogcie.iblsoft.com/metocean/wms"
-L.tileLayer.wms(testWMS, {
-    layers: 'foreground-lines',
-    format: 'image/png; mode=8bit-grayscale',
-    transparent: true,
-    crs: L.CRS.EPSG4326
-}).addTo(map);
+        L.Control.TimeDimensionCustom = L.Control.TimeDimension.extend({
 
-var testLayer = L.tileLayer.wms(testWMS, {
-    layers: 'gfs-wind-agl', // isobaric levels, or -agl for above ground levels
-    format: 'image/png',
-    transparent: true,
-    opacity: 0.8,
-    crs: L.CRS.EPSG4326,
-    attribution: 'OGC MetOcean DWG Best Practice Example, IBL Software Engineering'
-});
-var proxy = 'https://x.bazdara.com/proxy.php';
-var testTimeLayer = L.timeDimension.layer.wms(testLayer, {
-    proxy: proxy,
-    updateTimeDimension: true,
-});
-testTimeLayer.addTo(map);
+        });
+        var timeDimensionControl = new L.Control.TimeDimensionCustom({
+          speedSlider: false,
+          playerOptions: {
+
+          }
+        }).addTo(map2);
+
+        var lc = L.control.locate({
+          position: 'topleft', // set the location of the control
+          layer: undefined, // use your own layer for the location marker, creates a new layer by default
+          drawCircle: true, // controls whether a circle is drawn that shows the uncertainty about the location
+          setView: 'untilPan', // automatically sets the map view to the user's location, enabled if `follow` is true
+          keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
+          stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
+          remainActive: false, // if true locate control remains active on click even if the user's location is in view.
+          markerClass: L.circleMarker, // L.circleMarker or L.marker
+          circleStyle: {}, // change the style of the circle around the user's location
+          markerStyle: {},
+          followCircleStyle: {}, // set difference for the style of the circle around the user's location while following
+          followMarkerStyle: {},
+          icon: 'fa fa-map-marker', // class for icon, fa-location-arrow or fa-map-marker
+          iconLoading: 'fa fa-spinner fa-spin', // class for loading icon
+          iconElementTag: 'span', // tag for the icon element, span or i
+          circlePadding: [0, 0], // padding around accuracy circle, value is passed to setBounds
+          metric: true, // use metric or imperial units
+          onLocationError: function(err) {
+            alert(err.message)
+            toast0.text = 'Can\'t find your location.';
+            toast0.open();
+          }, // define an error callback function
+          onLocationOutsideMapBounds: function(context) { // called when outside map boundaries
+            alert(context.options.strings.outsideMapBoundsMsg);
+          },
+          showPopup: true, // display a popup when the user click on the inner marker
+          strings: {
+            title: "Pokaži kje se nahajam", // title of the locate control
+            metersUnit: "metrov", // string for metric units
+            feetUnit: "feet", // string for imperial units
+            popup: "Ti si v območju {distance} {unit} od te točke", // text to appear if user clicks on circle
+            outsideMapBoundsMsg: "Zgleda da se nahajaš izven območja zemljevida" // default message for onLocationOutsideMapBounds
+          },
+          locateOptions: {
+            enableHighAccuracy: true,
+            maxZoom: 16,
+            minZoom: 14,
+          } // define location options e.g enableHighAccuracy: true or maxZoom: 10
+        }).addTo(map2);
+
+        // `fullscreenchange` Event that's fired when entering or exiting fullscreen.
+        map2.on('fullscreenchange', function() {
+          if (map2.isFullscreen()) {
+            console.log('entered fullscreen');
+          } else {
+            console.log('exited fullscreen');
+            map2.invalidateSize(true);
+          }
+        });
+
+        // https://ogcie.iblsoft.com/metocean/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+        var testWMS = "https://ogcie.iblsoft.com/metocean/wms"
+
+        this._map2 = map2;
+        var baseLayer = L.tileLayer('https://x.bazdara.com/tile/{z}/{x}/{y}.png', {
+          attribution: '<a href="https://www.bazdara.com">Bazdara</a> | <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a>'
+        });
+        this._baseLayer = baseLayer;
+        this._baseLayer.addTo(map2);
+
+        var testLayer = L.tileLayer.wms(testWMS, {
+          layers: 'gfs-wind-agl', // isobaric levels, or -agl for above ground levels
+          format: 'image/png; mode=8bit',
+          transparent: true,
+          opacity: 0.8,
+          crs: L.CRS.EPSG4326,
+          attribution: 'OGC MetOcean'
+        });
+        var proxy = 'https://x.bazdara.com/proxy.php';
+        var testTimeLayer = L.timeDimension.layer.wms(testLayer, {
+          proxy: proxy,
+          updateTimeDimension: true,
+        });
+        testTimeLayer.addTo(map2);
 
       },
-      created: function() {
-        // created
-      },
-      attached: function() {
-        //this._activateToolBarButtons();
-      },
-      detached: function() {
-        //this._deactivateToolBarButtons();
-      }
 
     });
   </script>
