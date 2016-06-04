@@ -20,5 +20,9 @@
     "leaflet-plugins": "^1.6.1",
     "leaflet-timedimension": "^1.0.3"
   },
-  "private": true
+  "private": true,
+  "resolutions": {
+    "leaflet": "^1.0.0",
+    "font-awesome": "^4.6.3"
+  }
 }

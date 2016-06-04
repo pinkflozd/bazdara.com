@@ -59,6 +59,8 @@
       genTitle: function() {
         var title = 'Navigacijske karte slovenskega morja';
         document.title = title + ' | Bazdara';
+        document.querySelector('meta[name="description"]').setAttribute("content",
+          'Pomorske navigacijske karte in navigacija online');
       },
       attached: function() {
         var self = this;
@@ -115,6 +117,7 @@
         map.on('fullscreenchange', function() {
           if (map.isFullscreen()) {
             console.log('entered fullscreen');
+            ga('send', 'event', 'FullScreen Navigacija', 'view');
           } else {
             console.log('exited fullscreen');
             map.invalidateSize(true);
@@ -263,10 +266,12 @@
             onClick: function(btn, map) { // and its callback
               if (map.getZoom() > 10) {
                 document.querySelector('bazdara-page-navigacija').downloadTiles();
+                ga('send', 'event', 'Cache Navigacija', 'view');
                 this.disable();
                 btn.state('cacheOff'); // change state on click!
               } else {
                 toast0.text = 'Temljevid je pre velik. Probaj z večjim zoomom';
+                ga('send', 'event', 'Cache Navigacija (ERROR)', 'view');
                 toast0.open();
               }
             }

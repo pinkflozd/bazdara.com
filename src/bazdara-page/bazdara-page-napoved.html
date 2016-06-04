@@ -16,7 +16,7 @@
         margin-top: 15px
       }
     </style>
-    <iron-ajax auto url="https://x.bazdara.com/trenutno.php?napoved=1" handle-as="json" last-response="{{napoved}}" loading="{{loading}}"></iron-ajax>
+    <iron-ajax auto url="https://x.bazdara.com/trenutno.php?napoved=1" handle-as="json" on-response="handleResponse" loading="{{loading}}"></iron-ajax>
 
     <div class="container">
 
@@ -53,7 +53,8 @@
 
       properties: {
         napoved: {
-          type: Object
+          type: Object,
+          notify: true
         },
         loading: {
           type: Boolean,
@@ -62,24 +63,28 @@
         }
       },
 
+      handleResponse: function(napoved) {
+        this.napoved = napoved.detail.response;
+      },
+
+      _napovedData: function(napoved) {
+        var title = 'Vremenska napoved za Slovensko Obalo za 48ur';
+        document.title = title + ' | Bazdara';
+        document.querySelector('meta[name="description"]').setAttribute("content",
+          napoved.danes + '. ' + napoved.jutri);
+      },
+
       observers: [
-        '_lockScroll(isLoading)'
+        '_lockScroll(isLoading)',
+        '_napovedData(napoved)'
       ],
+
       _lockScroll: function(isLoading) {
         if (isLoading) {
           document.body.style.overflow = 'hidden';
         } else {
           document.body.style.overflow = 'visible';
         }
-      },
-
-      genTitle: function() {
-        var title = 'Vremenska napoved za Primorje za 48ur';
-        document.title = title + ' | Bazdara';
-      },
-      attached: function() {
-        var self = this;
-        self.genTitle();
       },
 
       ready: function() {

@@ -10,12 +10,26 @@
       :host {
         display: block;
       }
+
+      paper-material p {
+        padding: 15px
+      }
+
+      #plimovanje {
+        margin-top: 15px
+      }
     </style>
     <div class="container">
 
       <h2 class="page-title">Plimovanje morja</h2>
       <paper-material id="plima" elevation="1">
         <div id="graf-plima" style="width:100%;"></div>
+      </paper-material>
+
+      <paper-material id="plimovanje" elevation="1">
+        <p>
+Bibavica (plimovanje) v Tržaškem zalivu je najmočnejša na celotnem Jadranu, na kar vpliva predvsem plitvost morja. Plimovanje je posledica privlačnih sil Lune, Sonca ter drugih nebesnih teles, vendar je vpliv Lune daleč najmočnejši. Praviloma se na vsak obhod Lune okoli Zemlje (24 ur 50 min) zvrstita po dvakrat plima in oseka. Najmočnejše plimovanje je takrat, ko delujeta privlačni sili Lune in Sonca v isti smeri, to je ob mlaju in ščipu (polni Luni). Amplituda valovanja je glede na povprečno vrednost visokih in nizkih vod okoli 60 cm, povprečna največja amplituda v Trstu pa znaša 88 cm. Povprečne mesečne višine gladine morja so najvišje od oktobra do decembra, najnižje pa od januarja do marca. Velik vpliv na spremembo nivoja gladine imajo tudi močni vetrovi, ki lahko iz zaliva izrivajo ali pa v zaliv prinašajo večje količine morske vode. Tako največji vodostaji nastopajo običajno ob ciklonih, ki jih spremlja viharni jugo z narivanjem vodne mase proti obalam Tržaškega zaliva.
+        </p>
       </paper-material>
     </div>
   </template>
@@ -45,6 +59,8 @@
       genTitle: function() {
         var title = 'Plimovanje morja Piranski zaliv';
         document.title = title + ' | Bazdara';
+        document.querySelector('meta[name="description"]').setAttribute("content",
+          "Prognozirano plimovanje morja v tržaškem zalivu za naslednjih 7 dni");
       },
       attached: function() {
         var self = this;

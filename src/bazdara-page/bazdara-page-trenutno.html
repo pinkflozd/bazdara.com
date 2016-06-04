@@ -34,7 +34,7 @@
       }
     </style>
 
-    <iron-ajax auto url="https://x.bazdara.com/trenutno.php" handle-as="json" last-response="{{trenutno}}" loading="{{loading}}"></iron-ajax>
+    <iron-ajax auto url="https://x.bazdara.com/trenutno.php" handle-as="json" on-response="handleResponse" loading="{{loading}}"></iron-ajax>
 
     <div class="container">
       <h2 class="page-title">Trenutne razmere </h2>
@@ -147,7 +147,9 @@
       is: 'bazdara-page-trenutno',
       properties: {
         trenutno: {
-          type: Object
+          type: Object,
+          notify: true
+
         },
         loading: {
           type: Boolean,
@@ -156,18 +158,11 @@
         }
       },
 
-      genTitle: function() {
-        var title = 'Trenutno vreme Piran, podatki v živo za morjeplovce';
-        document.title = title + ' | Bazdara';
-      },
-      attached: function() {
-        var self = this;
-        self.genTitle();
-      },
-
       observers: [
-        '_lockScroll(isLoading)'
+        '_lockScroll(isLoading)',
+        '_zdajData(trenutno)'
       ],
+
       _lockScroll: function(isLoading) {
         if (isLoading) {
           document.body.style.overflow = 'hidden';
@@ -176,14 +171,18 @@
         }
       },
 
-      ready: function() {
-        // TODO09: Workaround for removed domReady event
-        var me = this;
-        setTimeout(function() {
-          me.domReady();
-        }, 1);
+      handleResponse: function(trenutno) {
+        this.trenutno = trenutno.detail.response;
       },
-      domReady: function() {
+
+      _zdajData: function(trenutno) {
+        var title = 'Trenutno vreme Piran, podatki v živo za morjeplovce';
+        document.title = title + ' | Bazdara';
+        document.querySelector('meta[name="description"]').setAttribute("content",
+          'Na obali je ' + trenutno.vreme.zdaj + ', temperatura zraka ' + trenutno.temp.zdaj + '°C. Piha ' + trenutno.veter.ime +
+          ', ' + trenutno.veter.moc + ' z močjo ' + trenutno.veter.beaufort + '. Hitrost vetra je ' + trenutno.veter.zdaj +
+          'm/s, oziroma ' + trenutno.veter.zdaj_km + 'km/h. Temperatura slovenskega morja je ' + trenutno.morje.vrh.zdaj +
+          '°C. Normalna višina vala je ' + trenutno.val.zdaj + 'm. Sončni vzhod ob ' + trenutno.soncni.vzhod + ', zahod ob ' +trenutno.soncni.zahod);
 
 
         var gaugeOptions = {
@@ -315,7 +314,7 @@
 
           series: [{
             name: 'Temperatura zraka',
-            data: [18.7],
+            data: [20],
             dataLabels: {
               enabled: false
             },

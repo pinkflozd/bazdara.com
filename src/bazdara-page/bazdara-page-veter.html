@@ -52,6 +52,8 @@
       genTitle: function() {
         var title = 'Radarska animacija in napoved hitrosti vetra';
         document.title = title + ' | Bazdara';
+        document.querySelector('meta[name="description"]').setAttribute("content",
+        "Radarska animacija in napoved hitrosti vetra");
       },
       attached: function() {
         var self = this;
@@ -128,8 +130,8 @@
           },
           locateOptions: {
             enableHighAccuracy: true,
-            maxZoom: 16,
-            minZoom: 14,
+            maxZoom: 10,
+            minZoom: 10,
           } // define location options e.g enableHighAccuracy: true or maxZoom: 10
         }).addTo(map2);
 
@@ -137,6 +139,7 @@
         map2.on('fullscreenchange', function() {
           if (map2.isFullscreen()) {
             console.log('entered fullscreen');
+            ga('send', 'event', 'FullScreen Veter', 'view');
           } else {
             console.log('exited fullscreen');
             map2.invalidateSize(true);
@@ -144,7 +147,7 @@
         });
 
         // https://ogcie.iblsoft.com/metocean/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-        var testWMS = "https://ogcie.iblsoft.com/metocean/wms"
+        var testWMS = "https://x.bazdara.com/metocean/"
 
         this._map2 = map2;
         var baseLayer = L.tileLayer('https://x.bazdara.com/tile/{z}/{x}/{y}.png', {

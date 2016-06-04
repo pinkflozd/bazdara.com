@@ -9,7 +9,6 @@
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 
-<link rel="import" href="../../bower_components/font-roboto/roboto.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
@@ -238,6 +237,11 @@
           type: Object
         },
 
+        _zdaj: {
+          type: String,
+          reflectToAttribute: true,
+        },
+
         page: {
           type: String,
           reflectToAttribute: true,
@@ -258,8 +262,7 @@
         // load page import on demand.
         this.importHref(
           this.resolveUrl('../bazdara-page/bazdara-page-' + page + '.html'), null, null, true);
-        ga('send', 'pageview', '/' + page);
-
+          ga('send', 'pageview', '/' + page);
       },
 
       _drawerSelected: function() {
