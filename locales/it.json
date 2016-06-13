@@ -1,0 +1,154 @@
+{
+  "menu_1": {
+    "description": "...",
+    "message": "Introduzione"
+  },
+  "menu_2": {
+    "description": "...",
+    "message": "Condizioni istantanee"
+  },
+  "menu_3": {
+    "description": "...",
+    "message": "Previsioni del tempo"
+  },
+  "menu_4": {
+    "description": "...",
+    "message": "Previsioni marea"
+  },
+  "menu_5": {
+    "description": "...",
+    "message": "Previsione pioggia"
+  },
+  "menu_6": {
+    "description": "...",
+    "message": "Previsione vento"
+  },
+  "menu_7": {
+    "description": "...",
+    "message": "Carte di navigazione"
+  },
+  "menu_8": {
+    "description": "...",
+    "message": "Informazioni"
+  },
+  "trenutno_title": {
+    "description": "...",
+    "message": "Condizioni istantanee Pirano"
+  },
+  "trenutno_subtitle": {
+    "description": "...",
+    "message": "Dati in diretta dalla boa Vida"
+  },
+  "trenutno_vzhod": {
+    "description": "...",
+    "message": "Alba"
+  },
+  "trenutno_zahod": {
+    "description": "...",
+    "message": "tramonto"
+  },
+  "trenutno_pregovor_1": {
+    "description": "...",
+    "message": "Proverbio giornaliero"
+  },
+  "trenutno_pregovor_2": {
+    "description": "...",
+    "message": "Piranese"
+  },
+  "trenutno_veter_naslov": {
+    "description": "...",
+    "message": "Velocità del vento"
+  },
+  "trenutno_veter_sunek": {
+    "description": "...",
+    "message": "Raffiche di vento"
+  },
+  "trenutno_veter_hitrost": {
+    "description": "...",
+    "message": "Velocità del vento"
+  },
+  "trenutno_veter_rekord": {
+    "description": "...",
+    "message": "Record"
+  },
+  "trenutno_val_naslov": {
+    "description": "...",
+    "message": "Dimensione delle onde"
+  },
+  "trenutno_val_max": {
+    "description": "...",
+    "message": "Altezza massima"
+  },
+  "trenutno_val_norm": {
+    "description": "...",
+    "message": "Altezza nomale"
+  },
+  "trenutno_val_rekord": {
+    "description": "...",
+    "message": "Record"
+  },
+  "trenutno_temp_naslov": {
+    "description": "...",
+    "message": "Temperatura dell'aria"
+  },
+  "trenutno_temp": {
+    "description": "...",
+    "message": "Temperatura"
+  },
+  "trenutno_vlaga": {
+    "description": "...",
+    "message": "Umidità"
+  },
+  "trenutno_temp_rekord": {
+    "description": "...",
+    "message": "Record"
+  },
+  "trenutno_morje_naslov": {
+    "description": "...",
+    "message": "Temperatura del mare"
+  },
+  "trenutno_morje_2m": {
+    "description": "...",
+    "message": "Profondità 2 m"
+  },
+  "trenutno_morje_20m": {
+    "description": "...",
+    "message": "Profondità 23 m"
+  },
+  "trenutno_morje_rekord": {
+    "description": "...",
+    "message": "Record"
+  },
+  "napoved_naslov": {
+    "description": "...",
+    "message": "Previsioni del tempo"
+  },
+  "napoved_danes": {
+    "description": "...",
+    "message": "Previsioni per oggi"
+  },
+  "napoved_jutri": {
+    "description": "...",
+    "message": "Previsioni per oggi"
+  },
+  "napoved_posodobitev": {
+    "description": "...",
+    "message": "Aggiornamento"
+  },
+  "plimovanje_naslov": {
+    "description": "...",
+    "message": "Previsioni marea"
+  },
+  "informacije_naslov": {
+    "description": "...",
+    "message": "Informazioni"
+  },
+  "warning": {
+    "description": "...",
+    "message": "Avvertimento tempesta"
+  },
+  "plimovanje": {
+    "description": "...",
+    "message": "La marea nel Golfo di Trieste è la più forte nel Adriatico, principalmente come risultato della scarsa profondità del mare. Le maree sono il risultato di forze di attrazione della Luna, Sole e gli altri corpi celesti, ma l'influenza della luna di gran lunga il più forte. Come regola generale, per ogni giro della Luna attorno alla Terra (24 ore 50 minuti) Scelta per due volte flusso e riflusso. Le maree più forti quando si opera attrazione della Luna e del Sole nella stessa direzione, questo è la luna nuova e la luna piena (luna piena). L'ampiezza dell'onda, in base al valore medio dell'acqua alta e bassa circa 60 cm, la massima ampiezza media a Trieste è di 88 cm. Importo medio mensile di livelli del mare sono più alto da ottobre a dicembre, e il più basso da gennaio a marzo. Grande effetto nel cambiamento dei livelli di acqua hanno anche forti venti, che possono cacciata della Golfo o nel Golfo di portare grandi quantità di acqua di mare. Così, i livelli di acqua massimi di solito si verificano quando i cicloni, accompagnati da una tempesta a sud di spingendo masse d'acqua verso le coste del Golfo."
+  }
+}

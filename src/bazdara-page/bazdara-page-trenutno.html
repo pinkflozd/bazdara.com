@@ -1,6 +1,10 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+
+<link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
+
 <link rel="import" href="../bazdara-import/jquery-import.html">
 <link rel="import" href="../bazdara-import/highcharts-import.html">
 <link rel="import" href="../styles/shared-styles.html">
@@ -33,17 +37,18 @@
         margin-top: -128px;
       }
     </style>
-
-    <iron-ajax auto url="https://x.bazdara.com/trenutno.php" handle-as="json" on-response="handleResponse" loading="{{loading}}"></iron-ajax>
+    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
+    <iron-media-query query="(min-width: 768px)" query-matches="{{desktop}}"></iron-media-query>
+    <iron-ajax id="ajax" auto url="https://x.bazdara.com/trenutno.php" handle-as="json" on-response="handleResponse" loading="{{loading}}"></iron-ajax>
 
     <div class="container">
-      <h2 class="page-title">Trenutne razmere </h2>
+      <h2 class="page-title"><i18n-msg msgid="trenutno_title">Trenutne razmere Piran</i18n-msg></h2>
 
       <div class="card-columns">
         <div class="card">
           <div class="card-block text-xs-center">
             <h4 class="card-title"><span class="live-smer-wi"></span> <span class="live-veter">[[trenutno.veter.ime]]</span> (<span id="liveSmer">[[trenutno.veter.smer]]</span>°)</h4>
-            <h6 class="card-subtitle text-muted">Podatki v živo iz boje Vide</h6>
+            <h6 class="card-subtitle text-muted"><i18n-msg msgid="trenutno_subtitle">Podatki v živo iz boje Vide</i18n-msg></h6>
           </div>
           <div class="text-xs-center">
             <iron-image sizing="cover" src$="[[trenutno.vreme.zdaj_slika]]" style="width:128px; height:128px;" preload fade class="vreme_zdaj1"></iron-image>
@@ -57,7 +62,9 @@
               <br> [[trenutno.veter.moc]] <b>[[trenutno.veter.beaufort]]</b>
               <br>
               <span class="live-hitrost">[[trenutno.veter.zdaj]]</span>m/s (<span class="live-hitrost-km">[[trenutno.veter.zdaj_km]]</span>km/h)
-              <br> Sončni vzhod ob <strong>[[trenutno.soncni.vzhod]]</strong>, zahod ob <strong>[[trenutno.soncni.zahod]]</strong>
+              <br>
+              <i18n-msg msgid="trenutno_vzhod">Sončni vzhod ob</i18n-msg> <strong>[[trenutno.soncni.vzhod]]</strong>,
+              <i18n-msg msgid="trenutno_zahod">zahod ob</i18n-msg> <strong>[[trenutno.soncni.zahod]]</strong>
             </div>
           </div>
         </div>
@@ -67,15 +74,23 @@
             <p>[[trenutno.pregovor]]</p>
             <footer>
               <small>
-                <cite title="Source Title">Piranski</cite> pregovor dneva
+                <cite title="Source Title"><i18n-msg msgid="trenutno_pregovor_1">Piranski</i18n-msg></cite> <i18n-msg msgid="trenutno_pregovor_2">pregovor dneva</i18n-msg>
               </small>
             </footer>
           </blockquote>
         </div>
 
+        <template is="dom-if" if="[[mobile]]">
+          <div class="card">
+            <div class="card-block" style="padding:0;">
+              <iframe style="height:330px;width:99.8%;overflow:hidden;margin-bottom: -6px;" frameborder="0" src="/ads/trenutno.html"></iframe>
+            </div>
+          </div>
+        </template>
+
         <div class="card text-xs-center">
           <div class="card-block">
-            <h4 class="card-title">Veter</h4>
+            <h4 class="card-title"><i18n-msg msgid="trenutno_veter_naslov">Hitrost vetra</i18n-msg></h4>
             <div id="containerVeter" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
             <div class="text-xs-center" style="margin-top:-70px">
               <span id="live-hitrost2" class="display-4">[[trenutno.veter.zdaj]]</span>
@@ -83,15 +98,17 @@
               <div class="text-muted" style="margin-top:-15px">m/s</div>
             </div>
             <p class="card-text">
-              Sunki vetra: <b>[[trenutno.veter.sunek.zdaj]]</b> m/s ([[trenutno.veter.sunek.zdaj_km]]km/h)
-              <br /> Hitrost vetra: <b><span class="live-hitrost">[[trenutno.veter.zdaj]]</span>m/s</b> (<span class="live-hitrost-km">[[trenutno.veter.zdaj_km]]</span>km/h)
-              <br /> Rekord: [[trenutno.veter.sunek.max]] m/s <b>([[trenutno.veter.sunek.max_km]]km/h)</b>
+              <i18n-msg msgid="trenutno_veter_sunek">Sunki vetra</i18n-msg>: <b>[[trenutno.veter.sunek.zdaj]]</b> m/s ([[trenutno.veter.sunek.zdaj_km]]km/h)
+              <br />
+              <i18n-msg msgid="trenutno_veter_hitrost">Hitrost vetra</i18n-msg>: <b><span class="live-hitrost">[[trenutno.veter.zdaj]]</span>m/s</b> (<span class="live-hitrost-km">[[trenutno.veter.zdaj_km]]</span>km/h)
+              <br />
+              <i18n-msg msgid="trenutno_veter_rekord">Rekord</i18n-msg>: [[trenutno.veter.sunek.max]] m/s <b>([[trenutno.veter.sunek.max_km]]km/h)</b>
             </p>
           </div>
         </div>
         <div class="card text-xs-center">
           <div class="card-block">
-            <h4 class="card-title">Val</h4>
+            <h4 class="card-title"><i18n-msg msgid="trenutno_val_naslov">Višina Vala</i18n-msg></h4>
             <div id="containerVal" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
             <div class="text-xs-center" style="margin-top:-70px">
               <span id="live-val2" class="display-4">[[trenutno.val.zdaj]]</span>
@@ -99,15 +116,17 @@
               <div class="text-muted" style="margin-top:-15px">m</div>
             </div>
             <p class="card-text">
-              Max višina: <b>[[trenutno.val.vrh.zdaj]]</b> m
-              <br /> Norm višina: <b><span class="live-val">[[trenutno.val.zdaj]]</span></b> m
-              <br /> Rekord: <b>[[trenutno.val.vrh.max]] m</b>
+              <i18n-msg msgid="trenutno_val_max">Max višina</i18n-msg>: <b>[[trenutno.val.vrh.zdaj]]</b> m
+              <br />
+              <i18n-msg msgid="trenutno_val_norm">Norm višina</i18n-msg>: <b><span class="live-val">[[trenutno.val.zdaj]]</span></b> m
+              <br />
+              <i18n-msg msgid="trenutno_val_rekord">Rekord</i18n-msg>: <b>[[trenutno.val.vrh.max]] m</b>
             </p>
           </div>
         </div>
         <div class="card text-xs-center">
           <div class="card-block">
-            <h4 class="card-title">Zrak</h4>
+            <h4 class="card-title"><i18n-msg msgid="trenutno_temp_naslov">Temperatura zraka</i18n-msg></h4>
             <div id="containerTemperatura" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
             <div class="text-xs-center" style="margin-top:-70px">
               <span id="liveTemp" class="display-4">[[trenutno.temp.zdaj]]</span>
@@ -115,15 +134,17 @@
               <div class="text-muted" style="margin-top:-15px">°C</div>
             </div>
             <p class="card-text">
-              Temperatura: <b><span id="liveTemp2">[[trenutno.temp.zdaj]]</span></b> °C
-              <br> Vlažnost <b>[[trenutno.vlaga]]</b> %
-              <br /> Rekord: <b>[[trenutno.temp.max]]</b> °C
+              <i18n-msg msgid="trenutno_temp">Temperatura</i18n-msg>: <b><span id="liveTemp2">[[trenutno.temp.zdaj]]</span></b> °C
+              <br>
+              <i18n-msg msgid="trenutno_vlaga">Vlažnost</i18n-msg>: <b>[[trenutno.vlaga]]</b> %
+              <br />
+              <i18n-msg msgid="trenutno_temp_rekord">Rekord</i18n-msg>: <b>[[trenutno.temp.max]]</b> °C
             </p>
           </div>
         </div>
         <div class="card text-xs-center">
           <div class="card-block">
-            <h4 class="card-title">Morje</h4>
+            <h4 class="card-title"><i18n-msg msgid="trenutno_morje_naslov">Temperatura morja</i18n-msg></h4>
             <div id="containerMorje" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
             <div class="text-xs-center" style="margin-top:-70px">
               <span id="live-morje2" class="display-4">[[trenutno.morje.vrh.zdaj]]</span>
@@ -131,9 +152,11 @@
               <div class="text-muted" style="margin-top:-15px">°C</div>
             </div>
             <p class="card-text">
-              Globina 2 m: <b><span class="live-morje">[[trenutno.morje.vrh.zdaj]]</span></b> °C
-              <br /> Globina 23 m: <b>[[trenutno.morje.dno.zdaj]]</b> °C
-              <br /> Rekord: <b>[[trenutno.morje.vrh.max]] °C</b>
+              <i18n-msg msgid="trenutno_morje_2m">Globina 2 m</i18n-msg>: <b><span class="live-morje">[[trenutno.morje.vrh.zdaj]]</span></b> °C
+              <br />
+              <i18n-msg msgid="trenutno_morje_20m">Globina 23 m</i18n-msg>: <b>[[trenutno.morje.dno.zdaj]]</b> °C
+              <br />
+              <i18n-msg msgid="trenutno_morje_rekord">Rekord</i18n-msg>: <b>[[trenutno.morje.vrh.max]] °C</b>
             </p>
           </div>
         </div>
@@ -148,7 +171,8 @@
       properties: {
         trenutno: {
           type: Object,
-          notify: true
+          notify: true,
+          reflectToAttribute: true
 
         },
         loading: {
@@ -157,6 +181,8 @@
           notify: true
         }
       },
+
+      behaviors: [i18nMsgBehavior],
 
       observers: [
         '_lockScroll(isLoading)',
@@ -176,13 +202,14 @@
       },
 
       _zdajData: function(trenutno) {
+
         var title = 'Trenutno vreme Piran, podatki v živo za morjeplovce';
         document.title = title + ' | Bazdara';
         document.querySelector('meta[name="description"]').setAttribute("content",
           'Na obali je ' + trenutno.vreme.zdaj + ', temperatura zraka ' + trenutno.temp.zdaj + '°C. Piha ' + trenutno.veter.ime +
           ', ' + trenutno.veter.moc + ' z močjo ' + trenutno.veter.beaufort + '. Hitrost vetra je ' + trenutno.veter.zdaj +
           'm/s, oziroma ' + trenutno.veter.zdaj_km + 'km/h. Temperatura slovenskega morja je ' + trenutno.morje.vrh.zdaj +
-          '°C. Normalna višina vala je ' + trenutno.val.zdaj + 'm. Sončni vzhod ob ' + trenutno.soncni.vzhod + ', zahod ob ' +trenutno.soncni.zahod);
+          '°C. Normalna višina vala je ' + trenutno.val.zdaj + 'm. Sončni vzhod ob ' + trenutno.soncni.vzhod + ', zahod ob ' + trenutno.soncni.zahod);
 
 
         var gaugeOptions = {
@@ -309,12 +336,12 @@
 
           yAxis: {
             min: 2.5,
-            max: 31,
+            max: 35,
           },
 
           series: [{
             name: 'Temperatura zraka',
-            data: [20],
+            data: [15],
             dataLabels: {
               enabled: false
             },
@@ -332,12 +359,12 @@
 
           yAxis: {
             min: 0,
-            max: 18.100000381469727,
+            max: 22,
           },
 
           series: [{
             name: 'Hitrost Vetra',
-            data: [3.5],
+            data: [5],
             dataLabels: {
               enabled: false
             },
@@ -354,13 +381,13 @@
           },
 
           yAxis: {
-            min: 8.899999618530273,
-            max: 30.100000381469727,
+            min: 7,
+            max: 32,
           },
 
           series: [{
             name: 'Temperatura morja',
-            data: [18],
+            data: [20],
             dataLabels: {
               enabled: false
             },
@@ -378,12 +405,12 @@
 
           yAxis: {
             min: 0,
-            max: 1.7999999523162842,
+            max: 2,
           },
 
           series: [{
             name: 'Valovanje',
-            data: [0.3],
+            data: [0.2],
             dataLabels: {
               enabled: false
             },
@@ -528,5 +555,6 @@
 
       }
     });
+
   </script>
 </dom-module>

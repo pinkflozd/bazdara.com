@@ -1,4 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
+
 <link rel="import" href="../styles/shared-styles.html">
 
 <dom-module id="bazdara-page-informacije">
@@ -9,17 +11,34 @@
       }
     </style>
     <div class="container">
-      <h2 class="page-title">Informacije</h2>
+      <h2 class="page-title"><i18n-msg msgid="informacije_naslov">Informacije</i18n-msg></h2>
       <div style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); padding: 16px; margin: 24px; border-radius: 5px; background-color: #fff; color: #757575;">
-        <div style="display: inline-block; height: 64px; width: 64px; border-radius: 50%; background: #ddd; line-height: 64px; font-size: 30px; color: #555; text-align: center;">I</div>
-        <div style="font-size: 22px; margin: 16px 0; color: #212121;"> Ni še</div>
-        <p style="font-size: 16px;">Stran je še v izdelavi</p>
+        <div style="font-size: 22px; margin: 16px 0; color: #212121;"> <i18n-msg msgid="informacije_text_1">Kaj je to?</i18n-msg></div>
+        <p style="font-size: 16px;"><i18n-msg msgid="informacije_text_2">Razni podatki o vremenu in stanju morja v Piranskem zalivu.</p>
+      </div>
+      <div style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); padding: 16px; margin: 24px; border-radius: 5px; background-color: #fff; color: #757575;">
+        <div style="font-size: 22px; margin: 16px 0; color: #212121;"> <i18n-msg msgid="informacije_text_1">Kaj je to Obvestilo ob neurju?</i18n-msg></div>
+        <p style="font-size: 16px;"><i18n-msg msgid="informacije_text_2">Ta funkcija je še v izdelavi, ko bo dokončana te bo stran obvestila pred nevihtami, močnim vetrom in poplavo morja (Android + Chrome Browser).</p>
+      </div>
+      <div style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); padding: 16px; margin: 24px; border-radius: 5px; background-color: #fff; color: #757575;">
+        <div style="font-size: 22px; margin: 16px 0; color: #212121;"> <i18n-msg msgid="informacije_text_1">A to je vse?</i18n-msg></div>
+        <p style="font-size: 16px;"><i18n-msg msgid="informacije_text_2">Stran je še v izdelavi. Nekatere funkcije še ne delajo ali so v izdelavi.</p>
+      </div>
+      <div style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); padding: 16px; margin: 24px; border-radius: 5px; background-color: #fff; color: #757575;">
+        <div style="font-size: 22px; margin: 16px 0; color: #212121;"> <i18n-msg msgid="informacije_text_1">Zakaj?</i18n-msg></div>
+        <p style="font-size: 16px;"><i18n-msg msgid="informacije_text_2">Ker živim ob Slovenski Obali, z barko se peljem po našem morju in mam auto ob obali, tako da rabim vir informacij o stanju morja.</p>
+      </div>
+      <div style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); padding: 16px; margin: 24px; border-radius: 5px; background-color: #fff; color: #757575;">
+        <div style="font-size: 22px; margin: 16px 0; color: #212121;"> <i18n-msg msgid="informacije_text_1">Želiš več informacij?</i18n-msg></div>
+        <p style="font-size: 18px;"><i18n-msg msgid="informacije_text_2"><a href="mailto:info@bazdara.com">piši mi</a>!</i18n-msg></p>
       </div>
     </div>
   </template>
   <script>
     Polymer({
       is: 'bazdara-page-informacije',
+
+      behaviors: [ i18nMsgBehavior ],
 
       properties: {
         loading: {

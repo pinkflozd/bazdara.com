@@ -1,5 +1,9 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+
+<link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
+
+
 <link rel="import" href="../bazdara-import/jquery-import.html">
 <link rel="import" href="../bazdara-import/highcharts-import.html">
 <link rel="import" href="../styles/shared-styles.html">
@@ -10,28 +14,42 @@
       :host {
         display: block;
       }
-
-      paper-material p {
-        padding: 15px
-      }
-
-      #plimovanje {
-        margin-top: 15px
-      }
     </style>
+    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
+    <iron-media-query query="(min-width: 768px)" query-matches="{{desktop}}"></iron-media-query>
+
     <div class="container">
 
-      <h2 class="page-title">Plimovanje morja</h2>
-      <paper-material id="plima" elevation="1">
-        <div id="graf-plima" style="width:100%;"></div>
-      </paper-material>
+      <h2 class="page-title"><i18n-msg msgid="plimovanje_naslov">Plimovanje morja</i18n-msg></h2>
 
-      <paper-material id="plimovanje" elevation="1">
-        <p>
-Bibavica (plimovanje) v Tržaškem zalivu je najmočnejša na celotnem Jadranu, na kar vpliva predvsem plitvost morja. Plimovanje je posledica privlačnih sil Lune, Sonca ter drugih nebesnih teles, vendar je vpliv Lune daleč najmočnejši. Praviloma se na vsak obhod Lune okoli Zemlje (24 ur 50 min) zvrstita po dvakrat plima in oseka. Najmočnejše plimovanje je takrat, ko delujeta privlačni sili Lune in Sonca v isti smeri, to je ob mlaju in ščipu (polni Luni). Amplituda valovanja je glede na povprečno vrednost visokih in nizkih vod okoli 60 cm, povprečna največja amplituda v Trstu pa znaša 88 cm. Povprečne mesečne višine gladine morja so najvišje od oktobra do decembra, najnižje pa od januarja do marca. Velik vpliv na spremembo nivoja gladine imajo tudi močni vetrovi, ki lahko iz zaliva izrivajo ali pa v zaliv prinašajo večje količine morske vode. Tako največji vodostaji nastopajo običajno ob ciklonih, ki jih spremlja viharni jugo z narivanjem vodne mase proti obalam Tržaškega zaliva.
-        </p>
-      </paper-material>
+      <div class="card-deck">
+        <div class="card" style="width:100%">
+          <div class="card-block text-xs-center" style="width:100%;padding:0">
+            <div id="graf-plima" style="width:100%;"></div>
+          </div>
+        </div>
+      </div>
+      <template is="dom-if" if="[[mobile]]">
+        <div class="card-deck">
+          <div class="card">
+            <div class="card-block" style="padding:0;">
+              <iframe style="height:330px;width:99.8%;overflow:hidden;margin-bottom: -6px;" frameborder="0" src="/ads/plimovanje.html"></iframe>
+            </div>
+          </div>
+        </div>
+      </template>
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-block text-xs-justify">
+            <i18n-msg msgid="plimovanje">Bibavica (plimovanje) v Tržaškem zalivu je najmočnejša na celotnem Jadranu, na kar vpliva predvsem plitvost morja. Plimovanje je posledica privlačnih sil Lune, Sonca ter drugih nebesnih teles, vendar je vpliv Lune daleč najmočnejši. Praviloma se na vsak obhod Lune okoli Zemlje (24 ur 50 min) zvrstita po dvakrat plima in oseka. Najmočnejše plimovanje je takrat, ko delujeta privlačni sili Lune in Sonca v isti smeri, to je ob mlaju in ščipu (polni Luni). Amplituda valovanja je glede na povprečno vrednost visokih in nizkih vod okoli 60 cm, povprečna največja amplituda v Trstu pa znaša 88 cm. Povprečne mesečne višine gladine morja so najvišje od oktobra do decembra, najnižje pa od januarja do marca. Velik vpliv na spremembo nivoja gladine imajo tudi močni vetrovi, ki lahko iz zaliva izrivajo ali pa v zaliv prinašajo večje količine morske vode. Tako največji vodostaji nastopajo običajno ob ciklonih, ki jih spremlja viharni jugo z narivanjem vodne mase proti obalam Tržaškega zaliva.</i18n-msg>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+
+
   </template>
   <script>
     Polymer({
@@ -44,6 +62,8 @@ Bibavica (plimovanje) v Tržaškem zalivu je najmočnejša na celotnem Jadranu, 
           notify: true
         }
       },
+
+      behaviors: [ i18nMsgBehavior ],
 
       observers: [
         '_lockScroll(isLoading)'

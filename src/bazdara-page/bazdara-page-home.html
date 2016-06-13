@@ -1,56 +1,658 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../styles/shared-styles.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
 
 <dom-module id="bazdara-page-home">
   <template>
-    <style include="shared-styles">
+    <style>
       :host {
         display: block;
       }
+
+      h1 {
+        font-weight: 100
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      .title h2 {
+        font-size: 36px;
+        color: var(--paper-grey-900);
+        font-weight: 300;
+      }
+
+      .title p {
+        font-size: 18px;
+        font-weight: 400px;
+        color: #9da8ad;
+      }
+
+      .navbar-default {
+        background: transparent;
+        border: none;
+        margin-bottom: 0;
+      }
+
+      ul li {
+        list-style: none;
+      }
+
+      header {
+        background-image: url("/images/front/front-1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding-top: 90px;
+        background-position: center center;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+      }
+
+      header .app-showcase {
+        text-align: right;
+      }
+
+      header .block {
+        padding-top: 70px;
+      }
+
+      header .block .logo {
+        display: inline-block;
+        margin-bottom: 70px;
+      }
+
+      header .block h2 {
+        margin-bottom: 15px;
+        color: #fff;
+      }
+
+      header .block p {
+        margin-bottom: 27px;
+        margin-top: 0;
+        color: #fff;
+      }
+
+      header .block .download-btn a {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      #service {
+        padding: 80px 0 100px;
+      }
+
+      #service .title {
+        padding-bottom: 90px;
+      }
+
+      #service .title h2 {
+        margin-top: 0;
+      }
+
+      #service .block {
+        text-align: center;
+      }
+
+      #service .block h3 {
+        color: #202d33;
+        line-height: 48px;
+        margin-bottom: 0;
+      }
+
+      #service .block p {
+        color: #707b82;
+        line-height: 30px;
+        padding: 0 20px;
+      }
+
+      #service i {
+        font-size: 128px;
+        color: silver
+      }
+
+      #service iron-icon {
+        width: 128px;
+        height: 128px;
+        color: silver
+      }
+
+      #showcase {
+        background-image: url("/images/front/front-2.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        ;
+      }
+
+      #showcase .block {
+        padding-top: 120px;
+      }
+
+      #showcase .block img {
+        margin-bottom: -128px;
+        width: 100%;
+      }
+
+      #feature {
+        padding: 225px 0 105px 0;
+      }
+
+      #feature .title {
+        margin-bottom: 60px;
+      }
+
+      #feature .block .media {
+        margin-bottom: 33px;
+      }
+
+      #feature .block .media:last-child {
+        margin-bottom: 0;
+      }
+
+      #feature .block .media h4 {
+        color: var(--paper-grey-900);
+      }
+
+      #feature .block .media p {
+        color: #999999;
+      }
+
+      #feature .block .media > .pull-left {
+        margin-right: 20px;
+      }
+
+      #feature .blue {
+        background-color: var(--paper-blue-500);
+      }
+
+      #feature iron-icon {
+        width: 72px;
+        height: 72px;
+        padding: 15px;
+        color: #fff;
+      }
+
+      #testimonial {
+        background: url('/images/front/front-3.jpg') no-repeat;
+        background-size: cover;
+        background-position: center center;
+        ;
+        padding: 170px 0;
+      }
+
+      #testimonial .block {
+        text-align: center;
+      }
+
+      #testimonial .block h5 {
+        background: rgba(0, 0, 0, 0.6);
+        text-align: center;
+        color: #fff;
+        display: inline-block;
+        padding: 20px;
+        font-size: 20px;
+        width: 65%;
+        margin: 0 auto;
+      }
+
+      #testimonial .block h5 span {
+        font-size: 12px;
+      }
+
+      #team {
+        padding: 80px 0 90px 0;
+      }
+
+      #team .title {
+        margin-bottom: 50px;
+      }
+
+      #team .social-link {
+        margin-top: 15px;
+      }
+
+      #team .social-link a {
+        display: inline-block;
+      }
+
+      #team .btn-facebook {
+        background: #6788ce;
+        color: #fff;
+        border-radius: 50%;
+        padding: 9px 14px;
+        font-size: 17px;
+        line-height: 1;
+        margin-right: 5px;
+      }
+
+      #team .btn-twitter {
+        background: #29c5f6;
+        color: #fff;
+        border-radius: 50%;
+        padding: 8px 9px;
+        font-size: 20px;
+        line-height: 1;
+      }
+
+      #team .media .pull-left {
+        padding-right: 25px;
+      }
+
+      #team .media .media-heading {
+        margin-top: 35px;
+        font-size: 21px;
+      }
+
+      #team .media p {
+        font-size: 16px;
+        color: #707b82;
+      }
+
+      footer {
+        padding: 60px 0;
+        background: #fafafa;
+        border-top: 1px solid #d7d7d7;
+      }
+
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        header .app-showcase img {
+          max-width: 100%;
+        }
+        header .block .logo {
+          margin-bottom: 35px;
+        }
+        .download-btn a img {
+          width: 150px;
+        }
+        #service .block h3 {
+          font-size: 22px;
+        }
+        #service .block p {
+          padding: 0;
+          font-size: 15px;
+        }
+        #showcase .block img {
+          max-width: 100%;
+          margin-bottom: 0;
+          padding-bottom: 40px;
+        }
+        #feature {
+          padding: 80px 0;
+        }
+        #team .media .pull-left {
+          padding-right: 10px;
+        }
+        #team .media .pull-left {
+          width: 100px;
+          padding-right: 10px;
+        }
+        #team .media .media-heading {
+          margin-top: 10px;
+          font-size: 16px;
+        }
+        #team .media p {
+          font-size: 14px;
+        }
+      }
+      /*		Mobile Layout: 320px.
+      		Gutters: 24px.
+      		Outer margins: 34px.
+      		Inherits styles from: Default Layout.
+      ---------------------------------------------
+      cols    1     2      3
+      px      68    160    252    */
+
+      @media only screen and (max-width: 767px) {
+        .hidden-mobile {
+          visibility: hidden;
+          display: none;
+        }
+        header {
+          padding: 50px 0;
+        }
+        header .app-showcase img {
+          max-width: 100%;
+        }
+        header .block .logo {
+          margin-bottom: 20px;
+        }
+        header .block p {
+          color: #fff;
+        }
+        .download-btn a img {
+          width: 130px;
+        }
+        #showcase {
+          padding-bottom: 50px;
+        }
+        #showcase .block img {
+          max-width: 100%;
+          margin-bottom: 0;
+        }
+        #feature {
+          padding: 80px 0;
+        }
+        #team .media {
+          margin-bottom: 20px;
+        }
+        #team .media .pull-left {
+          width: 130px;
+          padding-right: 10px;
+        }
+        #team .media .media-heading {
+          margin-top: 10px;
+          font-size: 18px;
+        }
+        #team .media p {
+          font-size: 14px;
+        }
+      }
+
+      @media only screen and (min-width: 768px) {
+        .hidden-mobile {
+          visibility: visible;
+          display: inline;
+        }
+      }
     </style>
-    <div class="container">
-      <h2 class="page-title">Informacije</h2>
-      <div style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); padding: 16px; margin: 24px; border-radius: 5px; background-color: #fff; color: #757575;">
-        <div style="display: inline-block; height: 64px; width: 64px; border-radius: 50%; background: #ddd; line-height: 64px; font-size: 30px; color: #555; text-align: center;">I</div>
-        <div style="font-size: 22px; margin: 16px 0; color: #212121;"> Ni še</div>
-        <p style="font-size: 16px;">Stran je še v izdelavi</p>
+
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 hidden-mobile">
+            <div class="app-showcase">
+              <img src="/images/front/waterspot-app-1.png" alt="">
+            </div>
+
+          </div>
+          <div class="col-md-6 col-sm-6">
+            <div class="block">
+              <h1 style="color:#fff">WaterSpot</h1>
+              <h2>Being Productive.</br>Manage Your Life Day to Day</h2>
+              <p>Let you track everything water related with a simple way</p>
+              <div class="download-btn">
+                <a href="#" class="andriod">
+                  <img src="/images/front/andriod-button.png" />
+                </a>
+                <a href="#" class="apple">
+                  <img src="/images/front/apple-button.png" />
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </header>
+
+    <section id="service">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title">
+              <h2>Useful Tools For Your Water Trip</h2>
+              <p>
+                Lorem Ipsum has been typesetting industry
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <div class="block">
+              <iron-icon icon="maps:directions-boat"></iron-icon>
+              <h3>Lorem Ipsum</h3>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been typesetting industry
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="block">
+              <iron-icon icon="maps:layers"></iron-icon>
+              <h3>Lorem Ipsum</h3>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been typesetting industry
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="block">
+              <iron-icon icon="image:wb-sunny"></iron-icon>
+              <h3>Lorem Ipsum</h3>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been typesetting industry
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="showcase">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="block text-center">
+              <img src="/images/front/waterspot-app-2.png" alt="">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <section id="feature">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title">
+              <h2>Helping People To Get a Better Life</h2>
+              <p>
+                Every people is deserved to have a better living
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-6">
+            <div class="block">
+              <div class="media">
+                <paper-card class="media-object pull-left blue">
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+                </paper-card>
+                <div class="media-body">
+                  <h4 class="media-heading">Documentation</h4>
+                  <p>Start from now, you can easily manage your time and it has reminder to let you know every time.</p>
+                </div>
+              </div>
+              <div class="media">
+                <paper-card class="media-object pull-left blue">
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+                </paper-card>
+                <div class="media-body">
+                  <h4 class="media-heading">Compete Friends</h4>
+                  <p>Start from now, you can easily manage your time and it has reminder to let you know every time.</p>
+                </div>
+              </div>
+              <div class="media">
+                <paper-card class="media-object pull-left blue">
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+                </paper-card>
+                <div class="media-body">
+                  <h4 class="media-heading">Chat & Message</h4>
+                  <p>Start from now, you can easily manage your time and it has reminder to let you know every time.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-6 col-sm-6">
+            <div class="block">
+              <div class="media">
+                <paper-card class="media-object pull-left blue">
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+                </paper-card>
+                <div class="media-body">
+                  <h4 class="media-heading">Community Helps & Supports</h4>
+                  <p>Start from now, you can easily manage your time and it has reminder to let you know every time.</p>
+                </div>
+              </div>
+              <div class="media">
+                <paper-card class="media-object pull-left blue">
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+                </paper-card>
+                <div class="media-body">
+                  <h4 class="media-heading">Time Management</h4>
+                  <p>Start from now, you can easily manage your time and it has reminder to let you know every time.</p>
+                </div>
+              </div>
+              <div class="media">
+                <paper-card class="media-object pull-left blue">
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+                </paper-card>
+                <div class="media-body">
+                  <h4 class="media-heading">Stats Overview</h4>
+                  <p>Start from now, you can easily manage your time and it has reminder to let you know every time.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonial">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="block">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title">
+              <h2>Our Happy Teams</h2>
+              <p>
+                Here is the people behind this great app
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <div class="media">
+              <img class="media-object pull-left" src="/images/front/team-1.png" alt="Image">
+              <div class="media-body">
+                <h4 class="media-heading">Matthew Graham</h4>
+                <p>Co-Founder / CEO</p>
+                <p class="social-link">
+                  <a class="btn-facebook" href=""><i class="fa fa-facebook"></i></a>
+                  <a class="btn-twitter" href=""><i class="fa fa-twitter"></i></a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="media">
+              <img class="media-object pull-left" src="/images/front/team-2.png" alt="Image">
+              <div class="media-body">
+                <h4 class="media-heading">Jonathon Gramble</h4>
+                <p>Co-Founder / CEO</p>
+                <p class="social-link">
+                  <a class="btn-facebook" href=""><i class="fa fa-facebook"></i></a>
+                  <a class="btn-twitter" href=""><i class="fa fa-twitter"></i></a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="media">
+              <img class="media-object pull-left" src="/images/front/team-3.png" alt="Image">
+              <div class="media-body">
+                <h4 class="media-heading">Jonathon Gramble</h4>
+                <p>Co-Founder / CEO</p>
+                <p class="social-link">
+                  <a class="btn-facebook" href=""><i class="fa fa-facebook"></i></a>
+                  <a class="btn-twitter" href=""><i class="fa fa-twitter"></i></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--  Polymer.updateStyles({'--primary-color': 'var(--paper-blue-500)'}); -->
+
+
   </template>
   <script>
-    Polymer({
-      is: 'bazdara-page-home',
 
-      properties: {
-        loading: {
-          type: Boolean,
-          value: false,
-          notify: true
-        }
-      },
+      Polymer({
+        is: 'bazdara-page-home',
 
-      genTitle: function() {
-        var title = 'Podatki za Slovenske morjeplovce';
-        document.title = 'Bazdara | ' + title;
-        document.querySelector('meta[name="description"]').setAttribute("content",
-        "Vreme Piran, Podatki iz oceanografske boje Vide, Plimovanje morja, Kartografija morja, Nautične karte");
-      },
-      attached: function() {
-        var self = this;
-        self.genTitle();
-      },
+        properties: {
+          loading: {
+            type: Boolean,
+            value: false,
+            notify: true
+          }
+        },
 
-      observers: [
-        '_lockScroll(isLoading)'
-      ],
-      _lockScroll: function(isLoading) {
-        if (isLoading) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'visible';
-        }
-      },
+        genTitle: function() {
+          var title = 'Informacije';
+          document.title = title + ' | Bazdara';
+        },
+        attached: function() {
+          var self = this;
+          self.genTitle();
+        },
 
-    });
+        observers: [
+          '_lockScroll(isLoading)'
+        ],
+        _lockScroll: function(isLoading) {
+          if (isLoading) {
+            document.body.style.overflow = 'hidden';
+          } else {
+            document.body.style.overflow = 'visible';
+          }
+        },
+
+      });
   </script>
 </dom-module>

@@ -1,6 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
 
 <dom-module id="bazdara-spletna">
   <template>
@@ -10,12 +12,26 @@
       }
     </style>
 
-    <a id="tooltip_1" href="http://www.whatsupcams.com/wgt/si_piranpunta/768/480/true/" target="_blank">
+    <iron-media-query query="(max-width: 767px)" query-matches="{{notwide}}"></iron-media-query>
+    <iron-media-query query="(min-width: 768px)" query-matches="{{wide}}"></iron-media-query>
+
+    <template is="dom-if" if="[[notwide]]">
       <picture style="width:310px; height:192px;">
-        <source id="spletna1" type="image/webp" srcset="{{spletna1}}" style="width:310px; height:192px;">
-        <img id="spletna2" src="{{spletna2}}" style="width:310px; height:192px;">
+        <source id="spletna1" type="image/webp" srcset="[[spletna1]]" style="width:310px; height:192px;">
+        <img id="spletna2" src="[[spletna2]]" style="width:310px; height:192px;">
+        <paper-ripple></paper-ripple>
       </picture>
-    </a>
+    </template>
+    <template is="dom-if" if="[[wide]]">
+      <a id="tooltip_1" href="http://www.whatsupcams.com/wgt/si_piranpunta/768/480/true/" target="_blank" onclick="ga('send', 'event', 'view', 'Webcam');">
+        <picture style="width:310px; height:192px;">
+          <source id="spletna1" type="image/webp" srcset="[[spletna1]]" style="width:310px; height:192px;">
+          <img id="spletna2" src="[[spletna2]]" style="width:310px; height:192px;">
+          <paper-ripple></paper-ripple>
+        </picture>
+      </a>
+    </template>
+
     <paper-tooltip for="tooltip_1" offset="-190">Klikni za live Spletna kamera Piran (Punta)</paper-tooltip>
   </template>
   <script>

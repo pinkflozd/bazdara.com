@@ -1,6 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+
 <link rel="import" href="../bazdara-import/font-import.html">
 <link rel="import" href="../bazdara-import/leaflet-import.html">
 <link rel="import" href="../bazdara-import/leaflet-zemljevid.html">
@@ -13,9 +15,13 @@
       }
 
       :host #map {
-        height: calc(100vh - 130px);
+        height: calc(100vh - 64px);
         width: 100%;
         border: none;
+      }
+
+      :host .bazdara-cloud_download {
+        font-size: 24px
       }
 
       :host .leaflet-left {
@@ -33,15 +39,29 @@
         z-index: 1003;
       }
 
-      @media (max-width: 600px) {
+      @media (max-width: 767px) {
         :host #map {
-          height: calc(100vh - 130px)
+          height: calc(100vh - 114px)
         }
       }
+
+      .overflo {
+        height: calc(100vh - 64px);
+        overflow: hidden;
+      }
     </style>
-    <div id="map"></div>
-    <paper-toast id="toast0" text=""></paper-toast>
-    <!-- <paper-button disabled class="download-button" raised on-click="downloadTiles"> <iron-icon icon="icons:cloud-download"></iron-icon></paper-button> -->
+    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
+    <iron-media-query query="(min-width: 768px)" query-matches="{{desktop}}"></iron-media-query>
+
+    <div class="overflo">
+      <div id="map"></div>
+
+      <paper-toast id="toast0" text=""></paper-toast>
+      <template is="dom-if" if="[[mobile]]">
+        <iframe style="height:50px;width:100%;overflow:hidden" frameborder="0" src="/ads/navigacija.html"></iframe>
+      </template>
+      <!-- <paper-button disabled class="download-button" raised on-click="downloadTiles"> <iron-icon icon="icons:cloud-download"></iron-icon></paper-button> -->
+    </div>
   </template>
 
   <script>
@@ -117,7 +137,7 @@
         map.on('fullscreenchange', function() {
           if (map.isFullscreen()) {
             console.log('entered fullscreen');
-            ga('send', 'event', 'FullScreen Navigacija', 'view');
+            ga('send', 'event', 'view', 'FullScreen Navigacija');
           } else {
             console.log('exited fullscreen');
             map.invalidateSize(true);
@@ -171,8 +191,8 @@
         });
 
         this._map.addControl(new L.Control.Layers({}, {
-          'Veter': geometWind,
-          'Padavine': geometRain
+          'Trenutni veter': geometWind,
+          'Trenutne padavine': geometRain
         }));
 
         var lc = L.control.locate({
@@ -188,8 +208,8 @@
           markerStyle: {},
           followCircleStyle: {}, // set difference for the style of the circle around the user's location while following
           followMarkerStyle: {},
-          icon: 'fa fa-map-marker', // class for icon, fa-location-arrow or fa-map-marker
-          iconLoading: 'fa fa-spinner fa-spin', // class for loading icon
+          icon: 'bazdara-gps_fixed', // class for icon, fa-location-arrow or fa-map-marker
+          iconLoading: 'bazdara-gps_not_fixed', // class for loading icon
           iconElementTag: 'span', // tag for the icon element, span or i
           circlePadding: [0, 0], // padding around accuracy circle, value is passed to setBounds
           metric: true, // use metric or imperial units
@@ -197,9 +217,11 @@
             alert(err.message)
             toast0.text = 'Can\'t find your location.';
             toast0.open();
+            ga('send', 'event', 'error', 'GPS Napaka');
           }, // define an error callback function
           onLocationOutsideMapBounds: function(context) { // called when outside map boundaries
             alert(context.options.strings.outsideMapBoundsMsg);
+            ga('send', 'event', 'error', 'GPS Napaka');
           },
           showPopup: true, // display a popup when the user click on the inner marker
           strings: {
@@ -216,68 +238,76 @@
           } // define location options e.g enableHighAccuracy: true or maxZoom: 10
         }).addTo(map);
 
-//        var windButton = L.easyButton({
-//          states: [{
-//            stateName: 'windOn', // name the state
-//            icon: '<i class="fa fa-long-arrow-down"></i>', // and define its properties
-//            title: 'Dodaj vertrove', // like its title
-//            onClick: function(btn, map) { // and its callback
-//              geometWind.addTo(map);
-//              btn.state('windOff'); // change state on click!
-//            }
-//          }, {
-//            stateName: 'windOff',
-//            icon: '<i class="fa fa-long-arrow-down" style="color:#FC8428"></i>',
-//            title: 'Odstrani vetrove',
-//            onClick: function(btn, map) {
-//              map.removeLayer(geometWind)
-//              btn.state('windOn');
-//            }
-//          }]
-//        });
-//        windButton.addTo(map);
+        //        var windButton = L.easyButton({
+        //          states: [{
+        //            stateName: 'windOn', // name the state
+        //            icon: '<i class="fa fa-long-arrow-down"></i>', // and define its properties
+        //            title: 'Dodaj vertrove', // like its title
+        //            onClick: function(btn, map) { // and its callback
+        //              geometWind.addTo(map);
+        //              btn.state('windOff'); // change state on click!
+        //            }
+        //          }, {
+        //            stateName: 'windOff',
+        //            icon: '<i class="fa fa-long-arrow-down" style="color:#FC8428"></i>',
+        //            title: 'Odstrani vetrove',
+        //            onClick: function(btn, map) {
+        //              map.removeLayer(geometWind)
+        //              btn.state('windOn');
+        //            }
+        //          }]
+        //        });
+        //        windButton.addTo(map);
 
-//        var rainButton = L.easyButton({
-//          states: [{
-//            stateName: 'rainOn', // name the state
-//            icon: '<i class="fa fa-cloud"></i>', // and define its properties
-//            title: 'Dodaj radar padavin', // like its title
-//            onClick: function(btn, map) { // and its callback
-//              geometRain.addTo(map);
-//              btn.state('rainOff'); // change state on click!
-//            }
-//          }, {
-//            stateName: 'rainOff',
-//            icon: '<i class="fa fa-cloud" style="color:#FC8428"></i>',
-//            title: 'Odstrani radar padavin',
-//            onClick: function(btn, map) {
-//              map.removeLayer(geometRain)
-//              btn.state('rainOn');
-//            }
-//          }]
-//        });
-//        rainButton.addTo(map);
+        //        var rainButton = L.easyButton({
+        //          states: [{
+        //            stateName: 'rainOn', // name the state
+        //            icon: '<i class="fa fa-cloud"></i>', // and define its properties
+        //            title: 'Dodaj radar padavin', // like its title
+        //            onClick: function(btn, map) { // and its callback
+        //              geometRain.addTo(map);
+        //              btn.state('rainOff'); // change state on click!
+        //            }
+        //          }, {
+        //            stateName: 'rainOff',
+        //            icon: '<i class="fa fa-cloud" style="color:#FC8428"></i>',
+        //            title: 'Odstrani radar padavin',
+        //            onClick: function(btn, map) {
+        //              map.removeLayer(geometRain)
+        //              btn.state('rainOn');
+        //            }
+        //          }]
+        //        });
+        //        rainButton.addTo(map);
+
+        map.on("zoomend", function(e) {
+          ga('send', 'event', 'view', 'Zoom Navigacija');
+        });
+
+        map.on('locationfound', function(e) {
+          ga('send', 'event', 'view', 'GPS Navigacija');
+        });
 
         var cacheButton = L.easyButton({
           states: [{
             stateName: 'cacheOn', // name the state
-            icon: 'fa-download', // and define its properties
+            icon: 'bazdara-cloud_download', // and define its properties
             title: 'Shrani vidni zemljevid na napravo', // like its title
             onClick: function(btn, map) { // and its callback
               if (map.getZoom() > 10) {
                 document.querySelector('bazdara-page-navigacija').downloadTiles();
-                ga('send', 'event', 'Cache Navigacija', 'view');
+                ga('send', 'event', 'view', 'Cache Navigacija');
                 this.disable();
                 btn.state('cacheOff'); // change state on click!
               } else {
                 toast0.text = 'Temljevid je pre velik. Probaj z večjim zoomom';
-                ga('send', 'event', 'Cache Navigacija (ERROR)', 'view');
+                ga('send', 'event', 'error', 'Cache Navigacija (ERROR)');
                 toast0.open();
               }
             }
           }, {
             stateName: 'cacheOff',
-            icon: 'fa-download',
+            icon: 'bazdara-cloud_download',
             title: 'Remove cache Layer',
             onClick: function(btn, map) {
               this.disable();

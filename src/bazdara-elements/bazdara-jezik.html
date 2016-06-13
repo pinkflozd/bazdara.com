@@ -1,0 +1,27 @@
+<script>
+  LanguageBehavior = {
+
+    behaviors: [
+      Polymer.AppLocalizeBehavior
+    ],
+
+    properties: {
+      language: {
+        value: 'sl',
+        notify: true
+      },
+    },
+
+    attached: function() {
+      this.loadResources(this.resolveUrl('/data/locales.json'));
+    },
+
+    _toggle: function() {
+      //this.language = this.$.switch.checked ? 'en' : 'sl';
+      //var tmpl = document.querySelector('#bazdara-app');
+      var tmpl = Polymer.dom(this.root).querySelector('#switch');
+      this.language = tmpl.checked ? 'en' : 'sl';
+    }
+
+  };
+</script>

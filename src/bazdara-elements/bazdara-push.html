@@ -1,5 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
+
 
 <dom-module id="bazdara-push">
   <template>
@@ -15,12 +17,14 @@
       }
     </style>
     <div class="push">
-      <paper-toggle-button disabled>Obvestilo ob neurju</paper-toggle-button>
+      <paper-toggle-button disabled><i18n-msg msgid="warning">Obvestilo ob neurju</i18n-msg></paper-toggle-button>
     </div>
   </template>
   <script>
     Polymer({
-      is: 'bazdara-push'
+      is: 'bazdara-push',
+
+      behaviors: [ i18nMsgBehavior ]
     });
   </script>
 </dom-module>

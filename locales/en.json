@@ -1,0 +1,154 @@
+{
+  "menu_1": {
+    "description": "...",
+    "message": "Introduction"
+  },
+  "menu_2": {
+    "description": "...",
+    "message": "Current Conditions"
+  },
+  "menu_3": {
+    "description": "...",
+    "message": "Weather Forecast"
+  },
+  "menu_4": {
+    "description": "...",
+    "message": "Sea Tides"
+  },
+  "menu_5": {
+    "description": "...",
+    "message": "Rain Forecast"
+  },
+  "menu_6": {
+    "description": "...",
+    "message": "Wind Forecast"
+  },
+  "menu_7": {
+    "description": "...",
+    "message": "Navigation Charts"
+  },
+  "menu_8": {
+    "description": "...",
+    "message": "About"
+  },
+  "trenutno_title": {
+    "description": "...",
+    "message": "Current Conditions Piran"
+  },
+  "trenutno_subtitle": {
+    "description": "...",
+    "message": "Live data from buoy Vida"
+  },
+  "trenutno_vzhod": {
+    "description": "...",
+    "message": "Sunrise at"
+  },
+  "trenutno_zahod": {
+    "description": "...",
+    "message": "Sunset at"
+  },
+  "trenutno_pregovor_1": {
+    "description": "...",
+    "message": "Piran"
+  },
+  "trenutno_pregovor_2": {
+    "description": "...",
+    "message": "daily proverb"
+  },
+  "trenutno_veter_naslov": {
+    "description": "...",
+    "message": "Wind Speed"
+  },
+  "trenutno_veter_sunek": {
+    "description": "...",
+    "message": "Wind Gusts"
+  },
+  "trenutno_veter_hitrost": {
+    "description": "...",
+    "message": "Wind Speed"
+  },
+  "trenutno_veter_rekord": {
+    "description": "...",
+    "message": "Record"
+  },
+  "trenutno_val_naslov": {
+    "description": "...",
+    "message": "Wave Height"
+  },
+  "trenutno_val_max": {
+    "description": "...",
+    "message": "Max Height"
+  },
+  "trenutno_val_norm": {
+    "description": "...",
+    "message": "Norm Height"
+  },
+  "trenutno_val_rekord": {
+    "description": "...",
+    "message": "Record"
+  },
+  "trenutno_temp_naslov": {
+    "description": "...",
+    "message": "Air Tempretature"
+  },
+  "trenutno_temp": {
+    "description": "...",
+    "message": "Temperature"
+  },
+  "trenutno_vlaga": {
+    "description": "...",
+    "message": "Humidity"
+  },
+  "trenutno_temp_rekord": {
+    "description": "...",
+    "message": "Record"
+  },
+  "trenutno_morje_naslov": {
+    "description": "...",
+    "message": "Sea Temperature"
+  },
+  "trenutno_morje_2m": {
+    "description": "...",
+    "message": "Depth 2 m"
+  },
+  "trenutno_morje_20m": {
+    "description": "...",
+    "message": "Depth 23 m"
+  },
+  "trenutno_morje_rekord": {
+    "description": "...",
+    "message": "Record"
+  },
+  "napoved_naslov": {
+    "description": "...",
+    "message": "Weather Forecast"
+  },
+  "napoved_danes": {
+    "description": "...",
+    "message": "Forecast for Today"
+  },
+  "napoved_jutri": {
+    "description": "...",
+    "message": "Forecast for Tomorrow"
+  },
+  "napoved_posodobitev": {
+    "description": "...",
+    "message": "Update"
+  },
+  "plimovanje_naslov": {
+    "description": "...",
+    "message": "Sea Tides"
+  },
+  "informacije_naslov": {
+    "description": "...",
+    "message": "About"
+  },
+  "warning": {
+    "description": "...",
+    "message": "Storm Warning"
+  },
+  "plimovanje": {
+    "description": "...",
+    "message": "Tide in the Triest Gulf is the strongest in the Adriatic, mainly as a result shallowness of the sea. Tides are the result of attractive forces of the Moon, Sun and other celestial bodies, but the influence of the moon by far the strongest. As a rule, on every tour of the Moon around the Earth (24 hours 50 mins) sort by twice ebb and flow. The strongest tides when you operate attraction of the Moon and the Sun in the same direction, this is the new moon and the full moon (full moon). The amplitude of the wave, according to the average value of the high and low water about 60 cm, the mean maximum amplitude in Trieste is 88 cm. Average monthly amount of sea levels are highest from October to December, and the lowest from January to March. Great effect in changing water levels also have strong winds, which may ousting the Gulf or in the Gulf of bringing large quantities of sea water. Thus, the maximum water levels usually occur when cyclones, accompanied by a storm south of thrusting water masses towards the shores of the Gulf."
+  }
+}

@@ -1,0 +1,26 @@
+
+.bazdara-ship:before { content: '\e800'; } /* '' */
+.bazdara-play:before { content: '\e804'; } /* '' */
+.bazdara-pause:before { content: '\e805'; } /* '' */
+.bazdara-stop:before { content: '\e806'; } /* '' */
+.bazdara-fast-fw:before { content: '\e807'; } /* '' */
+.bazdara-fast-bw:before { content: '\e808'; } /* '' */
+.bazdara-download:before { content: '\e809'; } /* '' */
+.bazdara-arrows-cw:before { content: '\e80a'; } /* '' */
+.bazdara-anchor:before { content: '\e80b'; } /* '' */
+.bazdara-clock:before { content: '\e80c'; } /* '' */
+.bazdara-sun-inv:before { content: '\e80d'; } /* '' */
+.bazdara-hail-inv:before { content: '\e80e'; } /* '' */
+.bazdara-windy-rain-inv:before { content: '\e80f'; } /* '' */
+.bazdara-compass:before { content: '\e810'; } /* '' */
+.bazdara-wind:before { content: '\e811'; } /* '' */
+.bazdara-sort-alt-up:before { content: '\e812'; } /* '' */
+.bazdara-info:before { content: '\e814'; } /* '' */
+.bazdara-home:before { content: '\e815'; } /* '' */
+.bazdara-gps_not_fixed:before { content: '\e818'; } /* '' */
+.bazdara-fullscreen:before { content: '\e819'; } /* '' */
+.bazdara-fullscreen_exit:before { content: '\e81a'; } /* '' */
+.bazdara-cloud_download:before { content: '\e81b'; } /* '' */
+.bazdara-gps_fixed:before { content: '\e81c'; } /* '' */
+.bazdara-spin4:before { content: '\e81d'; } /* '' */
+.bazdara-plima:before { content: '\e855'; } /* '' */

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="sl">
+
 <head>
   <base href="/">
   <meta charset="utf-8">
@@ -26,7 +27,7 @@
   <meta name="theme-color" content="#1e88e5">
   <meta name="msapplication-navbutton-color" content="#FFFFFF">
   <meta name="apple-mobile-web-app-status-bar-style" content="#1e88e5">
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="/manifest.json">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="Bazdara">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -61,7 +62,7 @@
     }
   </style>
 
-  <link rel="import" href="/src/bazdara-app/bazdara-app.html">
+  <link rel="import" href="/src/bazdara-app/bazdara-app.html" async>
 </head>
 
 <body>
@@ -109,10 +110,16 @@
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-68400284-1', 'auto');
-    ga('send', 'pageview');
-    setTimeout(function() {
-      ga('send', 'event', '30 Sekund na strani', 'view');
-    }, 31000);
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js', {
+        scope: '/'
+      }).then(function(registration) {
+
+      }).catch(function(error) {
+        // error
+      });
+    };
   </script>
 </body>
 

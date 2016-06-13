@@ -14,9 +14,9 @@
       }
     </style>
 
-    <platinum-sw-register auto-register skip-waiting clients-claim href="/service-worker.js" on-service-worker-installed="displayInstalledToast" on-service-worker-updated="displayUpdatedToast">
-      <platinum-sw-cache default-cache-strategy="networkFirst">
-      </platinum-sw-cache>
+    <platinum-sw-register auto-register skip-waiting clients-claim reload-on-install href="/service-worker.js"
+      on-service-worker-installed="displayInstalledToast" on-service-worker-updated="displayUpdatedToast">
+      <platinum-sw-cache default-cache-strategy="networkFirst"></platinum-sw-cache>
     </platinum-sw-register>
 
     <paper-toast id="cachingComplete" duration="6000" text="Predpomnjenje končano. Program bo deloval brez internet povezave.">
@@ -37,7 +37,7 @@
       displayUpdatedToast: function() {
         this.$.cachingUpdated.show();
         setInterval(function() {
-          window.location.reload()
+          window.location.reload();
         }, 3000);
       },
     });

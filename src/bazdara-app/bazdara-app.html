@@ -1,18 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
 
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
-
-<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
-
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../bower_components/paper-styles/color.html">
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
-
 <link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
@@ -21,9 +10,22 @@
 <link rel="import" href="../../bower_components/app-layout/app-scrollpos-control/app-scrollpos-control.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+
+<link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
+
+<link rel="import" href="../bazdara-import/font-import.html">
+
 <link rel="import" href="../app-icons/app-icons.html">
 <link rel="import" href="../bazdara-elements/bazdara-push.html">
-<link rel="import" href="../bazdara-elements/bazdara-cache.html">
 <link rel="import" href="../bazdara-elements/bazdara-spletna.html">
 <link rel="import" href="../bazdara-page/bazdara-page-404.html">
 <link rel="import" href="../styles/shared-styles.html">
@@ -72,7 +74,7 @@
         z-index: 1000;
       }
 
-      .app-drawer-0[opened] > #scrim.app-drawer {
+      .app-drawer-0[opened]> #scrim.app-drawer {
         z-index: 1001;
       }
 
@@ -98,14 +100,14 @@
         color: #fff;
       }
 
-      iron-selector > a {
+      iron-selector> a {
         display: block;
         padding: 12px 16px;
         font-size: 18px;
         color: var(--paper-grey-800);
       }
 
-      iron-selector > a.iron-selected {
+      iron-selector> a.iron-selected {
         background-color: var(--paper-blue-400);
         color: #fff;
       }
@@ -114,9 +116,9 @@
         color: var(--paper-grey-800);
       }
 
-      iron-pages > * {
+      iron-pages> * {
         min-height: 100%;
-        min-height: calc(100vh - 169px);
+        min-height: calc(100vh - 80px);
       }
 
       .main-header {
@@ -130,7 +132,7 @@
 
       h1 {
         font-size: 2.0em;
-        font-weight: 200;
+        font-weight: 300;
         text-align: center;
         margin-top: 10px margin-bottom: .5rem;
       }
@@ -152,7 +154,7 @@
       }
 
       h4 {
-        font-weight: 200;
+        font-weight: 300;
         margin-left: 20px;
         font-size: 2em
       }
@@ -162,11 +164,70 @@
         height: 96px;
         --paper-spinner-stroke-width: 8px;
       }
+
+      .icona {
+        margin-left: 5px;
+        margin-right: 13px
+      }
+
+      @media (min-width: 1439px) {
+        /* make page title smaller */
+        h1 {
+          margin-right: -40px
+        }
+      }
+
+      .jezik_outer {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        border-radius: 20px;
+      }
+
+      #jezik {
+        display: inline-block;
+        padding: 8px;
+        outline: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        z-index: 0;
+        line-height: 1;
+        width: 40px;
+        height: 40px;
+        box-sizing: border-box !important;
+        background: transparent;
+        border: 0px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        color: #fff;
+        font-size: 20px
+      }
+
+      select::-ms-expand {
+        /* for IE 11 */
+        display: none;
+      }
+
+      #jezik * {
+        background-color: #1e88e5
+      }
+
+      option {
+        padding: 10px
+      }
     </style>
 
     <div class="overlay" hidden$="[[!isLoading]]">
       <paper-spinner active></paper-spinner>
     </div>
+
+
+
 
     <!-- setup routes -->
     <app-location route="{{route}}"></app-location>
@@ -174,7 +235,8 @@
 
     <app-scrollpos-control selected="{{routeData.page}}"></app-scrollpos-control>
 
-    <app-drawer-layout drawer-width="310px" responsive-width="1440px">
+
+    <app-drawer-layout drawer-width="310px" responsive-width="1439px">
       <!-- nav panel -->
       <app-drawer swipe-open id="drawer">
         <app-header-layout has-scrolling-region>
@@ -183,36 +245,43 @@
           </app-header>
           <!-- nav menu -->
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" on-iron-activate="_drawerSelected">
-            <a name="trenutno" href="/">Trenutne razmere</a>
-            <a name="napoved" href="/napoved">Vremenska napoved</a>
-            <a name="plimovanje" href="/plimovanje">Plimovanje morja</a>
-            <a name="padavine" href="/padavine">Napoved padavin</a>
-            <a name="veter" href="/veter">Napoved vetra</a>
-            <a name="navigacija" href="/navigacija">Kartografija</a>
-            <a name="informacije" href="/informacije">Informacije</a>
+            <!-- <a name="home" href="/"><i class="icona bazdara-home"></i> <i18n-msg msgid="menu_1">Predstavitev</i18n-msg></a> -->
+            <a name="trenutno" href="/trenutno"><i class="icona bazdara-compass"></i> <i18n-msg msgid="menu_2">Trenutne razmere</i18n-msg></a>
+            <a name="napoved" href="/napoved"><i class="icona bazdara-sun-inv"></i> <i18n-msg msgid="menu_3">Vremenska napoved</i18n-msg></a>
+            <a name="plimovanje" href="/plimovanje"><i class="icona bazdara-plima"></i> <i18n-msg msgid="menu_4">Plimovanje morja</i18n-msg></a>
+            <a name="padavine" href="/padavine"><i class="icona bazdara-hail-inv"></i> <i18n-msg msgid="menu_5">Napoved padavin</i18n-msg></a>
+            <a name="veter" href="/veter"><i class="icona bazdara-wind"></i> <i18n-msg msgid="menu_6">Napoved vetra</i18n-msg></a>
+            <a name="navigacija" href="/navigacija"><i class="icona bazdara-ship"></i> <i18n-msg msgid="menu_7">Kartografija</i18n-msg></a>
+            <a name="informacije" href="/informacije"><i class="icona bazdara-info"></i> <i18n-msg msgid="menu_8">Informacije</i18n-msg></a>
           </iron-selector>
           <bazdara-push></bazdara-push>
+
         </app-header-layout>
       </app-drawer>
 
       <!-- main panel -->
       <app-header-layout>
-        <app-header condenses reveals effects="waterfall" class="main-header">
+        <app-header reveals effects="waterfall" class="main-header">
           <!-- top toolbar -->
           <app-toolbar>
             <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>
-            <h4 condensed-title>Bazdara</h4>
-            <!-- google signin -->
-          </app-toolbar>
-
-          <!-- bottom toolbar -->
-          <app-toolbar>
             <h1 title>Bazdara</h1>
+            <!-- google signin -->
+            <div class="jezik_outer">
+              <select id="jezik" onclick="ga('send', 'event', 'view', 'Jezik');">
+                <option value="sl">SL</option>
+                <option value="en">EN</option>
+                <option value="it">IT</option>
+              </select>
+              <paper-ripple recenters></paper-ripple>
+            </div>
+
           </app-toolbar>
         </app-header>
       </app-header-layout>
 
       <iron-pages role="main" selected="[[page]]" attr-for-selected="name" fallback-selection="404">
+        <!-- <bazdara-page-home name="home" loading="{{isLoading}}"></bazdara-page-home> -->
         <bazdara-page-trenutno name="trenutno" loading="{{isLoading}}"></bazdara-page-trenutno>
         <bazdara-page-napoved name="napoved" loading="{{isLoading}}"></bazdara-page-napoved>
         <bazdara-page-padavine name="padavine" loading="{{isLoading}}"></bazdara-page-padavine>
@@ -224,8 +293,6 @@
       </iron-pages>
     </app-drawer-layout>
 
-    <bazdara-cache></bazdara-cache>
-
   </template>
 
   <script>
@@ -233,13 +300,10 @@
       is: 'bazdara-app',
 
       properties: {
-        trenutno: {
-          type: Object
-        },
 
         _zdaj: {
           type: String,
-          reflectToAttribute: true,
+          reflectToAttribute: true
         },
 
         page: {
@@ -262,30 +326,92 @@
         // load page import on demand.
         this.importHref(
           this.resolveUrl('../bazdara-page/bazdara-page-' + page + '.html'), null, null, true);
-          ga('send', 'pageview', '/' + page);
+        ga('send', 'pageview', '/' + page);
       },
 
       _drawerSelected: function() {
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
         }
-      },
-
+      }
 
 
       //ready: function() {
-        //ready
+      //ready
       //},
       //created: function() {
-        // created
+      // created
       //},
       //attached: function() {
-        //this._activateToolBarButtons();
+      //this._activateToolBarButtons();
       //},
       //detached: function() {
-        //this._deactivateToolBarButtons();
+      //this._deactivateToolBarButtons();
       //}
 
+    });
+
+    if (window.chrome && window.chrome.loadTimes) {
+      var load = window.chrome.loadTimes();
+      var fp = Math.round((load.firstPaintTime - load.startLoadTime) * 1000);
+      if (fp) {
+        ga('send', 'timing', 'load', 'firstpaint', fp);
+      }
+    };
+
+    // Send errors to Google Analytics
+    //window.onerror = (msg, file, line, column, error = null) => {
+    //  try {
+    //    if (error) msg = error.stack;
+    //    ga('send', 'event', 'error', '${file}:${line}', msg);
+    //  } catch (e) {
+    //    // Do nothing
+    //  }
+    //}
+
+    setTimeout(function() {
+      ga('send', 'event', 'view', '30 Sekund na strani');
+    }, 31000);
+
+    function setCookie(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+      var expires = "expires=" + d.toUTCString();
+      document.cookie = cname + "=" + cvalue + "; " + expires;
+    };
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    };
+
+    var jezik = document.querySelector('#jezik');
+
+    //this.querySelector('#menu').select(selectedVal);
+
+    // Event is only needed when running under the HTMLImports polyfill.
+    // document.addEventListener('HTMLImportsLoaded', function() {
+      I18nMsg.lang = getCookie('jezik') || document.documentElement.lang || 'sl';
+      document.getElementById("jezik").value =  I18nMsg.lang;
+      document.documentElement.lang = I18nMsg.lang;
+      Platform.performMicrotaskCheckpoint();
+    // });
+
+    jezik.addEventListener('change', function() {
+      document.documentElement.lang = this.value;
+      setCookie('jezik', this.value, '365');
+      I18nMsg.lang = this.value;
+      Platform.performMicrotaskCheckpoint();
     });
   </script>
 </dom-module>
