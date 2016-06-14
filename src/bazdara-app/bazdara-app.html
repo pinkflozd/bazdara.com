@@ -26,6 +26,7 @@
 
 <link rel="import" href="../app-icons/app-icons.html">
 <link rel="import" href="../bazdara-elements/bazdara-push.html">
+<link rel="import" href="../bazdara-elements/bazdara-cache.html">
 <link rel="import" href="../bazdara-elements/bazdara-spletna.html">
 <link rel="import" href="../bazdara-page/bazdara-page-404.html">
 <link rel="import" href="../styles/shared-styles.html">
@@ -235,7 +236,6 @@
 
     <app-scrollpos-control selected="{{routeData.page}}"></app-scrollpos-control>
 
-
     <app-drawer-layout drawer-width="310px" responsive-width="1439px">
       <!-- nav panel -->
       <app-drawer swipe-open id="drawer">
@@ -413,5 +413,7 @@
       I18nMsg.lang = this.value;
       Platform.performMicrotaskCheckpoint();
     });
+
+    
   </script>
 </dom-module>

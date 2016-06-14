@@ -66,6 +66,7 @@
 </head>
 
 <body>
+  <bazdara-cache></bazdara-cache>
   <bazdara-app></bazdara-app>
 
   <script>
@@ -111,15 +112,15 @@
 
     ga('create', 'UA-68400284-1', 'auto');
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js', {
-        scope: '/'
-      }).then(function(registration) {
-
-      }).catch(function(error) {
-        // error
-      });
-    };
+  //  if ('serviceWorker' in navigator) {
+  //    navigator.serviceWorker.register('/service-worker.js', {
+  //      scope: '/'
+  //    }).then(function(registration) {
+//
+  //    }).catch(function(error) {
+  //      // error
+  //    });
+  //  };
   </script>
 </body>
 
