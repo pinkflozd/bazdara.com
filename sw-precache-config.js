@@ -10,9 +10,6 @@ module.exports = {
     '/images/map/silver-icon.png',
     '/images/map/red-icon.png',
     '/images/map/green-icon.png',
-    '/images/noads.jpg',
-    '/images/noads2.jpg',
-    '/images/noads3.jpg',
     '/src/bazdara-icons/font/fontello.woff2?77810097',
     '/src/bazdara-icons/font/fontello.woff?77810097',
     '/src/bazdara-icons/font/fontello.ttf?77810097',
@@ -20,14 +17,10 @@ module.exports = {
     '/images/icons/favicon-96x96.png',
     '/images/icons/favicon-192x192.png',
     '/bower_components/leaflet/dist/images/layers.png',
-    '/ads/trenutno.html',
-    '/ads/napoved.html',
-    '/ads/plimovanje.html',
-    '/ads/navigacija.html',
     '/locales/sl.json',
     '/locales/en.json',
     '/locales/it.json',
-    '/data/data.xml'
+    '/locales/data.xml'
   ],
   navigateFallback: '/index.html'
 };

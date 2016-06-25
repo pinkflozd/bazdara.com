@@ -2216,7 +2216,7 @@ dl.row > dd + dt {
   border-bottom-left-radius: 0.25rem;
 }
 
-@media (min-width: 544px) {
+@media (min-width: 768px) {
   .card-deck {
     display: table;
     width: 100%;
@@ -2228,10 +2228,6 @@ dl.row > dd + dt {
     display: table-cell;
     margin-bottom: 0;
     vertical-align: top;
-  }
-  .card-deck-wrapper {
-    margin-right: -1.25rem;
-    margin-left: -1.25rem;
   }
 }
 
@@ -5213,7 +5209,7 @@ dl.row > dd + dt {
   border-bottom-left-radius: 0.25rem;
 }
 
-@media (min-width: 544px) {
+@media (min-width: 768px) {
   .card-deck {
     display: table;
     width: 100%;
@@ -5225,10 +5221,6 @@ dl.row > dd + dt {
     display: table-cell;
     margin-bottom: 0;
     vertical-align: top;
-  }
-  .card-deck-wrapper {
-    margin-right: -1.25rem;
-    margin-left: -1.25rem;
   }
 }
 

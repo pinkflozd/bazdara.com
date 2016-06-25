@@ -1,42 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<url>
-  <loc>https://www.bazdara.com/</loc>
-  <lastmod>2016-05-25T07:36:03+00:00</lastmod>
-  <changefreq>hourly</changefreq>
-</url>
-<url>
-  <loc>https://www.bazdara.com/napoved</loc>
-  <lastmod>2016-05-25T07:36:03+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>https://www.bazdara.com/padavine</loc>
-  <lastmod>2016-05-25T07:36:03+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>https://www.bazdara.com/veter</loc>
-  <lastmod>2016-05-25T07:36:03+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>https://www.bazdara.com/plimovanje</loc>
-  <lastmod>2016-05-25T07:36:03+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>https://www.bazdara.com/navigacija</loc>
-  <lastmod>2016-05-25T07:36:03+00:00</lastmod>
-  <changefreq>monthly</changefreq>
-</url>
-<url>
-  <loc>https://www.bazdara.com/informacije</loc>
-  <lastmod>2016-05-25T07:36:03+00:00</lastmod>
-  <changefreq>monthly</changefreq>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.bazdara.com/</loc>
+    <changefreq>hourly</changefreq>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/?english"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/?italiano"/>
+  </url>
+  <url>
+    <loc>https://www.bazdara.com/napoved</loc>
+    <changefreq>daily</changefreq>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/napoved"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/napoved?english"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/napoved?italiano"/>
+  </url>
+  <url>
+    <loc>https://www.bazdara.com/padavine</loc>
+    <changefreq>daily</changefreq>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/padavine"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/padavine?english"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/padavine?italiano"/>
+  </url>
+  <url>
+    <loc>https://www.bazdara.com/veter</loc>
+    <changefreq>daily</changefreq>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/veter"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/veter?english"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/veter?italiano"/>
+  </url>
+  <url>
+    <loc>https://www.bazdara.com/plimovanje</loc>
+    <changefreq>daily</changefreq>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/plimovanje"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/plimovanje?english"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/plimovanje?italiano"/>
+  </url>
+  <url>
+    <loc>https://www.bazdara.com/navigacija</loc>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/navigacija"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/navigacija?english"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/navigacija?italiano"/>
+  </url>
+  <url>
+    <loc>https://www.bazdara.com/informacije</loc>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/informacije"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/informacije?english"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/informacije?italiano"/>
+  </url>
 </urlset>

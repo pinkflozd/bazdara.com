@@ -1,6 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
 
 <link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
 
@@ -18,9 +18,66 @@
       .card-deck-wrapper {
         margin-top: 15px
       }
+
+      @media (min-width: 768px) {
+        :host .adsbygoogle {
+          margin-left: -1.25rem;
+        }
+      }
+
+      #ad_root {
+        display: none;
+        font-size: 16px;
+        line-height: 1.5;
+        position: relative;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+      }
+
+      .thirdPartyMediaClass {
+        width: 100%;
+        height: 170px;
+        overflow: hidden;
+      }
+
+      .thirdPartyTitleClass {
+        font-weight: 500;
+        font-size: 1.35rem;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        line-height: 1.1;
+        margin-top: 1rem;
+        margin-bottom: 0.85rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: left;
+      }
+
+      .thirdPartyBodyClass {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+      }
+
+      .thirdPartyCallToActionClass {
+        color: #1e88e5;
+        font-weight: 500;
+        margin-top: 8px;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        padding-bottom: 1.25rem;
+      }
+
+      .noads {
+        height: 335px;
+        min-width: 100% !important;
+      }
     </style>
-    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
-    <iron-media-query query="(min-width: 768px)" query-matches="{{desktop}}"></iron-media-query>
     <iron-ajax auto url="https://x.bazdara.com/trenutno.php?napoved=1" handle-as="json" on-response="handleResponse" loading="{{loading}}"></iron-ajax>
 
     <div class="container">
@@ -39,18 +96,19 @@
 
       <div class="card-deck-wrapper">
         <div class="card-deck">
-          <template is="dom-if" if="[[mobile]]">
             <div class="card">
-              <div class="card-block" style="padding:0;">
-                <iframe style="height:330px;width:99.8%;overflow:hidden;margin-bottom: -6px;" frameborder="0" src="/ads/napoved.html"></iframe>
-              </div>
+                <ins id="google" class="adsbygoogle" style="display:block;width:100%" data-ad-client="ca-pub-8065525462923936" data-ad-slot="2775933054" data-ad-format="auto"></ins>
+                <div class="fb-ad" data-placementid="585902811569495_586332474859862" data-format="native" data-nativeadid="ad_root" data-testmode="false"></div>
+                <div id="ad_root">
+                  <a class="fbAdLink">
+                    <div class="fbAdMedia thirdPartyMediaClass"></div>
+                    <div class="fbAdTitle thirdPartyTitleClass"></div>
+                    <div class="fbAdBody thirdPartyBodyClass"></div>
+                    <div class="thirdPartyCallToActionClass">Preberi več</div>
+                  </a>
+                </div>
+                <paper-ripple></paper-ripple>
             </div>
-          </template>
-        </div>
-      </div>
-
-      <div class="card-deck-wrapper">
-        <div class="card-deck">
           <div class="card">
             <div class="card-block">
               <h4 class="card-title"><i18n-msg msgid="napoved_danes">Napoved za danes</i18n-msg></h4>
@@ -84,10 +142,18 @@
           type: Boolean,
           value: false,
           notify: true
-        }
+        },
+        android: {
+          type: Boolean,
+          value: function() {
+            //ready
+            return (/Android|iPhone|iPad|iPod|android/i.test(navigator.userAgent)) ? true : false;
+
+          }
+        },
       },
 
-      behaviors: [ i18nMsgBehavior ],
+      behaviors: [i18nMsgBehavior],
 
       handleResponse: function(napoved) {
         this.napoved = napoved.detail.response;
@@ -114,12 +180,50 @@
         }
       },
 
+      attached: function() {
+        //$('#facebook-jssdk, #fb-root').remove();
+        if (document.getElementById('facebook-jssdk') !== null) {
+          document.getElementById('facebook-jssdk').remove();
+          document.getElementById('fb-root').remove();
+          delete FB;
+        };
+
+        window.fbAsyncInit = function() {
+          FB.Event.subscribe(
+            'ad.loaded',
+            function(placementId) {
+              console.log('Audience Network ad loaded');
+              document.getElementById('ad_root').style.display = 'block';
+            }
+          );
+          FB.Event.subscribe(
+            'ad.error',
+            function(errorCode, errorMessage, placementId) {
+              console.log('Audience Network error (' + errorCode + ') ' + errorMessage);
+
+              document.getElementById('google').style.display = 'block';
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+          );
+        };
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "//connect.facebook.net/sl_SI/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=585902811569495";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      },
+
       ready: function() {
         // TODO09: Workaround for removed domReady event
         var me = this;
         setTimeout(function() {
           me.domReady();
         }, 1);
+
+
       },
       domReady: function() {
 
@@ -149,154 +253,154 @@
         /**
          * Return weather symbol sprites as laid out at http://om.yr.no/forklaring/symbol/
          */
-         Meteogram.prototype.getSymbolSprites = function (symbolSize) {
-             return {
-                 '01d': {
-                     x: 0,
-                     y: 0
-                 },
-                 '01n': {
-                     x: symbolSize,
-                     y: 0
-                 },
-                 '16': {
-                     x: 2 * symbolSize,
-                     y: 0
-                 },
-                 '02d': {
-                     x: 0,
-                     y: symbolSize
-                 },
-                 '02n': {
-                     x: symbolSize,
-                     y: symbolSize
-                 },
-                 '03d': {
-                     x: 0,
-                     y: 2 * symbolSize
-                 },
-                 '03n': {
-                     x: symbolSize,
-                     y: 2 * symbolSize
-                 },
-                 '17': {
-                     x: 2 * symbolSize,
-                     y: 2 * symbolSize
-                 },
-                 '04': {
-                     x: 0,
-                     y: 3 * symbolSize
-                 },
-                 '05d': {
-                     x: 0,
-                     y: 4 * symbolSize
-                 },
-                 '05n': {
-                     x: symbolSize,
-                     y: 4 * symbolSize
-                 },
-                 '40n': {
-                     x: symbolSize,
-                     y: 4 * symbolSize
-                 },
-                 '40d': {
-                     x: 0,
-                     y: 4 * symbolSize
-                 },
-                 '18': {
-                     x: 2 * symbolSize,
-                     y: 4 * symbolSize
-                 },
-                 '06d': {
-                     x: 0,
-                     y: 5 * symbolSize
-                 },
-                 '06n': {
-                     x: symbolSize,
-                     y: 5 * symbolSize
-                 },
-                 '07d': {
-                     x: 0,
-                     y: 6 * symbolSize
-                 },
-                 '07n': {
-                     x: symbolSize,
-                     y: 6 * symbolSize
-                 },
-                 '08d': {
-                     x: 0,
-                     y: 7 * symbolSize
-                 },
-                 '08n': {
-                     x: symbolSize,
-                     y: 7 * symbolSize
-                 },
-                 '19': {
-                     x: 2 * symbolSize,
-                     y: 7 * symbolSize
-                 },
-                 '09': {
-                     x: 0,
-                     y: 8 * symbolSize
-                 },
-                 '10': {
-                     x: 0,
-                     y: 9 * symbolSize
-                 },
-                 '11': {
-                     x: 0,
-                     y: 10 * symbolSize
-                 },
-                 '12': {
-                     x: 0,
-                     y: 11 * symbolSize
-                 },
-                 '13': {
-                     x: 0,
-                     y: 12 * symbolSize
-                 },
-                 '14': {
-                     x: 0,
-                     y: 13 * symbolSize
-                 },
-                 '15': {
-                     x: 0,
-                     y: 14 * symbolSize
-                 },
-                 '20d': {
-                     x: 0,
-                     y: 15 * symbolSize
-                 },
-                 '20n': {
-                     x: symbolSize,
-                     y: 15 * symbolSize
-                 },
-                 '20m': {
-                     x: 2 * symbolSize,
-                     y: 15 * symbolSize
-                 },
-                 '21d': {
-                     x: 0,
-                     y: 16 * symbolSize
-                 },
-                 '21n': {
-                     x: symbolSize,
-                     y: 16 * symbolSize
-                 },
-                 '21m': {
-                     x: 2 * symbolSize,
-                     y: 16 * symbolSize
-                 },
-                 '22': {
-                     x: 0,
-                     y: 17 * symbolSize
-                 },
-                 '23': {
-                     x: 0,
-                     y: 18 * symbolSize
-                 }
-             };
-         };
+        Meteogram.prototype.getSymbolSprites = function(symbolSize) {
+          return {
+            '01d': {
+              x: 0,
+              y: 0
+            },
+            '01n': {
+              x: symbolSize,
+              y: 0
+            },
+            '16': {
+              x: 2 * symbolSize,
+              y: 0
+            },
+            '02d': {
+              x: 0,
+              y: symbolSize
+            },
+            '02n': {
+              x: symbolSize,
+              y: symbolSize
+            },
+            '03d': {
+              x: 0,
+              y: 2 * symbolSize
+            },
+            '03n': {
+              x: symbolSize,
+              y: 2 * symbolSize
+            },
+            '17': {
+              x: 2 * symbolSize,
+              y: 2 * symbolSize
+            },
+            '04': {
+              x: 0,
+              y: 3 * symbolSize
+            },
+            '05d': {
+              x: 0,
+              y: 4 * symbolSize
+            },
+            '05n': {
+              x: symbolSize,
+              y: 4 * symbolSize
+            },
+            '40n': {
+              x: symbolSize,
+              y: 4 * symbolSize
+            },
+            '40d': {
+              x: 0,
+              y: 4 * symbolSize
+            },
+            '18': {
+              x: 2 * symbolSize,
+              y: 4 * symbolSize
+            },
+            '06d': {
+              x: 0,
+              y: 5 * symbolSize
+            },
+            '06n': {
+              x: symbolSize,
+              y: 5 * symbolSize
+            },
+            '07d': {
+              x: 0,
+              y: 6 * symbolSize
+            },
+            '07n': {
+              x: symbolSize,
+              y: 6 * symbolSize
+            },
+            '08d': {
+              x: 0,
+              y: 7 * symbolSize
+            },
+            '08n': {
+              x: symbolSize,
+              y: 7 * symbolSize
+            },
+            '19': {
+              x: 2 * symbolSize,
+              y: 7 * symbolSize
+            },
+            '09': {
+              x: 0,
+              y: 8 * symbolSize
+            },
+            '10': {
+              x: 0,
+              y: 9 * symbolSize
+            },
+            '11': {
+              x: 0,
+              y: 10 * symbolSize
+            },
+            '12': {
+              x: 0,
+              y: 11 * symbolSize
+            },
+            '13': {
+              x: 0,
+              y: 12 * symbolSize
+            },
+            '14': {
+              x: 0,
+              y: 13 * symbolSize
+            },
+            '15': {
+              x: 0,
+              y: 14 * symbolSize
+            },
+            '20d': {
+              x: 0,
+              y: 15 * symbolSize
+            },
+            '20n': {
+              x: symbolSize,
+              y: 15 * symbolSize
+            },
+            '20m': {
+              x: 2 * symbolSize,
+              y: 15 * symbolSize
+            },
+            '21d': {
+              x: 0,
+              y: 16 * symbolSize
+            },
+            '21n': {
+              x: symbolSize,
+              y: 16 * symbolSize
+            },
+            '21m': {
+              x: 2 * symbolSize,
+              y: 16 * symbolSize
+            },
+            '22': {
+              x: 0,
+              y: 17 * symbolSize
+            },
+            '23': {
+              x: 0,
+              y: 18 * symbolSize
+            }
+          };
+        };
 
 
         /**

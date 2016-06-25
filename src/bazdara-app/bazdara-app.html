@@ -55,7 +55,7 @@
         align-items: center;
         justify-content: center;
         background: #fafafa;
-        z-index: 998;
+        z-index: 1001;
       }
 
       @media (min-width: 1440px) {
@@ -72,15 +72,15 @@
       }
 
       .app-header-layout-0 {
-        z-index: 1000;
+        z-index: 1002;
       }
 
       .app-drawer-0[opened]> #scrim.app-drawer {
-        z-index: 1001;
+        z-index: 1003;
       }
 
       #drawer {
-        z-index: 1002;
+        z-index: 1004;
       }
 
       app-drawer {
@@ -232,7 +232,7 @@
 
     <!-- setup routes -->
     <app-location route="{{route}}"></app-location>
-    <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
+    <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
 
     <app-scrollpos-control selected="{{routeData.page}}"></app-scrollpos-control>
 
@@ -333,21 +333,22 @@
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
         }
-      }
+      },
 
 
-      //ready: function() {
-      //ready
-      //},
-      //created: function() {
-      // created
-      //},
-      //attached: function() {
-      //this._activateToolBarButtons();
-      //},
-      //detached: function() {
-      //this._deactivateToolBarButtons();
-      //}
+      ready: function() {
+          //ready
+          if (navigator && navigator.splashscreen) navigator.splashscreen.hide();
+        }
+        //created: function() {
+        // created
+        //},
+        //attached: function() {
+        //this._activateToolBarButtons();
+        //},
+        //detached: function() {
+        //this._deactivateToolBarButtons();
+        //}
 
     });
 
@@ -401,10 +402,23 @@
 
     // Event is only needed when running under the HTMLImports polyfill.
     // document.addEventListener('HTMLImportsLoaded', function() {
+    var url = window.location.search;
+
+    if (url.match("english")) {
+      document.documentElement.lang = 'en';
+      I18nMsg.lang = 'en';
+      setCookie('jezik', I18nMsg.lang, '365');
+    } else if (url.match("italiano")) {
+      document.documentElement.lang = 'it';
+      I18nMsg.lang = 'it';
+      setCookie('jezik', I18nMsg.lang, '365');
+    } else {
       I18nMsg.lang = getCookie('jezik') || document.documentElement.lang || 'sl';
-      document.getElementById("jezik").value =  I18nMsg.lang;
-      document.documentElement.lang = I18nMsg.lang;
-      Platform.performMicrotaskCheckpoint();
+      setCookie('jezik', I18nMsg.lang, '365');
+    }
+    document.getElementById("jezik").value = I18nMsg.lang;
+    document.documentElement.lang = I18nMsg.lang;
+    Platform.performMicrotaskCheckpoint();
     // });
 
     jezik.addEventListener('change', function() {
@@ -413,7 +427,5 @@
       I18nMsg.lang = this.value;
       Platform.performMicrotaskCheckpoint();
     });
-
-
   </script>
 </dom-module>

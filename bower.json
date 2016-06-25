@@ -35,7 +35,6 @@
   },
   "private": true,
   "resolutions": {
-    "leaflet": "^1.0.0",
-    "font-awesome": "^4.6.3"
+    "leaflet": "^1.0.0"
   }
 }

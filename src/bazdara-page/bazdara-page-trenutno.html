@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
-<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
 
 <link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
 
@@ -36,9 +36,65 @@
         margin-right: auto;
         margin-top: -128px;
       }
+
+      #ad_root2 {
+        display: none;
+        font-size: 16px;
+        line-height: 1.5;
+        position: relative;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+      }
+
+      .thirdPartyMediaClass {
+        width: 100%;
+        height: 170px;
+        overflow: hidden;
+      }
+
+      .thirdPartyTitleClass {
+        font-weight: 500;
+        font-size: 1.35rem;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        line-height: 1.1;
+        margin-top: 1rem;
+        margin-bottom: 0.85rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+      }
+
+      .thirdPartyBodyClass {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+      }
+
+      .thirdPartyCallToActionClass {
+        color: #1e88e5;
+        font-weight: 500;
+        margin-top: 8px;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        padding-bottom: 1.25rem;
+      }
+
+      .noads {
+        height: 335px;
+        min-width: 100% !important;
+      }
+
+      #google {
+        width:100%;
+        height:100px;
+      }
     </style>
-    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
-    <iron-media-query query="(min-width: 768px)" query-matches="{{desktop}}"></iron-media-query>
     <iron-ajax id="ajax" auto url="https://x.bazdara.com/trenutno.php" handle-as="json" on-response="handleResponse" loading="{{loading}}"></iron-ajax>
 
     <div class="container">
@@ -63,7 +119,8 @@
               <br>
               <span class="live-hitrost">[[trenutno.veter.zdaj]]</span>m/s (<span class="live-hitrost-km">[[trenutno.veter.zdaj_km]]</span>km/h)
               <br>
-              <i18n-msg msgid="trenutno_vzhod">Sončni vzhod ob</i18n-msg> <strong>[[trenutno.soncni.vzhod]]</strong>,
+              <i18n-msg msgid="trenutno_vzhod">Sončni vzhod ob</i18n-msg> <strong>[[trenutno.soncni.vzhod]]</strong>
+              <br>
               <i18n-msg msgid="trenutno_zahod">zahod ob</i18n-msg> <strong>[[trenutno.soncni.zahod]]</strong>
             </div>
           </div>
@@ -80,13 +137,21 @@
           </blockquote>
         </div>
 
-        <template is="dom-if" if="[[mobile]]">
-          <div class="card">
-            <div class="card-block" style="padding:0;">
-              <iframe style="height:330px;width:99.8%;overflow:hidden;margin-bottom: -6px;" frameborder="0" src="/ads/trenutno.html"></iframe>
-            </div>
-          </div>
-        </template>
+
+                <div class="card" id="carda">
+                  <ins id="google" class="adsbygoogle" style="display:none;width:100%;height:100px" data-ad-client="ca-pub-8065525462923936" data-ad-slot="7257688253"></ins>
+
+                  <div class="fb-ad" data-placementid="585902811569495_586333584859751" data-format="native" data-nativeadid="ad_root2" data-testmode="false"></div>
+                  <div id="ad_root2">
+                    <a class="fbAdLink">
+                      <div class="fbAdMedia thirdPartyMediaClass"></div>
+                      <div class="fbAdTitle thirdPartyTitleClass"></div>
+                      <div class="fbAdBody thirdPartyBodyClass"></div>
+                      <div class="thirdPartyCallToActionClass">Preberi več</div>
+                    </a>
+                  </div>
+                  <paper-ripple></paper-ripple>
+                </div>
 
         <div class="card text-xs-center">
           <div class="card-block">
@@ -179,10 +244,56 @@
           type: Boolean,
           value: false,
           notify: true
-        }
+        },
+        android: {
+          type: Boolean,
+          value: function() {
+            //ready
+            return (/Android|iPhone|iPad|iPod|android/i.test(navigator.userAgent)) ? true : false;
+
+          }
+        },
+
       },
 
       behaviors: [i18nMsgBehavior],
+
+      attached: function() {
+        //$('#facebook-jssdk, #fb-root').remove();
+        if (document.getElementById('facebook-jssdk') !== null) {
+          document.getElementById('facebook-jssdk').remove();
+          document.getElementById('fb-root').remove();
+          delete FB;
+        };
+
+        window.fbAsyncInit = function() {
+          FB.Event.subscribe(
+            'ad.loaded',
+            function(placementId) {
+              console.log('Audience Network ad loaded');
+              document.getElementById('ad_root2').style.display = 'block';
+            }
+          );
+          FB.Event.subscribe(
+            'ad.error',
+            function(errorCode, errorMessage, placementId) {
+              console.log('Audience Network error (' + errorCode + ') ' + errorMessage);
+              document.getElementById('carda').style.height = '100px';
+              document.getElementById('google').style.display = 'inline-block';
+              (adsbygoogle = window.adsbygoogle || []).push({});
+
+            }
+          );
+        };
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "//connect.facebook.net/sl_SI/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=585902811569495";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      },
 
       observers: [
         '_lockScroll(isLoading)',
@@ -555,6 +666,5 @@
 
       }
     });
-
   </script>
 </dom-module>
