@@ -31,9 +31,13 @@
     "description": "...",
     "message": "Informazioni"
   },
+  "menu_9": {
+    "description": "...",
+    "message": "Statistica"
+  },
   "trenutno_title": {
     "description": "...",
-    "message": "Condizioni istantanee Pirano"
+    "message": "Condizioni istantanee"
   },
   "trenutno_subtitle": {
     "description": "...",
@@ -150,5 +154,425 @@
   "plimovanje": {
     "description": "...",
     "message": "La marea nel Golfo di Trieste è la più forte nel Adriatico, principalmente come risultato della scarsa profondità del mare. Le maree sono il risultato di forze di attrazione della Luna, Sole e gli altri corpi celesti, ma l'influenza della luna di gran lunga il più forte. Come regola generale, per ogni giro della Luna attorno alla Terra (24 ore 50 minuti) Scelta per due volte flusso e riflusso. Le maree più forti quando si opera attrazione della Luna e del Sole nella stessa direzione, questo è la luna nuova e la luna piena (luna piena). L'ampiezza dell'onda, in base al valore medio dell'acqua alta e bassa circa 60 cm, la massima ampiezza media a Trieste è di 88 cm. Importo medio mensile di livelli del mare sono più alto da ottobre a dicembre, e il più basso da gennaio a marzo. Grande effetto nel cambiamento dei livelli di acqua hanno anche forti venti, che possono cacciata della Golfo o nel Golfo di portare grandi quantità di acqua di mare. Così, i livelli di acqua massimi di solito si verificano quando i cicloni, accompagnati da una tempesta a sud di spingendo masse d'acqua verso le coste del Golfo."
+  },
+  "statistika_naslov": {
+    "description": "...",
+    "message": "Statistiche per 60 giorni"
+  },
+  "404_title": {
+    "description": "...",
+    "message": "La pagina non esiste"
+  },
+  "404_pribec": {
+    "description": "...",
+    "message": "Arrgg ... Il capitano Pribac a affondato la tua nave"
+  },
+  "404_home": {
+    "description": "...",
+    "message": "Prova la home page."
+  },
+  "napoved_48": {
+    "description": "...",
+    "message": "Previsione per 48 ore"
+  },
+  "napoved_beseda": {
+    "description": "...",
+    "message": "Previsione in parole"
+  },
+  "napoved_slika": {
+    "description": "...",
+    "message": "Meteo immagine dell'UE"
+  },
+  "napoved_veter": {
+    "description": "...",
+    "message": "Vento"
+  },
+  "napoved_hitrost": {
+    "description": "...",
+    "message": "velocità"
+  },
+  "napoved_vidljivost": {
+    "description": "...",
+    "message": "visibilità"
+  },
+  "napoved_morje": {
+    "description": "...",
+    "message": "Mare"
+  },
+  "napoved_temperatura": {
+    "description": "...",
+    "message": "temperatura"
+  },
+  "informacije_1": {
+    "description": "...",
+    "message": "Cos'è questo?"
+  },
+  "informacije_2": {
+    "description": "...",
+    "message": "Informazioni sul tempo e dello stato del mare nella baia di Pirano."
+  },
+  "informacije_3": {
+    "description": "...",
+    "message": "Che cosa è questo avviso della tempesta?"
+  },
+  "informacije_4": {
+    "description": "...",
+    "message": "Questa caratteristica è ancora in costruzione"
+  },
+  "informacije_5": {
+    "description": "...",
+    "message": "Questo è tutto?"
+  },
+  "informacije_6": {
+    "description": "...",
+    "message": "Il sito è ancora in costruzione."
+  },
+  "informacije_7": {
+    "description": "...",
+    "message": "Perché?"
+  },
+  "informacije_8": {
+    "description": "...",
+    "message": "Io vivo sulla costa slovena, con una barca a vela attraverso le nostre acque e ho una macchina parcheggiata lungo la costa, quindi ho bisogno di una fonte di informazioni sullo stato del mare."
+  },
+  "informacije_9": {
+    "description": "...",
+    "message": "Vuoi maggiori informazioni o vuoi aiutare?"
+  },
+  "informacije_10": {
+    "description": "...",
+    "message": "scrivimi"
+  },
+  "Tramontana": {
+    "description": "...",
+    "message": "Tramontana"
+  },
+  "Burin": {
+    "description": "...",
+    "message": "Borin"
+  },
+  "Burja": {
+    "description": "...",
+    "message": "Bora"
+  },
+  "Levant": {
+    "description": "...",
+    "message": "Levante"
+  },
+  "Jugo": {
+    "description": "...",
+    "message": "Ostro"
+  },
+  "Ostro": {
+    "description": "...",
+    "message": "Ostro"
+  },
+  "Lebic": {
+    "description": "...",
+    "message": "Libeccio"
+  },
+  "Garbin": {
+    "description": "...",
+    "message": "Garbin"
+  },
+  "Ponent": {
+    "description": "...",
+    "message": "Ponente"
+  },
+  "Maestral": {
+    "description": "...",
+    "message": "Maestrale"
+  },
+  "N": {
+    "description": "...",
+    "message": "N"
+  },
+  "NNE": {
+    "description": "...",
+    "message": "NNE"
+  },
+  "NE": {
+    "description": "...",
+    "message": "NE"
+  },
+  "ENE": {
+    "description": "...",
+    "message": "ENE"
+  },
+  "E": {
+    "description": "...",
+    "message": "E"
+  },
+  "ESE": {
+    "description": "...",
+    "message": "ESE"
+  },
+  "SE": {
+    "description": "...",
+    "message": "SE"
+  },
+  "SSE": {
+    "description": "...",
+    "message": "SSE"
+  },
+  "S": {
+    "description": "...",
+    "message": "S"
+  },
+  "SSW": {
+    "description": "...",
+    "message": "SSW"
+  },
+  "SW": {
+    "description": "...",
+    "message": "SW"
+  },
+  "WSW": {
+    "description": "...",
+    "message": "WSW"
+  },
+  "W": {
+    "description": "...",
+    "message": "W"
+  },
+  "WNW": {
+    "description": "...",
+    "message": "WNW"
+  },
+  "NW": {
+    "description": "...",
+    "message": "NW"
+  },
+  "NNW": {
+    "description": "...",
+    "message": "NNW"
+  },
+  "Visina": {
+    "description": "...",
+    "message": "Altezza"
+  },
+  "Plima": {
+    "description": "...",
+    "message": "Flusso"
+  },
+  "Oseka": {
+    "description": "...",
+    "message": "Riflusso"
+  },
+  "day": {
+    "description": "...",
+    "message": "1g"
+  },
+  "week": {
+    "description": "...",
+    "message": "1set"
+  },
+  "month": {
+    "description": "...",
+    "message": "1m"
+  },
+  "all": {
+    "description": "...",
+    "message": "tutto"
+  },
+
+
+  "Ponedeljek zjutraj": {
+    "description": "...",
+    "message": "Lunedì mattino"
+  },
+  "Ponedeljek popoldne": {
+    "description": "...",
+    "message": "Lunedì pomeriggio"
+  },
+  "Torek zjutraj": {
+    "description": "...",
+    "message": "Martedì mattino"
+  },
+  "Torek popoldne": {
+    "description": "...",
+    "message": "Martedì pomeriggio"
+  },
+  "Sreda zjutraj": {
+    "description": "...",
+    "message": "Mercoledì mattino"
+  },
+  "Sreda popoldne": {
+    "description": "...",
+    "message": "Mercoledì pomeriggio"
+  },
+  "Četrtek zjutraj": {
+    "description": "...",
+    "message": "Giovedì mattino"
+  },
+  "Četrtek popoldne": {
+    "description": "...",
+    "message": "Giovedì pomeriggio"
+  },
+  "Petek zjutraj": {
+    "description": "...",
+    "message": "Venerdì mattino"
+  },
+  "Petek popoldne": {
+    "description": "...",
+    "message": "Venerdì pomeriggio"
+  },
+  "Sobota zjutraj": {
+    "description": "...",
+    "message": "Sabato mattino"
+  },
+  "Sobota popoldne": {
+    "description": "...",
+    "message": "Sabato pomeriggio"
+  },
+  "Nedelja zjutraj": {
+    "description": "...",
+    "message": "Domenica mattino"
+  },
+  "Nedelja popoldne": {
+    "description": "...",
+    "message": "Domenica pomeriggio"
+  },
+
+  "mirno": {
+    "description": "...",
+    "message": "calmo"
+  },
+  "rahlo vzvalovano": {
+    "description": "...",
+    "message": "poco mosso"
+  },
+  "zmerno vzvalovano": {
+    "description": "...",
+    "message": "mosso"
+  },
+  "vzvalovano": {
+    "description": "...",
+    "message": "molto mosso"
+  },
+  "razburkano": {
+    "description": "...",
+    "message": "agitato"
+  },
+  "močno razburkano": {
+    "description": "...",
+    "message": "molto agitato"
+  },
+
+
+  "jasno": {
+    "description": "...",
+    "message": "chiaro"
+  },
+  "pretežno jasno": {
+    "description": "...",
+    "message": "prevalentemente sereno"
+  },
+  "delno oblačno": {
+    "description": "...",
+    "message": "parzialmente nuvoloso"
+  },
+  "zmerno oblačno": {
+    "description": "...",
+    "message": "parzialmente nuvoloso"
+  },
+  "pretežno oblačno": {
+    "description": "...",
+    "message": "molto nuvoloso"
+  },
+  "oblačno": {
+    "description": "...",
+    "message": "nuvoloso"
+  },
+  "megla": {
+    "description": "...",
+    "message": "nebbia"
+  },
+  "dež": {
+    "description": "...",
+    "message": "pioggia"
+  },
+  "rosenje": {
+    "description": "...",
+    "message": "pioggerella"
+  },
+  "dež s snegom": {
+    "description": "...",
+    "message": "nevischio"
+  },
+  "sneženje": {
+    "description": "...",
+    "message": "neve"
+  },
+  "nevihte": {
+    "description": "...",
+    "message": "temporali"
+  },
+  "nevihta s točo": {
+    "description": "...",
+    "message": "grandine"
+  },
+  "plohe": {
+    "description": "...",
+    "message": "docce"
+  },
+
+
+
+  "Tišina": {
+    "description": "...",
+    "message": "Calma"
+  },
+  "Lahek vetrič": {
+    "description": "...",
+    "message": "Bava di vento"
+  },
+  "Vetrič": {
+    "description": "...",
+    "message": "Brezza leggera"
+  },
+  "Slab veter": {
+    "description": "...",
+    "message": "Brezza tesa"
+  },
+  "Zmeren veter": {
+    "description": "...",
+    "message": "Vento moderato"
+  },
+  "Zmerno močan veter": {
+    "description": "...",
+    "message": "Vento teso"
+  },
+  "Močan veter": {
+    "description": "...",
+    "message": "Vento fresco"
+  },
+  "Zelo močan veter": {
+    "description": "...",
+    "message": "Vento forte"
+  },
+  "Viharni veter": {
+    "description": "...",
+    "message": "Burrasca"
+  },
+  "Vihar": {
+    "description": "...",
+    "message": "Burrasca forte"
+  },
+  "Močan vihar": {
+    "description": "...",
+    "message": "Tempesta"
+  },
+  "Orkanski veter": {
+    "description": "...",
+    "message": "Fortunale"
+  },
+  "Orkan": {
+    "description": "...",
+    "message": "Uragano"
+  },
+  "beaufort": {
+    "description": "...",
+    "message": "beaufort"
   }
 }

@@ -1,0 +1,124 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../app-imports/gauge-import.html">
+
+<dom-module id="app-widget-gauge-seas">
+
+  <template>
+
+  <style include="shared-styles">
+     :host {
+      display: block;
+      box-sizing: border-box;
+    }
+
+    .outer {
+      width: 250px;
+      height: 100px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+  </style>
+
+    <div class="outer">
+      <canvas id="gaugeSeas" style="height:150px;width:250px"></canvas>
+  </div>
+
+  </template>
+
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'app-widget-gauge-seas',
+
+    properties: {
+
+      /**
+       * `temp` the wind temp in m/s.
+       */
+      seas: {
+        type: Number,
+        observer: '_seasChange'
+      },
+
+    },
+
+
+
+    _seasChange: function(e) {
+
+      //  canvas.update({ value: this.live.currentWindtemp });
+      var gaugeSeas = document.gauges.get('gaugeSeas');
+      gaugeSeas.value = this.seas;
+
+    },
+
+    _decimalFormat: function(value) {
+      return value ? value.toFixed(1) : '0.0';
+    },
+
+    attached: function() {
+
+      gaugeSeas = new LinearGauge({
+        renderTo: 'gaugeSeas',
+        width: 250,
+        height: 100,
+        minValue: 5,
+        maxValue: 35,
+        majorTicks: [5,
+          15,
+          25,
+          35
+        ],
+        minorTicks: 5,
+        highlights: [
+          {
+            "from": 5,
+            "to": 15,
+            "color": "#64B5F6"
+          },
+          {
+            "from": 15,
+            "to": 20,
+            "color": "#4DB6AC"
+          },
+          {
+            "from": 20,
+            "to": 25,
+            "color": "#FFF176"
+          },
+          {
+            "from": 25,
+            "to": 35,
+            "color": "#E57373"
+          }
+        ],
+    strokeTicks: true,
+    borderShadowWidth: 0,
+    borders: false,
+    barBeginCircle: false,
+    tickSide: "left",
+    numberSide: "left",
+    needleSide: "left",
+    needleType: "line",
+    needleWidth: 3,
+    colorNeedle: "#222",
+    colorNeedleEnd: "#222",
+    animationDuration: 1500,
+    animationRule: "linear",
+    animationTarget: "plate",
+    barWidth: 5,
+    ticksWidth: 50,
+    ticksWidthMinor: 15,
+        colorPlate: "transparent"
+      });
+
+      gaugeSeas.draw();
+
+    }
+
+  });
+</script>

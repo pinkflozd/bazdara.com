@@ -1,5 +1,6 @@
 
 .bazdara-ship:before { content: '\e800'; } /* '' */
+.bazdara-chart-line:before { content: '\e801'; } /* '' */
 .bazdara-play:before { content: '\e804'; } /* '' */
 .bazdara-pause:before { content: '\e805'; } /* '' */
 .bazdara-stop:before { content: '\e806'; } /* '' */

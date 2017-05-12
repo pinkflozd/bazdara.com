@@ -1,0 +1,147 @@
+
+
+            <bazdara-spletna lat="[[lat]]" lng="[[lng]]"></bazdara-spletna>
+[33m            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(261,12) [33mwarning[39m [undefined-elements] - The element bazdara-spletna is not defined
+
+
+          <bazdara-push></bazdara-push>
+[33m          ~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(275,10) [33mwarning[39m [undefined-elements] - The element bazdara-push is not defined
+
+
+        <bazdara-page-trenutno name="trenutno" loading="{{isLoading}}"></bazdara-page-trenutno>
+[33m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(306,8) [33mwarning[39m [undefined-elements] - The element bazdara-page-trenutno is not defined
+
+
+        <bazdara-page-napoved name="napoved" loading="{{isLoading}}"></bazdara-page-napoved>
+[33m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(307,8) [33mwarning[39m [undefined-elements] - The element bazdara-page-napoved is not defined
+
+
+        <bazdara-page-padavine name="padavine" loading="{{isLoading}}"></bazdara-page-padavine>
+[33m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(308,8) [33mwarning[39m [undefined-elements] - The element bazdara-page-padavine is not defined
+
+
+        <bazdara-page-veter name="veter" loading="{{isLoading}}"></bazdara-page-veter>
+[33m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(309,8) [33mwarning[39m [undefined-elements] - The element bazdara-page-veter is not defined
+
+
+        <bazdara-page-plimovanje name="plimovanje" loading="{{isLoading}}"></bazdara-page-plimovanje>
+[33m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(310,8) [33mwarning[39m [undefined-elements] - The element bazdara-page-plimovanje is not defined
+
+
+        <bazdara-page-navigacija name="navigacija" loading="{{isLoading}}"></bazdara-page-navigacija>
+[33m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(311,8) [33mwarning[39m [undefined-elements] - The element bazdara-page-navigacija is not defined
+
+
+        <bazdara-page-statistika name="statistika" loading="{{isLoading}}"></bazdara-page-statistika>
+[33m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(312,8) [33mwarning[39m [undefined-elements] - The element bazdara-page-statistika is not defined
+
+
+        <bazdara-page-informacije name="informacije" loading="{{isLoading}}"></bazdara-page-informacije>
+[33m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(313,8) [33mwarning[39m [undefined-elements] - The element bazdara-page-informacije is not defined
+
+
+        <bazdara-page-404 name="404"></bazdara-page-404>
+[33m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(314,8) [33mwarning[39m [undefined-elements] - The element bazdara-page-404 is not defined
+
+
+    <bazdara-service-worker></bazdara-service-worker>
+[33m    ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-app/bazdara-app.html(318,4) [33mwarning[39m [undefined-elements] - The element bazdara-service-worker is not defined
+
+
+      <fullscreen-icon-button hidden$="[[!fullscreenAvailable]]" target="#video" class="fullscreen" title="fullscreen" tabindex="0" alt="fullscreen"></fullscreen-icon-button>
+[33m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-elements/bazdara-spletna.html(58,6) [33mwarning[39m [undefined-elements] - The element fullscreen-icon-button is not defined
+
+
+              <iron-icon icon="maps:directions-boat"></iron-icon>
+[33m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-home.html(412,14) [33mwarning[39m [undefined-elements] - The element iron-icon is not defined
+
+
+              <iron-icon icon="maps:layers"></iron-icon>
+[33m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-home.html(421,14) [33mwarning[39m [undefined-elements] - The element iron-icon is not defined
+
+
+              <iron-icon icon="image:wb-sunny"></iron-icon>
+[33m              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-home.html(430,14) [33mwarning[39m [undefined-elements] - The element iron-icon is not defined
+
+
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+[33m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-home.html(474,18) [33mwarning[39m [undefined-elements] - The element iron-icon is not defined
+
+
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+[33m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-home.html(483,18) [33mwarning[39m [undefined-elements] - The element iron-icon is not defined
+
+
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+[33m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-home.html(492,18) [33mwarning[39m [undefined-elements] - The element iron-icon is not defined
+
+
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+[33m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-home.html(507,18) [33mwarning[39m [undefined-elements] - The element iron-icon is not defined
+
+
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+[33m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-home.html(516,18) [33mwarning[39m [undefined-elements] - The element iron-icon is not defined
+
+
+                  <iron-icon icon="image:wb-sunny"></iron-icon>
+[33m                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-home.html(525,18) [33mwarning[39m [undefined-elements] - The element iron-icon is not defined
+
+
+          <fullscreen-icon-button hidden$="[[!fullscreenAvailable]]" target="#danes" class="fullscreen" title="fullscreen" tabindex="0" alt="fullscreen"></fullscreen-icon-button>
+[33m          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-napoved.html(309,10) [33mwarning[39m [undefined-elements] - The element fullscreen-icon-button is not defined
+
+
+          <fullscreen-icon-button hidden$="[[!fullscreenAvailable]]" target="#jutri" class="fullscreen" title="fullscreen" tabindex="0" alt="fullscreen"></fullscreen-icon-button>
+[33m          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[39m
+
+src/bazdara-page/bazdara-page-napoved.html(317,10) [33mwarning[39m [undefined-elements] - The element fullscreen-icon-button is not defined
+
+
+Found  24 warnings.

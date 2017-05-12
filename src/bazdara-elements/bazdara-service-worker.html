@@ -1,0 +1,119 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
+
+<dom-module id="bazdara-service-worker">
+  <template>
+
+<style>
+  paper-toast {
+    z-index: 1006;
+  }
+  .yellow-button {
+    text-transform: none;
+    color: #eeff41;
+    font-weight: bold;
+  }
+  .silver-button {
+    text-transform: none;
+    color: #CCC;
+    font-weight: bold;
+  }
+</style>
+
+<paper-toast id="cachingUpdated" duration="0" text="Nova verzija nameščena. ">
+  <paper-button onclick="window.location.reload()" class="yellow-button">Osveži stran!</paper-button>
+</paper-toast>
+
+<paper-toast id="cachingComplete" duration="10000" text="Predpomnjenje končano. Program bo deloval brez internet povezave.">
+  <paper-button onclick="cachingComplete.toggle()" class="silver-button">Zapri</paper-button>
+</paper-toast>
+
+</template>
+
+  <script>
+    Polymer({
+
+      is: 'bazdara-service-worker',
+
+      properties: {
+        scope: {
+          type: String,
+          value: null
+        },
+
+        _isAlreadyRegistered: {
+          type: Boolean,
+          value: false
+        }
+
+      },
+
+
+      attached: function() {
+        this.async(function() {
+          if (!this._isAlreadyRegistered) {
+            this._isAlreadyRegistered = true;
+
+            if ('serviceWorker' in navigator) {
+              this._registerServiceWorker('/service-worker.js');
+            } else {
+//              this._error('Service Workers are not available in the current browser.');
+            }
+          }
+        });
+      },
+
+      _registerServiceWorker: function(serviceWorkerUrl) {
+        var options = this.scope ? {
+          scope: this.scope
+        } : null;
+
+        navigator.serviceWorker.register(serviceWorkerUrl, options).then(function(registration) {
+          if (registration.active) {
+//            this._log('Service Worker already installed.');
+          }
+
+          registration.onupdatefound = function() {
+//            this._log('A new Service Worker version has been found...');
+            var installingWorker = registration.installing;
+
+            installingWorker.onstatechange = function() {
+              switch (installingWorker.state) {
+                case 'installed':
+                  if (navigator.serviceWorker.controller) {
+                    this.$.cachingUpdated.show();
+
+//                    this._log('The Service Worker was updated. Reload page for the new version.');
+                  } else {
+                    this.$.cachingComplete.show();
+//                    this._log('A new Service Worker was installed.');
+                  }
+                  break;
+
+                case 'redundant':
+                  this.$.cachingUpdated.show();
+
+//                  this._trackError('The installing Service Worker became redundant. Reload page for the new version.');
+                  break;
+
+                default:
+//                  this._log("New Service Worker state: ", installingWorker.state);
+              }
+            }.bind(this);
+          }.bind(this);
+        }.bind(this)).catch(function(error) {
+//          this._trackError('Service Worker registration failed:', error.toString());
+
+          if (error.name === 'NetworkError') {
+            var location = serviceWorkerUrl.origin + serviceWorkerUrl.pathname;
+//            this._error('A valid Service Worker script was not found at ' + location);
+          }
+        }.bind(this));
+      }
+
+    });
+  </script>
+
+</dom-module>

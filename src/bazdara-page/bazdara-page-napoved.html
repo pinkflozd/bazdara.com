@@ -1,133 +1,294 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
-
 <link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
-
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bazdara-import/jquery-import.html">
 <link rel="import" href="../bazdara-import/highcharts-import.html">
 <link rel="import" href="../styles/shared-styles.html">
+<link rel="import" href="../bazdara-elements/app-icons-weather.html">
 
 <dom-module id="bazdara-page-napoved">
   <template>
     <style include="shared-styles">
       :host {
-        display: block;
+      display: block;
+      --paper-toolbar-background: var(--paper-blue-600);
+      --paper-tabs-selection-bar-color: var(--paper-blue-600);
+      --paper-tab-ink: var(--paper-blue-600);
       }
-
-      .card-deck-wrapper {
-        margin-top: 15px
+      iron-image {
+      width: 100%;
       }
-
-      @media (min-width: 768px) {
-        :host .adsbygoogle {
-          margin-left: -1.25rem;
-        }
+      iron-image::content img {
+      width: 100%;
       }
-
-      #ad_root {
-        display: none;
-        font-size: 16px;
-        line-height: 1.5;
-        position: relative;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        overflow: hidden;
+      .oglas {
+      text-align: center;
+      width: 100%;
       }
-
-      .thirdPartyMediaClass {
-        width: 100%;
-        height: 170px;
-        overflow: hidden;
+      .img {
+      width: 100%;
       }
-
-      .thirdPartyTitleClass {
-        font-weight: 500;
-        font-size: 1.35rem;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        line-height: 1.1;
-        margin-top: 1rem;
-        margin-bottom: 0.85rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        text-align: left;
+      .iconsi {
+      position: relative;
+      height: 160px;
+      margin-top: 16px
       }
-
-      .thirdPartyBodyClass {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        overflow: hidden;
+      iron-icon.vreme_zdaj1 {
+      display: block;
+      height: 128px;
+      margin-left: auto;
+      margin-right: auto;
+      position: absolute;
+      left: 0;
+      right: 0;
       }
-
-      .thirdPartyCallToActionClass {
-        color: #1e88e5;
-        font-weight: 500;
-        margin-top: 8px;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        padding-bottom: 1.25rem;
+      iron-icon.vreme_zdaj2 {
+      display: block;
+      height: 128px;
+      margin-left: auto;
+      margin-right: auto;
+      position: absolute;
+      top:32px;
+      left: 0;
+      right: 0;
       }
-
-      .noads {
-        height: 335px;
-        min-width: 100% !important;
+      .Ponedeljek.zjutraj {
+      background-color: #D32F2F;
+      color: #fff
+      }
+      .Ponedeljek.popoldne {
+      background-color: #512DA8;
+      color: #fff
+      }
+      .Torek.zjutraj {
+      background-color: #0288D1;
+      color: #fff
+      }
+      .Torek.popoldne {
+      background-color: #388E3C;
+      color: #fff
+      }
+      .Sreda.zjutraj {
+      background-color: #E64A19;
+      color: #fff
+      }
+      .Sreda.popoldne {
+      background-color: #C2185B;
+      color: #fff
+      }
+      .Četrtek.zjutraj {
+      background-color: #303F9F;
+      color: #fff
+      }
+      .Četrtek.popoldne {
+      background-color: #689F38;
+      color: #fff
+      }
+      .Petek.zjutraj {
+      background-color: #7B1FA2;
+      color: #fff
+      }
+      .Petek.popoldne {
+      background-color: #1976D2;
+      color: #fff
+      }
+      .Sobota.zjutraj {
+      background-color: #00796B;
+      color: #fff
+      }
+      .Sobota.popoldne {
+      background-color: #EF6C00;
+      color: #fff
+      }
+      .Nedelja.zjutraj {
+      background-color: #0097A7;
+      color: #fff
+      }
+      .Nedelja.popoldne {
+      background-color: #388E3C;
+      color: #fff
+      }
+      @media screen and (min-width: 768px) {
+      .advert {
+      margin-right: 40px;
+      margin-left: 0px
+      }
+      }
+      paper-icon-button,
+      fullscreen-icon-button {
+      color: #fff;
+      --paper-icon-button-ink-color: #fff;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      background-color: #000;
+      margin-top: -64px;
+      margin-left: 15px;
+      }
+      .colon {
+      padding-right: 5px;
+      padding-left: 5px;
+      }
+      h4, .h4 {
+      font-size: 1.2rem;
+      }
+      .rowed {
+      margin-left:-5px;
+      margin-right:-5px
+      }
+      @media screen and (min-width: 768px) {
+      .rowed {
+      margin-left:15px;
+      margin-right:15px
+      }
+      .rowed2 {
+      margin-left:5px;
+      margin-right:5px
+      }
+      }
+      .colon {
+      height: 470px
       }
     </style>
-    <iron-ajax auto url="https://x.bazdara.com/trenutno.php?napoved=1" handle-as="json" on-response="handleResponse" loading="{{loading}}"></iron-ajax>
-
+    <firebase-document id="napovedi" app-name="bazdara" path="/meteogram/portoroz" data="{{meteograms}}"></firebase-document>
+    <firebase-document id="trenutno3" app-name="bazdara" path="/napoved" data="{{napoved}}"></firebase-document>
+    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
     <div class="container">
-
-      <h2 class="page-title"><i18n-msg msgid="napoved_naslov">Vremenska napoved</i18n-msg></h2>
-
-      <div class="card-deck-wrapper">
-        <div class="card-deck">
-          <div class="card">
-            <div class="card-block">
-              <div id="meteogram" style="width:100%;height:310px"></div>
+      <h2 class="page-title">
+        <i18n-msg msgid="napoved_naslov">Vremenska napoved</i18n-msg>
+      </h2>
+      <paper-tabs id="statTabs2" selected="{{selected}}" fallback-selection="0" scrollable fit-container>
+        <paper-tab onclick="ga('send', 'pageview', '/napoved/48');">
+          <i18n-msg msgid="napoved_48">Napoved za 48 ur</i18n-msg>
+        </paper-tab>
+        <paper-tab onclick="ga('send', 'pageview', '/napoved/beseda');">
+          <i18n-msg msgid="napoved_beseda">Napoved v besedi</i18n-msg>
+        </paper-tab>
+        <paper-tab onclick="ga('send', 'pageview', '/napoved/slika');">
+          <i18n-msg msgid="napoved_slika">Vremenska slika EU</i18n-msg>
+        </paper-tab>
+      </paper-tabs>
+      <iron-pages id="stats2" selected="{{selected}}" fallback-selection="0">
+        <div>
+          <div class="card-deck-wrapper">
+            <div class="card-deck">
+              <div class="card">
+                <div id="meteogram" style="padding-left:10px;width:100%;height:310px"></div>
+                <template is="dom-if" if="[[!mobile]]">
+                  <div class="advert">
+                    <ins class="adsbygoogle" style="display:inline-block;width:100%" data-ad-client="ca-pub-8065525462923936" data-ad-slot="6171550258" data-ad-format="auto"></ins>
+                    <script>
+                      (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                  </div>
+                </template>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="card-deck-wrapper">
-        <div class="card-deck">
-            <div class="card">
-                <ins id="google" class="adsbygoogle" style="display:block;width:100%" data-ad-client="ca-pub-8065525462923936" data-ad-slot="2775933054" data-ad-format="auto"></ins>
-                <div class="fb-ad" data-placementid="585902811569495_586332474859862" data-format="native" data-nativeadid="ad_root" data-testmode="false"></div>
-                <div id="ad_root">
-                  <a class="fbAdLink">
-                    <div class="fbAdMedia thirdPartyMediaClass"></div>
-                    <div class="fbAdTitle thirdPartyTitleClass"></div>
-                    <div class="fbAdBody thirdPartyBodyClass"></div>
-                    <div class="thirdPartyCallToActionClass">Preberi več</div>
-                  </a>
+          <template is="dom-if" if="[[mobile]]">
+            <div class="card-deck-wrapper">
+              <div class="card-deck">
+                <ins class="adsbygoogle card" style="display:inline-block;width:100%" data-ad-client="ca-pub-8065525462923936" data-ad-slot="6171550258" data-ad-format="auto"></ins>
+                <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+              </div>
+            </div>
+          </template>
+          <div class="row rowed">
+            <template is="dom-repeat" items="[[_limitForecast(napoved.napovedi, napoved)]]">
+              <div class="col-xs-12 col-sm-6 col-xl-3 colon text-xs-center">
+                <div class$="card card-block [[item.dan]]">
+                  <h4 class="card-title" style="margin-bottom:5px"><i18n-msg msgid$="[[item.dan]]">[[item.dan]]</i18n-msg></h4>
+                  <small>[[item.valid]]</small>
+                  <div class="text-xs-center iconsi">
+                    <iron-icon icon$="[[item.icona_new]]:0" class="vreme_zdaj1"></iron-icon>
+                    <iron-icon icon$="[[item.icona_pojav_new]]:0" class="vreme_zdaj2"></iron-icon>
+                  </div>
+                  <div class="card-text text-xs-center">
+                    <small><i18n-msg msgid$="[[item.icona_beseda]]">[[item.icona_beseda]]</i18n-msg>&nbsp;<i18n-msg msgid$="[[item.icona_pojav_beseda]]">[[item.icona_pojav_beseda]]</i18n-msg></small>
+                    <br>
+                    <div class="display-3">[[item.temp]]°<span class="display-4">C</span></div>
+                    <i18n-msg msgid="napoved_veter">Veter</i18n-msg>
+                    &nbsp;<strong>[[item.smer]]</strong>&nbsp;
+                    <i18n-msg msgid="napoved_hitrost">hitrost</i18n-msg>
+                    &nbsp;<strong>[[item.hitrost]]</strong>&nbsp;m/s
+                    <br>
+                    <i18n-msg msgid="napoved_vidljivost">vidljivost</i18n-msg>
+                    &nbsp;<strong>[[item.vis]]</strong>
+                  </div>
+                  <div class="card-text text-xs-center" style="margin-top:10px">
+                    <i18n-msg msgid="napoved_morje">Morje</i18n-msg>
+                    &nbsp;<strong><i18n-msg msgid$="[[item.visina]]">[[item.visina]]</i18n-msg></strong>
+                    <br>
+                    <i18n-msg msgid="napoved_temperatura">temperatura</i18n-msg>
+                    &nbsp;<strong>[[item.temp_morje]]</strong> °C
+                  </div>
                 </div>
-                <paper-ripple></paper-ripple>
-            </div>
-          <div class="card">
-            <div class="card-block">
-              <h4 class="card-title"><i18n-msg msgid="napoved_danes">Napoved za danes</i18n-msg></h4>
-              <p class="card-text">[[napoved.danes]]</p>
-              <p class="card-text"><small class="text-muted"><i18n-msg msgid="napoved_posodobitev">Posodobitev</i18n-msg>: [[napoved.danes_posodobitev]]</small></p>
-            </div>
+              </div>
+            </template>
           </div>
-          <div class="card">
-            <div class="card-block">
-              <h4 class="card-title"><i18n-msg msgid="napoved_jutri">Napoved za jutri</i18n-msg></h4>
-              <p class="card-text">[[napoved.jutri]]</p>
-              <p class="card-text"><small class="text-muted"><i18n-msg msgid="napoved_posodobitev">Posodobitev</i18n-msg>: [[napoved.jutri_posodobitev]]</small></p>
+        </div>
+        <div>
+          <div class="row rowed2">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <div class="card">
+                <div class="card-block">
+                  <h4 class="card-title">
+                    <i18n-msg msgid="napoved_danes">Napoved za danes</i18n-msg>
+                  </h4>
+                  <p class="card-text">[[napoved.danes]]</p>
+                  <p class="card-text">
+                    <small class="text-muted">
+                      <i18n-msg msgid="napoved_posodobitev">Posodobitev</i18n-msg>
+                      : [[napoved.danes_posodobitev]]
+                    </small>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <div class="card">
+                <div class="card-block">
+                  <h4 class="card-title">
+                    <i18n-msg msgid="napoved_jutri">Napoved za jutri</i18n-msg>
+                  </h4>
+                  <p class="card-text">[[napoved.jutri]]</p>
+                  <p class="card-text">
+                    <small class="text-muted">
+                      <i18n-msg msgid="napoved_posodobitev">Posodobitev</i18n-msg>
+                      : [[napoved.jutri_posodobitev]]
+                    </small>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
+        <div>
+          <div class="row rowed2">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <div class="card" style="margin-bottom: 36px;">
+                <img id="danes" src="" class="img">
+                <fullscreen-icon-button hidden$="[[!fullscreenAvailable]]" target="#danes" class="fullscreen" title="fullscreen" tabindex="0" alt="fullscreen"></fullscreen-icon-button>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <div class="card" style="margin-bottom: 36px;">
+                <img id="jutri" src="" class="img">
+                <fullscreen-icon-button hidden$="[[!fullscreenAvailable]]" target="#jutri" class="fullscreen" title="fullscreen" tabindex="0" alt="fullscreen"></fullscreen-icon-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </iron-pages>
     </div>
-
   </template>
   <script>
     Polymer({
@@ -140,7 +301,7 @@
         },
         loading: {
           type: Boolean,
-          value: false,
+          value: true,
           notify: true
         },
         android: {
@@ -151,6 +312,79 @@
 
           }
         },
+        meteograms: {
+          type: Object,
+          notify: true
+        },
+        napoved: {
+          type: Object,
+          notify: true
+        },
+        fullscreenAvailable: {
+          type: Boolean,
+          reflectToAttribute: true
+        }
+      },
+
+
+
+
+      _limitForecast: function(forecast, item) {
+
+        var today = new Date().getHours();
+        if (today >= 10 && today <= 20) {
+          forecast = forecast.slice(1, 5);
+        } else if (today >= 20 && today <= 24 || today >= 0 && today <= 5) {
+          forecast = forecast.slice(2, 6);
+        } else {
+          forecast = forecast.slice(0, 4);
+        }
+        return forecast;
+      },
+
+      ready: function() {
+
+        this.loading = true;
+
+
+        var storageRef = firebase.storage().ref();
+
+        var danes = this.$.danes;
+
+        storageRef.child('eu_danes.jpg').getDownloadURL().then(function(url) {
+
+          var xhr = new XMLHttpRequest();
+          xhr.responseType = 'blob';
+          xhr.onload = function(event) {
+            var blob = xhr.response;
+          };
+          xhr.open('GET', url);
+          xhr.send();
+
+          danes.src = url;
+        }).catch(function(error) {
+          // Handle any errors
+        });
+
+        var jutri = this.$.jutri;
+
+        storageRef.child('eu_jutri.jpg').getDownloadURL().then(function(url) {
+
+          var xhr = new XMLHttpRequest();
+          xhr.responseType = 'blob';
+          xhr.onload = function(event) {
+            var blob = xhr.response;
+          };
+          xhr.open('GET', url);
+          xhr.send();
+
+          jutri.src = url;
+        }).catch(function(error) {
+          // Handle any errors
+        });
+
+        this.fire('app-shell-loaded');
+
       },
 
       behaviors: [i18nMsgBehavior],
@@ -159,246 +393,219 @@
         this.napoved = napoved.detail.response;
       },
 
+      genTitle: function() {
+        if (I18nMsg.lang == 'sl') {
+
+          var title = 'Vremenska napoved za Tržaški zaliv za 48ur';
+          document.title = title + ' | Bazdara';
+
+        } else if (I18nMsg.lang == 'en') {
+
+          var title = 'Weather forecast for Trieste bay for 48h';
+          document.title = title + ' | Bazdara';
+
+        } else if (I18nMsg.lang == 'it') {
+
+          var title = 'Previsioni meteo golfo di Trieste';
+          document.title = title + ' | Bazdara';
+
+        } else if (I18nMsg.lang == 'hr') {
+
+          var title = 'Vremenska prognoza Trščanski zaljev';
+          document.title = title + ' | Bazdara';
+
+        }
+      },
+      attached: function() {
+        var self = this;
+        self.genTitle();
+
+      },
+
 
       _napovedData: function(napoved) {
-        var title = 'Vremenska napoved za Slovensko Obalo za 48ur';
-        document.title = title + ' | Bazdara';
-        document.querySelector('meta[name="description"]').setAttribute("content",
-          napoved.danes + '. ' + napoved.jutri);
+
+        if (I18nMsg.lang == 'sl') {
+
+          var title = 'Vremenska napoved za Slovensko Obalo za 48ur';
+          document.title = title + ' | Bazdara';
+          document.querySelector('meta[name="description"]').setAttribute("content",
+            napoved.danes + '. ' + napoved.jutri);
+
+        } else if (I18nMsg.lang == 'en') {
+
+          var title = 'Weather Forecast for Slovenian coast';
+          document.title = title + ' | Bazdara';
+
+        } else if (I18nMsg.lang == 'it') {
+
+          var title = 'Previsioni del tempo per il golfo di Trieste';
+          document.title = title + ' | Bazdara';
+
+        }
       },
 
       observers: [
-        '_lockScroll(isLoading)',
-        '_napovedData(napoved)'
+        '_napovedData(napoved)',
+        '_onDataReceived(meteograms.*)',
+        'fireload(napoved.loader)'
       ],
 
-      _lockScroll: function(isLoading) {
-        if (isLoading) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'visible';
-        }
-      },
-
-      attached: function() {
-        //$('#facebook-jssdk, #fb-root').remove();
-        if (document.getElementById('facebook-jssdk') !== null) {
-          document.getElementById('facebook-jssdk').remove();
-          document.getElementById('fb-root').remove();
-          delete FB;
+      fireload: function() {
+        if (this.napoved.loader == "loaded") {
+          Polymer.RenderStatus.afterNextRender(this, function() {
+            this.loading = false;
+          });
         };
-
-        window.fbAsyncInit = function() {
-          FB.Event.subscribe(
-            'ad.loaded',
-            function(placementId) {
-              console.log('Audience Network ad loaded');
-              document.getElementById('ad_root').style.display = 'block';
-            }
-          );
-          FB.Event.subscribe(
-            'ad.error',
-            function(errorCode, errorMessage, placementId) {
-              console.log('Audience Network error (' + errorCode + ') ' + errorMessage);
-
-              document.getElementById('google').style.display = 'block';
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            }
-          );
-        };
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s);
-          js.id = id;
-          js.src = "//connect.facebook.net/sl_SI/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=585902811569495";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
       },
 
-      ready: function() {
-        // TODO09: Workaround for removed domReady event
-        var me = this;
-        setTimeout(function() {
-          me.domReady();
-        }, 1);
+      Meteogram: function(xml, meteogram) {
+        // Parallel arrays for the chart data, these are populated as the XML/JSON file
+        // is loaded
+        this.symbols = [];
+        this.symbolNames = [];
+        this.precipitations = [];
+        this.windDirections = [];
+        this.windDirectionNames = [];
+        this.windSpeeds = [];
+        this.windSpeedNames = [];
+        this.temperatures = [];
+        this.pressures = [];
 
+        // Initialize
+        this.xml = xml;
+        this.meteogram = meteogram;
 
+        // Run
+        this.parseYrData();
       },
-      domReady: function() {
 
+      _onDataReceived: function() {
 
+        Meteogram = this.Meteogram;
 
-
-        function Meteogram(xml, meteogram) {
-          // Parallel arrays for the chart data, these are populated as the XML/JSON file
-          // is loaded
-          this.symbols = [];
-          this.symbolNames = [];
-          this.precipitations = [];
-          this.windDirections = [];
-          this.windDirectionNames = [];
-          this.windSpeeds = [];
-          this.windSpeedNames = [];
-          this.temperatures = [];
-          this.pressures = [];
-
-          // Initialize
-          this.xml = xml;
-          this.meteogram = meteogram;
-
-          // Run
-          this.parseYrData();
-        }
         /**
          * Return weather symbol sprites as laid out at http://om.yr.no/forklaring/symbol/
          */
         Meteogram.prototype.getSymbolSprites = function(symbolSize) {
           return {
-            '01d': {
-              x: 0,
-              y: 0
+            "01d": {
+              x: 'clear',
+              y: 'prazna'
             },
-            '01n': {
-              x: symbolSize,
-              y: 0
+            "01n": {
+              x: 'clear_n',
+              y: 'prazna'
             },
-            '16': {
-              x: 2 * symbolSize,
-              y: 0
+            "02d": {
+              x: 'mostClear',
+              y: 'prazna'
             },
-            '02d': {
-              x: 0,
-              y: symbolSize
+            "02n": {
+              x: 'mostClear_n',
+              y: 'prazna'
             },
-            '02n': {
-              x: symbolSize,
-              y: symbolSize
+            "03d": {
+              x: 'modCloudy',
+              y: 'prazna'
             },
-            '03d': {
-              x: 0,
-              y: 2 * symbolSize
+            "03n": {
+              x: 'modCloudy_n',
+              y: 'prazna'
             },
-            '03n': {
-              x: symbolSize,
-              y: 2 * symbolSize
+            "04": {
+              x: 'overcast',
+              y: 'prazna'
             },
-            '17': {
-              x: 2 * symbolSize,
-              y: 2 * symbolSize
+            "40d": {
+              x: 'clear',
+              y: 'lightDZ'
             },
-            '04': {
-              x: 0,
-              y: 3 * symbolSize
+            "40n": {
+              x: 'clear_n',
+              y: 'lightDZ'
             },
-            '05d': {
-              x: 0,
-              y: 4 * symbolSize
+            "05d": {
+              x: 'mostClear',
+              y: 'lightRA'
             },
-            '05n': {
-              x: symbolSize,
-              y: 4 * symbolSize
+            "05n": {
+              x: 'mostClear_n',
+              y: 'lightRA'
             },
-            '40n': {
-              x: symbolSize,
-              y: 4 * symbolSize
+
+            "41d": {
+              x: 'modCloudy',
+              y: 'lightSHRA'
             },
-            '40d': {
-              x: 0,
-              y: 4 * symbolSize
+            "41n": {
+              x: 'modCloudy_n',
+              y: 'lightSHRA'
             },
-            '18': {
-              x: 2 * symbolSize,
-              y: 4 * symbolSize
+
+            "24d": {
+              x: 'clear',
+              y: 'TS'
             },
-            '06d': {
-              x: 0,
-              y: 5 * symbolSize
+            "24n": {
+              x: 'clear_n',
+              y: 'TS'
             },
-            '06n': {
-              x: symbolSize,
-              y: 5 * symbolSize
+
+            "06d": {
+              x: 'clear',
+              y: 'modTSGR'
             },
-            '07d': {
-              x: 0,
-              y: 6 * symbolSize
+            "06n": {
+              x: 'clear_n',
+              y: 'modTSGR'
             },
-            '07n': {
-              x: symbolSize,
-              y: 6 * symbolSize
+
+            "25d": {
+              x: 'clear',
+              y: 'modTSRA'
             },
-            '08d': {
-              x: 0,
-              y: 7 * symbolSize
+            "25n": {
+              x: 'clear_n',
+              y: 'modTSRA'
             },
-            '08n': {
-              x: symbolSize,
-              y: 7 * symbolSize
+
+            "46": {
+              x: 'prazna',
+              y: 'lightDZ'
             },
-            '19': {
-              x: 2 * symbolSize,
-              y: 7 * symbolSize
+
+            "09": {
+              x: 'prazna',
+              y: 'lightRA'
             },
-            '09': {
-              x: 0,
-              y: 8 * symbolSize
+
+            "10": {
+              x: 'prazna',
+              y: 'lightSHRA'
             },
-            '10': {
-              x: 0,
-              y: 9 * symbolSize
+
+
+            "30": {
+              x: 'prazna',
+              y: 'TS'
             },
-            '11': {
-              x: 0,
-              y: 10 * symbolSize
+
+            "22": {
+              x: 'prazna',
+              y: 'modTSGR'
             },
-            '12': {
-              x: 0,
-              y: 11 * symbolSize
+
+            "11": {
+              x: 'prazna',
+              y: 'modTSRA'
             },
-            '13': {
-              x: 0,
-              y: 12 * symbolSize
-            },
-            '14': {
-              x: 0,
-              y: 13 * symbolSize
-            },
-            '15': {
-              x: 0,
-              y: 14 * symbolSize
-            },
-            '20d': {
-              x: 0,
-              y: 15 * symbolSize
-            },
-            '20n': {
-              x: symbolSize,
-              y: 15 * symbolSize
-            },
-            '20m': {
-              x: 2 * symbolSize,
-              y: 15 * symbolSize
-            },
-            '21d': {
-              x: 0,
-              y: 16 * symbolSize
-            },
-            '21n': {
-              x: symbolSize,
-              y: 16 * symbolSize
-            },
-            '21m': {
-              x: 2 * symbolSize,
-              y: 16 * symbolSize
-            },
-            '22': {
-              x: 0,
-              y: 17 * symbolSize
-            },
-            '23': {
-              x: 0,
-              y: 18 * symbolSize
+
+            "15": {
+              x: 'FG',
+              y: 'prazna'
             }
+
           };
         };
 
@@ -465,13 +672,21 @@
          */
         Meteogram.prototype.drawWeatherSymbols = function(chart) {
           var meteogram = this,
-            symbolSprites = this.getSymbolSprites(30);
+            symbolSprites = this.getSymbolSprites(32);
 
           $.each(chart.series[0].data, function(i, point) {
             var sprite,
               group;
 
-            if (meteogram.resolution > 36e5 || i % 2 === 0) {
+            if (screen.width < 480) {
+              deljenje = i % 4;
+            } else if (screen.width < 768) {
+              deljenje = i % 3;
+            } else if (screen.width > 768) {
+              deljenje = i % 2;
+            }
+
+            if (meteogram.resolution > 36e5 || deljenje === 0) {
 
               sprite = symbolSprites[meteogram.symbols[i]];
               if (sprite) {
@@ -479,18 +694,26 @@
                 // Create a group element that is positioned and clipped at 30 pixels width and height
                 group = chart.renderer.g('WeatherSymbols')
                   .attr({
-                    translateX: point.plotX + chart.plotLeft - 15,
-                    translateY: point.plotY + chart.plotTop - 30,
+                    translateX: point.plotX + chart.plotLeft - 12,
+                    translateY: point.plotY + chart.plotTop - 40,
                     zIndex: 5
                   })
-                  .clip(chart.renderer.clipRect(0, 0, 30, 30))
+                  .clip(chart.renderer.clipRect(0, 0, 48, 48))
                   .add();
 
                 // Position the image inside it at the sprite position
                 chart.renderer.image(
-                    '/images/vreme/meteogram-symbols-30px.png', -sprite.x, -sprite.y,
-                    90,
-                    570
+                    '/images/vreme/' + sprite.x + '.png', 0, 0,
+                    32,
+                    32
+                  )
+                  .add(group);
+
+                // Position the image inside it at the sprite position
+                chart.renderer.image(
+                    '/images/vreme/pojavi/' + sprite.y + '.png', 0, 9,
+                    32,
+                    32
                   )
                   .add(group);
               }
@@ -561,10 +784,21 @@
           $.each(chart.series[0].data, function(i, point) {
             var sprite, arrow, x, y;
 
-            if (meteogram.resolution > 36e5 || i % 2 === 0) {
+            if (screen.width < 480) {
+              deljenje = i % 4;
+              deljenje2 = 11;
+            } else if (screen.width < 768) {
+              deljenje = i % 3;
+              deljenje2 = 9;
+            } else if (screen.width > 768) {
+              deljenje = i % 2;
+              deljenje2 = 7;
+            }
+
+            if (meteogram.resolution > 36e5 || deljenje === 0) {
 
               // Draw the wind arrows
-              x = point.plotX + chart.plotLeft + 7;
+              x = point.plotX + chart.plotLeft + deljenje2;
               y = 255;
               if (meteogram.windSpeedNames[i] === 'Calm') {
                 arrow = chart.renderer.circle(x, y, 10).attr({
@@ -613,7 +847,14 @@
             if (this.resolution > 36e5) {
               isLong = pos % this.resolution === 0;
             } else {
-              isLong = i % 2 === 0;
+              if (screen.width < 480) {
+                deljenje = i % 4;
+              } else if (screen.width < 768) {
+                deljenje = i % 3;
+              } else if (screen.width > 768) {
+                deljenje = i % 2;
+              }
+              isLong = deljenje === 0;
             }
             chart.renderer.path(['M', x, chart.plotTop + chart.plotHeight + (isLong ? 0 : 28),
                 'L', x, chart.plotTop + chart.plotHeight + 32, 'Z'
@@ -640,6 +881,9 @@
               marginRight: 40,
               marginTop: 50,
               plotBorderWidth: 1,
+              style: {
+                fontFamily: 'Roboto, sans-serif'
+              },
               events: {
                 redraw: function() {
                   // remove chart annotations
@@ -655,11 +899,8 @@
             },
 
             credits: {
-              text: 'Forecast from <a href="http://yr.no">yr.no</a>',
-              href: this.xml.credit.link['@attributes'].url,
-              position: {
-                x: -40
-              }
+              text: '',
+
             },
 
             tooltip: {
@@ -877,7 +1118,6 @@
             pointStart;
 
           if (!xml || !xml.forecast) {
-            $('#loading').html('<i class="fa fa-frown-o"></i> Failed loading data, please try again later');
             return;
           }
 
@@ -942,21 +1182,8 @@
         };
         // End of the Meteogram protype
 
-
-
-        $(function() { // On DOM ready...
-          // Then get the XML file through Highcharts' jsonp provider, see
-          // https://github.com/highslide-software/highcharts.com/blob/master/samples/data/jsonp.php
-          // for source code.
-          $.getJSON(
-            'https://x.bazdara.com/napoved.php?callback=?',
-            function(xml) {
-              var meteogram = new Meteogram(xml, 'meteogram');
-            }
-          );
-
-        });
-
+        var xml = this.meteograms
+        var meteogram = new Meteogram(xml, 'meteogram');
 
       }
 

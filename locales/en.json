@@ -31,9 +31,13 @@
     "description": "...",
     "message": "About"
   },
+  "menu_9": {
+    "description": "...",
+    "message": "Statistics"
+  },
   "trenutno_title": {
     "description": "...",
-    "message": "Current Conditions Piran"
+    "message": "Current Conditions"
   },
   "trenutno_subtitle": {
     "description": "...",
@@ -89,7 +93,7 @@
   },
   "trenutno_temp_naslov": {
     "description": "...",
-    "message": "Air Tempretature"
+    "message": "Air Temperature"
   },
   "trenutno_temp": {
     "description": "...",
@@ -150,5 +154,425 @@
   "plimovanje": {
     "description": "...",
     "message": "Tide in the Triest Gulf is the strongest in the Adriatic, mainly as a result shallowness of the sea. Tides are the result of attractive forces of the Moon, Sun and other celestial bodies, but the influence of the moon by far the strongest. As a rule, on every tour of the Moon around the Earth (24 hours 50 mins) sort by twice ebb and flow. The strongest tides when you operate attraction of the Moon and the Sun in the same direction, this is the new moon and the full moon (full moon). The amplitude of the wave, according to the average value of the high and low water about 60 cm, the mean maximum amplitude in Trieste is 88 cm. Average monthly amount of sea levels are highest from October to December, and the lowest from January to March. Great effect in changing water levels also have strong winds, which may ousting the Gulf or in the Gulf of bringing large quantities of sea water. Thus, the maximum water levels usually occur when cyclones, accompanied by a storm south of thrusting water masses towards the shores of the Gulf."
+  },
+  "statistika_naslov": {
+    "description": "...",
+    "message": "Statistics for 60 days"
+  },
+  "404_title": {
+    "description": "...",
+    "message": "Page does not exist"
+  },
+  "404_pribec": {
+    "description": "...",
+    "message": "Arrgg ... Captain Pribac sank your boat"
+  },
+  "404_home": {
+    "description": "...",
+    "message": "Try the home page."
+  },
+  "napoved_48": {
+    "description": "...",
+    "message": "Prediction for 48 hours"
+  },
+  "napoved_beseda": {
+    "description": "...",
+    "message": "Prediction in words"
+  },
+  "napoved_slika": {
+    "description": "...",
+    "message": "Time Image EU"
+  },
+  "napoved_veter": {
+    "description": "...",
+    "message": "Wind"
+  },
+  "napoved_hitrost": {
+    "description": "...",
+    "message": "speed"
+  },
+  "napoved_vidljivost": {
+    "description": "...",
+    "message": "visibility"
+  },
+  "napoved_morje": {
+    "description": "...",
+    "message": "Sea"
+  },
+  "napoved_temperatura": {
+    "description": "...",
+    "message": "temperature"
+  },
+  "informacije_1": {
+    "description": "...",
+    "message": "What is this?"
+  },
+  "informacije_2": {
+    "description": "...",
+    "message": "Information about the weather and the state of the sea in the Bay of Piran."
+  },
+  "informacije_3": {
+    "description": "...",
+    "message": "What is this Storm Warning?"
+  },
+  "informacije_4": {
+    "description": "...",
+    "message": "This feature is still under construction"
+  },
+  "informacije_5": {
+    "description": "...",
+    "message": "That's all?"
+  },
+  "informacije_6": {
+    "description": "...",
+    "message": "The site is still under construction."
+  },
+  "informacije_7": {
+    "description": "...",
+    "message": "Why?"
+  },
+  "informacije_8": {
+    "description": "...",
+    "message": "I live on the Slovenian coast, I have a boat and I sail through our waters and have a car parked along the coast, so I need a source of information on the state of the sea."
+  },
+  "informacije_9": {
+    "description": "...",
+    "message": "Do you want more information or want to help?"
+  },
+  "informacije_10": {
+    "description": "...",
+    "message": "write to me"
+  },
+  "Tramontana": {
+    "description": "...",
+    "message": "Tramontana"
+  },
+  "Burin": {
+    "description": "...",
+    "message": "Borin"
+  },
+  "Burja": {
+    "description": "...",
+    "message": "Bora"
+  },
+  "Levant": {
+    "description": "...",
+    "message": "Levante"
+  },
+  "Jugo": {
+    "description": "...",
+    "message": "Ostro"
+  },
+  "Ostro": {
+    "description": "...",
+    "message": "Ostro"
+  },
+  "Lebic": {
+    "description": "...",
+    "message": "Libeccio"
+  },
+  "Garbin": {
+    "description": "...",
+    "message": "Garbin"
+  },
+  "Ponent": {
+    "description": "...",
+    "message": "Ponente"
+  },
+  "Maestral": {
+    "description": "...",
+    "message": "Maestrale"
+  },
+  "N": {
+    "description": "...",
+    "message": "N"
+  },
+  "NNE": {
+    "description": "...",
+    "message": "NNE"
+  },
+  "NE": {
+    "description": "...",
+    "message": "NE"
+  },
+  "ENE": {
+    "description": "...",
+    "message": "ENE"
+  },
+  "E": {
+    "description": "...",
+    "message": "E"
+  },
+  "ESE": {
+    "description": "...",
+    "message": "ESE"
+  },
+  "SE": {
+    "description": "...",
+    "message": "SE"
+  },
+  "SSE": {
+    "description": "...",
+    "message": "SSE"
+  },
+  "S": {
+    "description": "...",
+    "message": "S"
+  },
+  "SSW": {
+    "description": "...",
+    "message": "SSW"
+  },
+  "SW": {
+    "description": "...",
+    "message": "SW"
+  },
+  "WSW": {
+    "description": "...",
+    "message": "WSW"
+  },
+  "W": {
+    "description": "...",
+    "message": "W"
+  },
+  "WNW": {
+    "description": "...",
+    "message": "WNW"
+  },
+  "NW": {
+    "description": "...",
+    "message": "NW"
+  },
+  "NNW": {
+    "description": "...",
+    "message": "NNW"
+  },
+  "Visina": {
+    "description": "...",
+    "message": "Height"
+  },
+  "Plima": {
+    "description": "...",
+    "message": "Ebb"
+  },
+  "Oseka": {
+    "description": "...",
+    "message": "Flow"
+  },
+  "day": {
+    "description": "...",
+    "message": "1d"
+  },
+  "week": {
+    "description": "...",
+    "message": "1w"
+  },
+  "month": {
+    "description": "...",
+    "message": "1m"
+  },
+  "all": {
+    "description": "...",
+    "message": "all"
+  },
+
+  "Ponedeljek zjutraj": {
+    "description": "...",
+    "message": "Monday morning"
+  },
+  "Ponedeljek popoldne": {
+    "description": "...",
+    "message": "Monday afternoon"
+  },
+  "Torek zjutraj": {
+    "description": "...",
+    "message": "Tuesday morning"
+  },
+  "Torek popoldne": {
+    "description": "...",
+    "message": "Tuesday afternoon"
+  },
+  "Sreda zjutraj": {
+    "description": "...",
+    "message": "Wednesday morning"
+  },
+  "Sreda popoldne": {
+    "description": "...",
+    "message": "Wednesday afternoon"
+  },
+  "Četrtek zjutraj": {
+    "description": "...",
+    "message": "Thursday morning"
+  },
+  "Četrtek popoldne": {
+    "description": "...",
+    "message": "Thursday afternoon"
+  },
+  "Petek zjutraj": {
+    "description": "...",
+    "message": "Friday morning"
+  },
+  "Petek popoldne": {
+    "description": "...",
+    "message": "Friday afternoon"
+  },
+  "Sobota zjutraj": {
+    "description": "...",
+    "message": "Saturday morning"
+  },
+  "Sobota popoldne": {
+    "description": "...",
+    "message": "Saturday afternoon"
+  },
+  "Nedelja zjutraj": {
+    "description": "...",
+    "message": "Sunday morning"
+  },
+  "Nedelja popoldne": {
+    "description": "...",
+    "message": "Sunday afternoon"
+  },
+
+  "mirno": {
+    "description": "...",
+    "message": "calm"
+  },
+  "rahlo vzvalovano": {
+    "description": "...",
+    "message": "smooth"
+  },
+  "zmerno vzvalovano": {
+    "description": "...",
+    "message": "slight"
+  },
+  "vzvalovano": {
+    "description": "...",
+    "message": "moderate"
+  },
+  "razburkano": {
+    "description": "...",
+    "message": "rough"
+  },
+  "močno razburkano": {
+    "description": "...",
+    "message": "very rough"
+  },
+
+
+  "jasno": {
+    "description": "...",
+    "message": "clear"
+  },
+  "pretežno jasno": {
+    "description": "...",
+    "message": "mostly clear"
+  },
+  "delno oblačno": {
+    "description": "...",
+    "message": "partly cloudy"
+  },
+  "zmerno oblačno": {
+    "description": "...",
+    "message": "prev cloudy"
+  },
+  "pretežno oblačno": {
+    "description": "...",
+    "message": "mostly cloudy"
+  },
+  "oblačno": {
+    "description": "...",
+    "message": "cloudy"
+  },
+  "megla": {
+    "description": "...",
+    "message": "fog"
+  },
+  "dež": {
+    "description": "...",
+    "message": "rain"
+  },
+  "rosenje": {
+    "description": "...",
+    "message": "drizzle"
+  },
+  "dež s snegom": {
+    "description": "...",
+    "message": "sleet"
+  },
+  "sneženje": {
+    "description": "...",
+    "message": "snow"
+  },
+  "nevihte": {
+    "description": "...",
+    "message": "thunderstorms"
+  },
+  "nevihta s točo": {
+    "description": "...",
+    "message": "hail storm"
+  },
+  "plohe": {
+    "description": "...",
+    "message": "showers"
+  },
+
+
+
+  "Tišina": {
+    "description": "...",
+    "message": "Calm"
+  },
+  "Lahek vetrič": {
+    "description": "...",
+    "message": "Light air"
+  },
+  "Vetrič": {
+    "description": "...",
+    "message": "Light breeze"
+  },
+  "Slab veter": {
+    "description": "...",
+    "message": "Gentle breeze"
+  },
+  "Zmeren veter": {
+    "description": "...",
+    "message": "Moderate breeze"
+  },
+  "Zmerno močan veter": {
+    "description": "...",
+    "message": "Fresh breeze"
+  },
+  "Močan veter": {
+    "description": "...",
+    "message": "Strong breeze"
+  },
+  "Zelo močan veter": {
+    "description": "...",
+    "message": "High wind"
+  },
+  "Viharni veter": {
+    "description": "...",
+    "message": "Gale"
+  },
+  "Vihar": {
+    "description": "...",
+    "message": "Strong gale"
+  },
+  "Močan vihar": {
+    "description": "...",
+    "message": "Storm"
+  },
+  "Orkanski veter": {
+    "description": "...",
+    "message": "Violent storm"
+  },
+  "Orkan": {
+    "description": "...",
+    "message": "Hurricane"
+  },
+  "beaufort": {
+    "description": "...",
+    "message": "beaufort"
   }
+
 }

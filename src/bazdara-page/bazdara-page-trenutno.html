@@ -1,16 +1,25 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/iron-image/iron-image.html">
-<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 
 <link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
 
-<link rel="import" href="../bazdara-import/jquery-import.html">
-<link rel="import" href="../bazdara-import/highcharts-import.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
+
 <link rel="import" href="../styles/shared-styles.html">
+
+<link rel="import" href="../bazdara-elements/app-widget-wind-name.html">
+<link rel="import" href="../bazdara-elements/app-widget-wind-speed-name.html">
+<link rel="import" href="../bazdara-elements/app-widget-gauge-wind.html">
+<link rel="import" href="../bazdara-elements/app-widget-direction.html">
+<link rel="import" href="../bazdara-elements/app-widget-gauge-temp.html">
+<link rel="import" href="../bazdara-elements/app-widget-gauge-sea.html">
+
+<link rel="import" href="../bazdara-elements/app-icons-weather.html">
 
 <dom-module id="bazdara-page-trenutno">
   <template>
+    <shared-styles>
     <style include="shared-styles">
       :host {
         display: block;
@@ -24,104 +33,95 @@
         margin-right: auto;
       }
 
-      .vreme_zdaj1 {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .vreme_zdaj2 {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: -128px;
-      }
-
-      #ad_root2 {
-        display: none;
-        font-size: 16px;
-        line-height: 1.5;
+      .icons{
         position: relative;
-        width: 100%;
+        height: 160px;
+      }
+
+      iron-icon.vreme_zdaj1 {
+        display: block;
+        height: 128px;
         margin-left: auto;
         margin-right: auto;
-        overflow: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
       }
 
-      .thirdPartyMediaClass {
-        width: 100%;
-        height: 170px;
-        overflow: hidden;
+      iron-icon.vreme_zdaj2 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        position: absolute;
+        top:32px;
+        left: 0;
+        right: 0;
       }
 
-      .thirdPartyTitleClass {
-        font-weight: 500;
-        font-size: 1.35rem;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        line-height: 1.1;
-        margin-top: 1rem;
-        margin-bottom: 0.85rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        text-align: center;
+      .gauge {
+        height: 150px;
+        width: 250px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .thirdPartyBodyClass {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        overflow: hidden;
+      @media (min-width: 544px) and (max-width: 559px) {
+        .gauge {
+          margin-left: -25px;
+        }
       }
 
-      .thirdPartyCallToActionClass {
-        color: #1e88e5;
-        font-weight: 500;
-        margin-top: 8px;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        padding-bottom: 1.25rem;
+      @media (min-width: 560px) and (max-width: 599px) {
+        .gauge {
+          margin-left: -25px;
+        }
       }
 
-      .noads {
-        height: 335px;
-        min-width: 100% !important;
-      }
-
-      #google {
-        width:100%;
-        height:100px;
+      @media (min-width: 600px) and (max-width: 767px) {
+        .gauge {
+          margin-left: -2vw;
+        }
       }
     </style>
-    <iron-ajax id="ajax" auto url="https://x.bazdara.com/trenutno.php" handle-as="json" on-response="handleResponse" loading="{{loading}}"></iron-ajax>
+    </shared-styles>
+
+
+    <firebase-document id="live" app-name="bazdara" path="/live" data="{{live}}"></firebase-document>
+    <firebase-document id="trenutno" app-name="bazdara" path="/trenutno" data="{{trenutno}}"></firebase-document>
+
+
+    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
+
 
     <div class="container">
-      <h2 class="page-title"><i18n-msg msgid="trenutno_title">Trenutne razmere Piran</i18n-msg></h2>
+      <h2 class="page-title"><i18n-msg msgid="trenutno_title">Trenutne razmere</i18n-msg></h2>
 
       <div class="card-columns">
         <div class="card">
           <div class="card-block text-xs-center">
-            <h4 class="card-title"><span class="live-smer-wi"></span> <span class="live-veter">[[trenutno.veter.ime]]</span> (<span id="liveSmer">[[trenutno.veter.smer]]</span>°)</h4>
             <h6 class="card-subtitle text-muted"><i18n-msg msgid="trenutno_subtitle">Podatki v živo iz boje Vide</i18n-msg></h6>
+            <br>
+            <h4 class="card-title"><span class="live-smer-wi"></span>
+              <app-widget-wind-name id="wind" direction$="[[live.currentWindDirection]]" name$="[[live.currentWindDirection]]" speed$="[[live.currentWindSpeed]]" gust$="[[trenutno.veter.zdaj̉]]"></app-widget-wind-name>
+            </h4>
+
+          <div class="text-xs-center icons">
+            <i18n-msg msgid$="[[trenutno.vreme.zdaj]]">[[trenutno.vreme.zdaj]]</i18n-msg>&nbsp;<i18n-msg msgid$="[[trenutno.vreme.zdaj2]]">[[trenutno.vreme.zdaj2]]</i18n-msg>
+            <iron-icon icon$="[[trenutno.vreme.zdaj_slika_new]]:0" class="vreme_zdaj1"></iron-icon>
+            <iron-icon icon$="[[trenutno.vreme.zdaj_pojav_new]]:0" class="vreme_zdaj2"></iron-icon>
           </div>
-          <div class="text-xs-center">
-            <iron-image sizing="cover" src$="[[trenutno.vreme.zdaj_slika]]" style="width:128px; height:128px;" preload fade class="vreme_zdaj1"></iron-image>
-            <iron-image sizing="cover" src$="[[trenutno.vreme.zdaj_pojav]]" style="width:128px; height:128px;" preload fade class="vreme_zdaj2"></iron-image>
-          </div>
-          <div class="card-block">
             <div class="card-text text-xs-center">
-              <div class="display-2"><span id="liveTemperatura">[[trenutno.temp.zdaj]]</span>°<span class="display-3">C</span>
+              <div class="display-2">[[trenutno.temp.zdaj]]°<span class="display-3">C</span>
               </div>
-              [[trenutno.vreme.zdaj]]
-              <br> [[trenutno.veter.moc]] <b>[[trenutno.veter.beaufort]]</b>
+              <app-widget-wind-speed-name id="speed" direction$="[[live.currentWindDirection]]" name$="[[live.currentWindDirection]]" speed$="[[live.currentWindSpeed]]" gust$="[[trenutno.veter.zdaj̉]]"></app-widget-wind-speed-name>
+              <i18n-msg msgid="trenutno_veter_naslov">Hitrost vetra</i18n-msg>: <strong>[[live.currentWindSpeed]]</strong> m/s
               <br>
-              <span class="live-hitrost">[[trenutno.veter.zdaj]]</span>m/s (<span class="live-hitrost-km">[[trenutno.veter.zdaj_km]]</span>km/h)
+              <i18n-msg msgid="trenutno_vlaga">Vlažnost</i18n-msg>: <b>[[trenutno.vlaga]]</b> %
               <br>
-              <i18n-msg msgid="trenutno_vzhod">Sončni vzhod ob</i18n-msg> <strong>[[trenutno.soncni.vzhod]]</strong>
+              <i18n-msg msgid="trenutno_vzhod">Sončni vzhod ob</i18n-msg>&nbsp;<strong>[[trenutno.soncni.vzhod]]</strong>
               <br>
-              <i18n-msg msgid="trenutno_zahod">zahod ob</i18n-msg> <strong>[[trenutno.soncni.zahod]]</strong>
+              <i18n-msg msgid="trenutno_zahod">zahod ob</i18n-msg>&nbsp;<strong>[[trenutno.soncni.zahod]]</strong>
             </div>
           </div>
         </div>
@@ -131,103 +131,93 @@
             <p>[[trenutno.pregovor]]</p>
             <footer>
               <small>
-                <cite title="Source Title"><i18n-msg msgid="trenutno_pregovor_1">Piranski</i18n-msg></cite> <i18n-msg msgid="trenutno_pregovor_2">pregovor dneva</i18n-msg>
+                <cite title="Source Title"><i18n-msg msgid="trenutno_pregovor_1">Piranski</i18n-msg></cite>&nbsp;
+                <i18n-msg msgid="trenutno_pregovor_2">pregovor dneva</i18n-msg>
               </small>
             </footer>
           </blockquote>
         </div>
 
+        <template is="dom-if" if="[[!mobile]]">
+          <ins class="adsbygoogle card" style="display:inline-block;width:100%;height:100px" data-ad-client="ca-pub-8065525462923936" data-ad-slot="5392821055"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </template>
 
-                <div class="card" id="carda">
-                  <ins id="google" class="adsbygoogle" style="display:none;width:100%;height:100px" data-ad-client="ca-pub-8065525462923936" data-ad-slot="7257688253"></ins>
+  <template is="dom-if" if="[[mobile]]">
+          <ins class="adsbygoogle card" style="display:inline-block;width:100%" data-ad-client="ca-pub-8065525462923936" data-ad-slot="6171550258" data-ad-format="auto"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </template>
 
-                  <div class="fb-ad" data-placementid="585902811569495_586333584859751" data-format="native" data-nativeadid="ad_root2" data-testmode="false"></div>
-                  <div id="ad_root2">
-                    <a class="fbAdLink">
-                      <div class="fbAdMedia thirdPartyMediaClass"></div>
-                      <div class="fbAdTitle thirdPartyTitleClass"></div>
-                      <div class="fbAdBody thirdPartyBodyClass"></div>
-                      <div class="thirdPartyCallToActionClass">Preberi več</div>
-                    </a>
-                  </div>
-                  <paper-ripple></paper-ripple>
-                </div>
-
-        <div class="card text-xs-center">
-          <div class="card-block">
-            <h4 class="card-title"><i18n-msg msgid="trenutno_veter_naslov">Hitrost vetra</i18n-msg></h4>
-            <div id="containerVeter" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
-            <div class="text-xs-center" style="margin-top:-70px">
-              <span id="live-hitrost2" class="display-4">[[trenutno.veter.zdaj]]</span>
-              <br>
-              <div class="text-muted" style="margin-top:-15px">m/s</div>
-            </div>
-            <p class="card-text">
-              <i18n-msg msgid="trenutno_veter_sunek">Sunki vetra</i18n-msg>: <b>[[trenutno.veter.sunek.zdaj]]</b> m/s ([[trenutno.veter.sunek.zdaj_km]]km/h)
-              <br />
-              <i18n-msg msgid="trenutno_veter_hitrost">Hitrost vetra</i18n-msg>: <b><span class="live-hitrost">[[trenutno.veter.zdaj]]</span>m/s</b> (<span class="live-hitrost-km">[[trenutno.veter.zdaj_km]]</span>km/h)
-              <br />
-              <i18n-msg msgid="trenutno_veter_rekord">Rekord</i18n-msg>: [[trenutno.veter.sunek.max]] m/s <b>([[trenutno.veter.sunek.max_km]]km/h)</b>
-            </p>
-          </div>
-        </div>
-        <div class="card text-xs-center">
-          <div class="card-block">
-            <h4 class="card-title"><i18n-msg msgid="trenutno_val_naslov">Višina Vala</i18n-msg></h4>
-            <div id="containerVal" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
-            <div class="text-xs-center" style="margin-top:-70px">
-              <span id="live-val2" class="display-4">[[trenutno.val.zdaj]]</span>
-              <br>
-              <div class="text-muted" style="margin-top:-15px">m</div>
-            </div>
-            <p class="card-text">
-              <i18n-msg msgid="trenutno_val_max">Max višina</i18n-msg>: <b>[[trenutno.val.vrh.zdaj]]</b> m
-              <br />
-              <i18n-msg msgid="trenutno_val_norm">Norm višina</i18n-msg>: <b><span class="live-val">[[trenutno.val.zdaj]]</span></b> m
-              <br />
-              <i18n-msg msgid="trenutno_val_rekord">Rekord</i18n-msg>: <b>[[trenutno.val.vrh.max]] m</b>
-            </p>
-          </div>
-        </div>
-        <div class="card text-xs-center">
-          <div class="card-block">
-            <h4 class="card-title"><i18n-msg msgid="trenutno_temp_naslov">Temperatura zraka</i18n-msg></h4>
-            <div id="containerTemperatura" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
-            <div class="text-xs-center" style="margin-top:-70px">
-              <span id="liveTemp" class="display-4">[[trenutno.temp.zdaj]]</span>
-              <br>
-              <div class="text-muted" style="margin-top:-15px">°C</div>
-            </div>
-            <p class="card-text">
-              <i18n-msg msgid="trenutno_temp">Temperatura</i18n-msg>: <b><span id="liveTemp2">[[trenutno.temp.zdaj]]</span></b> °C
-              <br>
-              <i18n-msg msgid="trenutno_vlaga">Vlažnost</i18n-msg>: <b>[[trenutno.vlaga]]</b> %
-              <br />
-              <i18n-msg msgid="trenutno_temp_rekord">Rekord</i18n-msg>: <b>[[trenutno.temp.max]]</b> °C
-            </p>
-          </div>
-        </div>
-        <div class="card text-xs-center">
-          <div class="card-block">
-            <h4 class="card-title"><i18n-msg msgid="trenutno_morje_naslov">Temperatura morja</i18n-msg></h4>
-            <div id="containerMorje" class="gauge" style="height:150px;width:250px;display: block;margin-left: auto;margin-right: auto;"></div>
-            <div class="text-xs-center" style="margin-top:-70px">
-              <span id="live-morje2" class="display-4">[[trenutno.morje.vrh.zdaj]]</span>
-              <br>
-              <div class="text-muted" style="margin-top:-15px">°C</div>
-            </div>
-            <p class="card-text">
-              <i18n-msg msgid="trenutno_morje_2m">Globina 2 m</i18n-msg>: <b><span class="live-morje">[[trenutno.morje.vrh.zdaj]]</span></b> °C
-              <br />
-              <i18n-msg msgid="trenutno_morje_20m">Globina 23 m</i18n-msg>: <b>[[trenutno.morje.dno.zdaj]]</b> °C
-              <br />
-              <i18n-msg msgid="trenutno_morje_rekord">Rekord</i18n-msg>: <b>[[trenutno.morje.vrh.max]] °C</b>
-            </p>
-          </div>
-        </div>
+  <div class="card text-xs-center">
+    <div class="card-block">
+      <h4 class="card-title"><i18n-msg msgid="trenutno_veter_naslov">Hitrost vetra</i18n-msg></h4>
+      <app-widget-gauge-wind style="height:200px" direction$="[[live.currentWindDirection]]" name$="[[live.currentWindDirection]]" speed$="[[live.currentWindSpeed]]" gust$="[[trenutno.veter.zdaj̉]]"></app-widget-gauge-wind>
+      <div class="text-xs-center" style="margin-top:-50px">
+        <span id="live-hitrost2" class="display-4">[[live.currentWindSpeed]]</span>
+        <br>
+        <div class="text-muted" style="margin-top:-15px">m/s</div>
       </div>
-
+      <p class="card-text">
+        <i18n-msg msgid="trenutno_veter_sunek">Sunki vetra</i18n-msg>: <b>[[trenutno.veter.sunek.zdaj]]</b> m/s
+        <br />
+        <i18n-msg msgid="trenutno_veter_hitrost">Hitrost vetra</i18n-msg>: <b>[[live.currentWindSpeed]]</b> m/s
+        <br />
+        <i18n-msg msgid="trenutno_veter_rekord">Rekord</i18n-msg>: <b>[[trenutno.veter.sunek.max]]</b> m/s
+      </p>
     </div>
+  </div>
+  <div class="card text-xs-center" style="background-color:#009688">
+    <div class="card-block">
+      <app-widget-direction style="height:200px" id="direction" direction$="[[live.currentWindDirection]]" name$="[[live.currentWindDirection]]" speed$="[[live.currentWindSpeed]]" gust$="[[trenutno.veter.zdaj̉]]"></app-widget-direction>
+    </div>
+  </div>
+  <div class="card text-xs-center">
+    <div class="card-block" style="padding-bottom:0px">
+      <h4 class="card-title"><i18n-msg msgid="trenutno_temp_naslov">Temperatura zraka</i18n-msg></h4>
+    </div>
+    <app-widget-gauge-temp temp$="[[live.temperatureAir]]" style="height:150px"></app-widget-gauge-temp>
+    <div class="card-block" style="padding-top:0px">
+      <div class="text-xs-center">
+        <span class="display-4">[[live.temperatureAir]]</span>
+        <br>
+        <div class="text-muted" style="margin-top:-15px">°C</div>
+      </div>
+      <p class="card-text">
+        <i18n-msg msgid="trenutno_temp">Temperatura</i18n-msg>: <b>[[live.temperatureAir]]</b> °C
+        <br>
+        <i18n-msg msgid="trenutno_temp_rekord">Rekord</i18n-msg>: <b>[[trenutno.temp.max]]</b> °C |&nbsp;
+        <i18n-msg msgid="trenutno_temp_rekord_min">Min</i18n-msg>: <b>[[trenutno.temp.min]]</b> °C
+      </p>
+    </div>
+  </div>
+  <div class="card text-xs-center">
+    <div class="card-block" style="padding-bottom:0px">
+      <h4 class="card-title"><i18n-msg msgid="trenutno_morje_naslov">Temperatura morja</i18n-msg></h4>
+    </div>
+    <app-widget-gauge-seas seas$="[[live.temperatureSeaSurface]]" style="margin-top:-15px;margin-bottom:15px;height:100px"></app-widget-gauge-seas>
+    <div class="card-block" style="padding-top:0px">
+      <div class="text-xs-center">
+        <span class="display-4">[[live.temperatureSeaSurface]]</span>
+        <br>
+        <div class="text-muted" style="margin-top:-15px">°C</div>
+      </div>
+      <p class="card-text">
+        <i18n-msg msgid="trenutno_morje_2m">Globina 2 m</i18n-msg>: <b>[[live.temperatureSeaSurface]]</b> °C
+        <br>
+        <i18n-msg msgid="trenutno_morje_20m">Globina 23 m</i18n-msg>: <b>[[trenutno.morje.dno.zdaj]]</b> °C
+        <br>
+        <i18n-msg msgid="trenutno_morje_rekord">Rekord</i18n-msg>: <b>[[trenutno.morje.vrh.max]]</b> °C |&nbsp;
+        <i18n-msg msgid="trenutno_morje_rekord_min">Min</i18n-msg>: <b>[[trenutno.morje.vrh.min]]</b> °C
+      </p>
+    </div>
+  </div>
+  </div>
+
+  </div>
 
   </template>
   <script>
@@ -238,11 +228,10 @@
           type: Object,
           notify: true,
           reflectToAttribute: true
-
         },
         loading: {
           type: Boolean,
-          value: false,
+          value: true,
           notify: true
         },
         android: {
@@ -256,415 +245,57 @@
 
       },
 
-      behaviors: [i18nMsgBehavior],
-
-      attached: function() {
-        //$('#facebook-jssdk, #fb-root').remove();
-        if (document.getElementById('facebook-jssdk') !== null) {
-          document.getElementById('facebook-jssdk').remove();
-          document.getElementById('fb-root').remove();
-          delete FB;
-        };
-
-        window.fbAsyncInit = function() {
-          FB.Event.subscribe(
-            'ad.loaded',
-            function(placementId) {
-              console.log('Audience Network ad loaded');
-              document.getElementById('ad_root2').style.display = 'block';
-            }
-          );
-          FB.Event.subscribe(
-            'ad.error',
-            function(errorCode, errorMessage, placementId) {
-              console.log('Audience Network error (' + errorCode + ') ' + errorMessage);
-              document.getElementById('carda').style.height = '100px';
-              document.getElementById('google').style.display = 'inline-block';
-              (adsbygoogle = window.adsbygoogle || []).push({});
-
-            }
-          );
-        };
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s);
-          js.id = id;
-          js.src = "//connect.facebook.net/sl_SI/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=585902811569495";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-      },
-
       observers: [
-        '_lockScroll(isLoading)',
-        '_zdajData(trenutno)'
+        'fireload(trenutno.loader)'
       ],
 
-      _lockScroll: function(isLoading) {
-        if (isLoading) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'visible';
+      fireload: function() {
+        if (this.trenutno.loader == "loaded") {
+          Polymer.RenderStatus.afterNextRender(this, function() {
+            this.loading = false;
+          });
+        };
+      },
+
+      behaviors: [i18nMsgBehavior],
+
+      genTitle: function() {
+        if (I18nMsg.lang == 'sl') {
+
+          var title = 'Nautični vodnik slovenskega morja';
+          document.title = title + ' | Bazdara';
+
+        } else if (I18nMsg.lang == 'en') {
+
+          var title = 'Slovenian seamans guide';
+          document.title = title + ' | Bazdara';
+
+        } else if (I18nMsg.lang == 'it') {
+
+          var title = 'Guida nautica golfo di Trieste';
+          document.title = title + ' | Bazdara';
+
+        } else if (I18nMsg.lang == 'hr') {
+
+          var title = 'Nautički vodič Trščanski zaljev';
+          document.title = title + ' | Bazdara';
+
         }
       },
-
-      handleResponse: function(trenutno) {
-        this.trenutno = trenutno.detail.response;
+      attached: function() {
+        var self = this;
+        self.genTitle();
       },
 
-      _zdajData: function(trenutno) {
+      ready: function() {
+        this.loading = true;
 
-        var title = 'Trenutno vreme Piran, podatki v živo za morjeplovce';
-        document.title = title + ' | Bazdara';
-        document.querySelector('meta[name="description"]').setAttribute("content",
-          'Na obali je ' + trenutno.vreme.zdaj + ', temperatura zraka ' + trenutno.temp.zdaj + '°C. Piha ' + trenutno.veter.ime +
-          ', ' + trenutno.veter.moc + ' z močjo ' + trenutno.veter.beaufort + '. Hitrost vetra je ' + trenutno.veter.zdaj +
-          'm/s, oziroma ' + trenutno.veter.zdaj_km + 'km/h. Temperatura slovenskega morja je ' + trenutno.morje.vrh.zdaj +
-          '°C. Normalna višina vala je ' + trenutno.val.zdaj + 'm. Sončni vzhod ob ' + trenutno.soncni.vzhod + ', zahod ob ' + trenutno.soncni.zahod);
+        this.fire('app-shell-loaded');
+
+      },
 
 
-        var gaugeOptions = {
 
-          chart: {
-            type: 'solidgauge',
-            backgroundColor: null,
-          },
-
-          title: null,
-          credits: {
-            enabled: false
-          },
-          exporting: {
-            enabled: false
-          },
-
-          pane: {
-            center: ['50%', '75%'],
-            size: '150%',
-            startAngle: -90,
-            endAngle: 90,
-            background: {
-              backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-              innerRadius: '60%',
-              outerRadius: '100%',
-              shape: 'arc'
-            }
-          },
-
-          tooltip: {
-            enabled: false
-          },
-
-          // the value axis
-          yAxis: {
-            stops: [
-              [0.1, '#55BF3B'], // green
-              [0.4, '#DDDF0D'], // yellow
-              [0.7, '#DF5353'] // red
-            ],
-            lineWidth: 0,
-            minorTickInterval: null,
-            tickPixelInterval: 400,
-            tickWidth: 0,
-            labels: {
-              enabled: false
-            },
-          },
-
-          plotOptions: {
-            solidgauge: {
-              dataLabels: {
-                y: 5,
-                borderWidth: 0,
-                useHTML: true
-              }
-            }
-          }
-        };
-
-        var gaugeOptions2 = {
-
-          chart: {
-            type: 'solidgauge',
-            backgroundColor: null,
-          },
-
-          title: null,
-          credits: {
-            enabled: false
-          },
-          exporting: {
-            enabled: false
-          },
-
-          pane: {
-            center: ['50%', '75%'],
-            size: '150%',
-            startAngle: -90,
-            endAngle: 90,
-            background: {
-              backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-              innerRadius: '60%',
-              outerRadius: '100%',
-              shape: 'arc'
-            }
-          },
-
-          tooltip: {
-            enabled: false
-          },
-
-          yAxis: {
-            stops: [
-              [0.1, '#C6E2FF'],
-              [0.4, '#DDDF0D'],
-              [0.7, '#DF5353']
-            ],
-            lineWidth: 0,
-            minorTickInterval: null,
-            tickPixelInterval: 400,
-            tickWidth: 0,
-            labels: {
-              enabled: false
-            },
-          },
-
-          plotOptions: {
-            solidgauge: {
-              dataLabels: {
-                y: 5,
-                borderWidth: 0,
-                useHTML: true
-              }
-            }
-          }
-        };
-
-        new Highcharts.Chart(Highcharts.merge(gaugeOptions2, {
-          chart: {
-            renderTo: 'containerTemperatura'
-          },
-
-          yAxis: {
-            min: 2.5,
-            max: 35,
-          },
-
-          series: [{
-            name: 'Temperatura zraka',
-            data: [15],
-            dataLabels: {
-              enabled: false
-            },
-            tooltip: {
-              enabled: false
-            }
-          }]
-
-        }));
-
-        new Highcharts.Chart(Highcharts.merge(gaugeOptions, {
-          chart: {
-            renderTo: 'containerVeter'
-          },
-
-          yAxis: {
-            min: 0,
-            max: 22,
-          },
-
-          series: [{
-            name: 'Hitrost Vetra',
-            data: [5],
-            dataLabels: {
-              enabled: false
-            },
-            tooltip: {
-              enabled: false
-            }
-          }]
-
-        }));
-
-        new Highcharts.Chart(Highcharts.merge(gaugeOptions2, {
-          chart: {
-            renderTo: 'containerMorje'
-          },
-
-          yAxis: {
-            min: 7,
-            max: 32,
-          },
-
-          series: [{
-            name: 'Temperatura morja',
-            data: [20],
-            dataLabels: {
-              enabled: false
-            },
-            tooltip: {
-              enabled: false
-            }
-          }]
-
-        }));
-
-        new Highcharts.Chart(Highcharts.merge(gaugeOptions2, {
-          chart: {
-            renderTo: 'containerVal'
-          },
-
-          yAxis: {
-            min: 0,
-            max: 2,
-          },
-
-          series: [{
-            name: 'Valovanje',
-            data: [0.2],
-            dataLabels: {
-              enabled: false
-            },
-            tooltip: {
-              enabled: false
-            }
-          }]
-
-        }));
-
-
-        // Bring life to the dials
-        setInterval(function() {
-
-          $.getJSON('https://www.bazdara.com/boja/live.json', function(data) {
-            $.each(data, function(key, val) {
-
-
-              var chart = $('#containerTemperatura').highcharts(),
-                point,
-                newVal,
-                inc;
-              if (chart) {
-                if (key == 'temperatureAir') {
-                  newVal = val;
-                  var point = chart.series[0].points[0];
-                  point.update(newVal);
-                }
-              }
-
-              var chart = $('#containerVeter').highcharts();
-              if (chart) {
-                if (key == 'currentWindSpeed') {
-                  newVal = val;
-                  var point = chart.series[0].points[0];
-                  point.update(newVal);
-                }
-              }
-
-              var chart = $('#containerMorje').highcharts();
-              if (chart) {
-                if (key == 'temperatureSeaSurface') {
-                  newVal = val;
-                  var point = chart.series[0].points[0];
-                  point.update(newVal);
-                }
-              }
-
-              var chart = $('#containerVal').highcharts();
-              if (chart) {
-                if (key == 'wavesHeight') {
-                  newVal = val;
-                  var point = chart.series[0].points[0];
-                  point.update(newVal);
-                }
-              }
-
-              if (key == 'temperatureAir') {
-                $('#liveTemperatura').empty();
-                $('#liveTemperatura').append(data['temperatureAir']);
-
-                $('#liveTemp').empty();
-                $('#liveTemp').append(data['temperatureAir']);
-
-                $('#liveTemp2').empty();
-                $('#liveTemp2').append(data['temperatureAir']);
-              }
-              if (key == 'currentWindDirection') {
-                $('#liveSmer').empty();
-                $('#liveSmer').append(data['currentWindDirection']);
-
-              }
-              if (key == 'meanWindBeaufort') {
-                $('#live-bufor').empty();
-                $('#live-bufor').append(data['meanWindBeaufort']);
-              }
-              if (key == 'currentWindSpeed') {
-                $('.live-hitrost').empty();
-                $('.live-hitrost').append(data['currentWindSpeed']);
-
-                $('#live-hitrost2').empty();
-                $('#live-hitrost2').append(data['currentWindSpeed']);
-              }
-              if (key == 'currentWindSpeed') {
-                $('.live-hitrost-km').empty();
-                $('.live-hitrost-km').append((data['currentWindSpeed'] * 3.6).toFixed(1));
-              }
-              if (key == 'wavesHeight') {
-                $('.live-val').empty();
-                $('.live-val').append(data['wavesHeight']);
-
-                $('#live-val2').empty();
-                $('#live-val2').append(data['wavesHeight']);
-              }
-              if (key == 'wavesHeight') {
-                $('.live-morje').empty();
-                $('.live-morje').append(data['temperatureSeaSurface']);
-
-                $('#live-morje2').empty();
-                $('#live-morje2').append(data['temperatureSeaSurface']);
-              }
-              if (key == 'currentWindDirection') {
-                if (data['currentWindDirection'] >= "340.1" && data['currentWindDirection'] <= "360") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Tramontana");
-                } else if (data['currentWindDirection'] >= "0" && data['currentWindDirection'] <= "10") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Tramontana");
-                } else if (data['currentWindDirection'] >= "10.1" && data['currentWindDirection'] <= "30") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Burin");
-                } else if (data['currentWindDirection'] >= "30.1" && data['currentWindDirection'] <= "100") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Burja");
-                } else if (data['currentWindDirection'] >= "100.1" && data['currentWindDirection'] <= "120") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Levant");
-                } else if (data['currentWindDirection'] >= "120.1" && data['currentWindDirection'] <= "160") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Jugo");
-                } else if (data['currentWindDirection'] >= "160.1" && data['currentWindDirection'] <= "200") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Oštro");
-                } else if (data['currentWindDirection'] >= "200.1" && data['currentWindDirection'] <= "240") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Lebič");
-                } else if (data['currentWindDirection'] >= "240.1" && data['currentWindDirection'] <= "260") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Garbin");
-                } else if (data['currentWindDirection'] >= "260.1" && data['currentWindDirection'] <= "290") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Ponent");
-                } else if (data['currentWindDirection'] >= "290.1" && data['currentWindDirection'] <= "340") {
-                  $('.live-veter').empty();
-                  $('.live-veter').append("Maestral");
-                }
-              }
-
-            });
-          });
-        }, 3100);
-
-      }
     });
   </script>
 </dom-module>

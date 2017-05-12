@@ -1,64 +1,222 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/iron-image/iron-image.html">
-<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
-<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
-<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+
+<!-- <link rel="import" href="../bazdara-import/hls.html">  -->
 
 <dom-module id="bazdara-spletna">
+
   <template>
-    <style>
-      :host {
-        display: block;
+
+  <style include="shared-styles">
+     :host {
+      display: block;
+      box-sizing: border-box;
+    }
+
+    iron-image {
+      --iron-image-width: 100%;
+      margin-bottom: -7px;
+      --iron-image-placeholder: {
+        width: 100%;
       }
-    </style>
+    }
 
-    <iron-media-query query="(max-width: 767px)" query-matches="{{notwide}}"></iron-media-query>
-    <iron-media-query query="(min-width: 768px)" query-matches="{{wide}}"></iron-media-query>
+    .full {
+      margin-top: -55px;
+      margin-left: 13px;
+      position: absolute;
+    }
 
-    <template is="dom-if" if="[[notwide]]">
-      <picture style="width:310px; height:192px;">
-        <source id="spletna1" type="image/webp" srcset="[[spletna1]]" style="width:310px; height:192px;">
-        <img id="spletna2" src="[[spletna2]]" style="width:310px; height:192px;">
-        <paper-ripple></paper-ripple>
-      </picture>
-    </template>
-    <template is="dom-if" if="[[wide]]">
-      <a id="tooltip_1" href="http://www.whatsupcams.com/wgt/si_piranpunta/768/480/true/" target="_blank" onclick="ga('send', 'event', 'view', 'Webcam');">
-        <picture style="width:310px; height:192px;">
-          <source id="spletna1" type="image/webp" srcset="[[spletna1]]" style="width:310px; height:192px;">
-          <img id="spletna2" src="[[spletna2]]" style="width:310px; height:192px;">
-          <paper-ripple></paper-ripple>
-        </picture>
-      </a>
-    </template>
 
-    <paper-tooltip for="tooltip_1" offset="-190">Klikni za live Spletna kamera Piran (Punta)</paper-tooltip>
+    paper-icon-button,
+    fullscreen-icon-button {
+      color: #000;
+      --paper-icon-button-ink-color: #000;
+      border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        background-color: #fff
+    }
+
+    #video {
+      width: 309px;
+      height: 175px;
+      margin-bottom: -8px;
+    }
+
+    paper-icon-button.play {
+      color: #F44336;
+      --paper-icon-button-ink-color: #F44336;
+    }
+  </style>
+  <div class="cam">
+
+
+    <video autoplay="false" poster$="[[poster]]" id="video"></video>
+
+    <div class="full">
+      <!-- <paper-icon-button class$="video {{videoClass}}" on-click="videoClick" icon="notification:live-tv" active={{active}} disabled={{disabled}}></paper-icon-button> -->
+      <fullscreen-icon-button hidden$="[[!fullscreenAvailable]]" target="#video" class="fullscreen" title="fullscreen" tabindex="0" alt="fullscreen"></fullscreen-icon-button>
+    </div>
+
+  </div>
+
   </template>
-  <script>
-    Polymer({
-      is: 'bazdara-spletna',
 
-      properties: {
-        spletna1: {
-          type: String,
-          value: 'https://x.bazdara.com/si_piranpunta_hq.webp'
-        },
-        spletna2: {
-          type: String,
-          value: 'https://x.bazdara.com/si_piranpunta_hq.jpg'
-        },
+</dom-module>
 
+<script>
+  Polymer({
+
+    is: 'bazdara-spletna',
+
+    properties: {
+      lat: {
+        type: Number,
       },
+      lng: {
+        observer: 'numberChanged',
+        type: Number,
+      },
+      town: {
+        type: String,
+        value: 'si_piranpunta'
+      },
+      poster: {
+        type: String,
+        reflectToAttribute: true
+      },
+      fullscreenAvailable: {
+        type: Boolean,
+        reflectToAttribute: true
+      }
+    },
 
-      ready: function() {
-        setInterval(function() {
-          var spletna1 = document.getElementById('spletna1');
-          var spletna2 = document.getElementById('spletna2');
-          spletna1.srcset = 'https://x.bazdara.com/si_piranpunta_hq.webp?rand=' + Math.random();
-          spletna2.src = 'https://x.bazdara.com/si_piranpunta_hq.jpg?rand=' + Math.random();
-        }, 300000);
+    Deg2Rad: function(deg) {
+      return deg * Math.PI / 180;
+    },
+
+    PythagorasEquirectangular: function(lat1, lon1, lat2, lon2) {
+      lat1 = this.Deg2Rad(lat1);
+      lat2 = this.Deg2Rad(lat2);
+      lon1 = this.Deg2Rad(lon1);
+      lon2 = this.Deg2Rad(lon2);
+      var R = 6371; // km
+      var x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
+      var y = (lat2 - lat1);
+      var d = Math.sqrt(x * x + y * y) * R;
+      return d;
+    },
+
+    NearestCity: function(latitude, longitude) {
+      var mindif = 99999;
+      var closest;
+
+      var cities = [
+        ["si_pirantartini", 0, 0, "Piran"],
+        ["si_pirantartini", 45.528365, 13.5657363, "Piran"],
+        ["si_pirantartini", 46.0569, 14.5058, "Ljubljana"],
+        ["si_portoroz03", 45.512827, 13.5933043, "Portorož"],
+        ["si_portoroz02", 45.510015, 13.595646, "Portorož 2"],
+        ["si_izola2", 45.541326, 13.656600, "Izola"],
+        ["si_solinesecovlje", 45.491120, 13.608242, "Sečovlje"],
+        ["hr_golfadriatic1", 45.495218, 13.532774, "Savudrija"],
+        ["it_udlignano", 45.686780, 13.142589, "Lignano"],
+        ["si_ljpz1", 45.473511, 13.6139783, "Letališče"],
+        ["hr_umag5", 45.400540, 13.536350, "Pelegrin Umag"],
+        ["hr_umag4", 45.400540, 13.536350, "Umag"]
+
+//        ["it_trieste01", 45.6814596, 13.7403372, "Trst"]
+
+      ];
+
+      for (index = 0; index < cities.length; ++index) {
+        var dif = this.PythagorasEquirectangular(latitude, longitude, cities[index][1], cities[index][2]);
+        if (dif < mindif) {
+          closest = index;
+          mindif = dif;
+        }
       }
 
-    });
-  </script>
-</dom-module>
+      // echo the nearest city
+      return cities[closest][0];
+    },
+
+    camera: function() {
+
+      this.town = this.NearestCity(this.lat, this.lng)
+
+      var video = this.$.video;
+
+      var storageRef = firebase.storage().ref();
+
+      storageRef.child('camera/' + this.town + '.jpg').getDownloadURL().then(function(url) {
+        //var xhr = new XMLHttpRequest();
+        //xhr.responseType = 'blob';
+        //xhr.onload = function(event) {
+        //  var blob = xhr.response;
+        //};
+        //xhr.open('GET', url);
+        //xhr.send();
+
+        video.poster = url;
+      }).catch(function(error) {
+        setDelay(function() {
+          this.camera();
+        }.bind(this), 10000);
+      });
+
+    },
+
+    numberChanged: function() {
+      this.camera();
+    },
+
+    ready: function() {
+
+      setInterval(function() {
+        this.camera();
+      }.bind(this), 300000);
+
+    },
+
+    videoClick: function() {
+
+      var video = this.$.video;
+
+      if (!Hls.isSupported()) {
+        this.disabled = true;
+      };
+      if (Hls.isSupported()) {
+        var hls = new Hls({
+          autoStartLoad: true
+        });
+
+        if (video.paused) {
+
+          hls.loadSource('https://x.bazdara.com/hls/' + this.town + '.m3u8');
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, function() {
+
+          });
+
+          video.play();
+          this.videoClass = "play";
+          this.active = true;
+
+        } else {
+          video.pause();
+          hls.destroy();
+          video.load()
+          this.videoClass = "";
+          this.active = false;
+
+          this.camera();
+
+        };
+      };
+
+    }
+
+  });
+</script>

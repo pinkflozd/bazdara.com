@@ -1,0 +1,820 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+
+<link rel="import" href="../bazdara-import/highcharts-import.html">
+<link rel="import" href="../styles/shared-styles.html">
+
+<dom-module id="bazdara-page-statistika">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        --paper-toolbar-background: var(--paper-blue-600);
+        --paper-tabs-selection-bar-color: var(--paper-blue-600);
+        --paper-tab-ink: var(--paper-blue-600);
+      }
+
+      .oglas {
+        text-align: center;
+        width: 100%;
+      }
+
+      .graf {
+        width: 100%;
+        height: calc(100vh - 250px);
+        min-height: 380px;
+        padding-top: 15px
+      }
+      @media screen and (min-width: 768px) {
+        .advert {
+          margin-right: 40px;
+          margin-left: 0px
+        }
+      }
+
+    </style>
+    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
+
+    <div class="container">
+
+      <h2 class="page-title"><i18n-msg msgid="statistika_naslov">Statistika za 60 dni</i18n-msg></h2>
+
+      <paper-tabs id="statTabs" selected="{{selected}}" fallback-selection="0" scrollable fit-container>
+        <paper-tab on-click="statistika0" onclick="ga('send', 'pageview', '/statistika/veter');"><i18n-msg msgid="trenutno_veter_naslov">Hitrost vetra</i18n-msg></paper-tab>
+        <paper-tab on-click="statistika1" onclick="ga('send', 'pageview', '/statistika/val');"><i18n-msg msgid="trenutno_val_naslov">Višina Vala</i18n-msg></paper-tab>
+        <paper-tab on-click="statistika2" onclick="ga('send', 'pageview', '/statistika/morje');"><i18n-msg msgid="trenutno_morje_naslov">Temperatura morja</i18n-msg></paper-tab>
+        <paper-tab on-click="statistika3" onclick="ga('send', 'pageview', '/statistika/temperatura');"><i18n-msg msgid="trenutno_temp_naslov">Temperatura zraka</i18n-msg></paper-tab>
+      </paper-tabs>
+
+      <iron-pages id="stats" selected="{{selected}}" fallback-selection="0">
+        <div>
+
+          <div class="card-deck-wrapper">
+            <div class="card-deck">
+              <div class="card">
+                <div id="graf_veter" class="graf"></div>
+                <template is="dom-if" if="[[!mobile]]">
+                  <div class="advert">
+                  <ins class="adsbygoogle" style="display:inline-block;width:100%" data-ad-client="ca-pub-8065525462923936" data-ad-slot="6171550258" data-ad-format="auto"></ins>
+                  <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                  </script>
+                </div>
+                </template>
+
+              </div>
+              <template is="dom-if" if="[[mobile]]">
+                <ins class="adsbygoogle card" style="display:inline-block;width:100%" data-ad-client="ca-pub-8065525462923936" data-ad-slot="6171550258" data-ad-format="auto"></ins>
+                <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+              </template>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div>
+          <div class="card-deck-wrapper">
+            <div class="card-deck">
+              <div class="card">
+                <div id="graf_val" class="graf"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card-deck-wrapper">
+            <div class="card-deck">
+              <div class="card">
+                <div id="graf_morje" class="graf"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card-deck-wrapper">
+            <div class="card-deck">
+              <div class="card">
+                <div id="graf_zrak" class="graf"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </iron-pages>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'bazdara-page-statistika',
+
+
+
+      properties: {
+        loading: {
+          type: Boolean,
+          value: true,
+          notify: true
+        },
+        android: {
+          type: Boolean,
+          value: function() {
+            //ready
+            return (/Android|iPhone|iPad|iPod|android/i.test(navigator.userAgent)) ? true : false;
+
+          }
+        },
+      },
+
+      behaviors: [i18nMsgBehavior],
+
+      genTitle: function() {
+
+          if (I18nMsg.lang == 'sl') {
+
+            var title = 'Statiskika za 60 dni';
+            document.title = title + ' | Bazdara';
+            document.querySelector('meta[name="description"]').setAttribute("content",
+              "Zgodovina višin vala in temperatur");
+
+          } else if (I18nMsg.lang == 'en') {
+
+            var title = 'Statistics for 60 days';
+            document.title = title + ' | Bazdara';
+
+          } else if (I18nMsg.lang == 'it') {
+
+            var title = 'Statistiche per 60 giorni';
+            document.title = title + ' | Bazdara';
+
+
+          } else if (I18nMsg.lang == 'hr') {
+
+            var title = 'Statiskika za 60 dana';
+            document.title = title + ' | Bazdara';
+
+          }
+      },
+      attached: function() {
+        var self = this;
+        self.genTitle();
+      },
+
+      ready: function() {
+        this.loading = true;
+
+        // TODO09: Workaround for removed domReady event
+        var me = this;
+        setTimeout(function() {
+          me.domReady();
+        }, 1);
+      },
+      domReady: function() {
+
+
+        var d = new Date();
+        d.setUTCHours(0, 0, 0, 0);
+        prev = Date.parse(d);
+        next = prev + 172800000;
+
+
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://x.bazdara.com/zgodovina2.php?startDate=60&stat=statistika0', true);
+
+        request.onload = function() {
+          if (this.status >= 200 && this.status < 400) {
+
+            // Success!
+            var data = JSON.parse(this.response);
+
+            // Create a timer
+            var start = +new Date();
+
+            var statistika = {
+              chart: {
+                type: 'StockChart',
+                zoomType: 'x',
+                style: {
+                  fontFamily: 'Roboto, sans-serif'
+                }
+              },
+
+              rangeSelector: {
+
+                buttons: [{
+                  type: 'day',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('day')
+                }, {
+                  type: 'week',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('week')
+                }, {
+                  type: 'month',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('month')
+                }, {
+                  type: 'all',
+                  text: document.querySelector('i18n-msg').getMsg('all')
+                }],
+                selected: 0
+              },
+
+              credits: {
+                enabled: false,
+              },
+
+              exporting: {
+                enabled: true
+              },
+
+
+              yAxis: {
+                title: null,
+              },
+
+              title: {
+                style: {
+                  "color": "#373a3c",
+                  "fontSize": "1.5rem",
+                  "fontWeight": "500",
+                  "marginTop": "15px"
+                }
+              },
+            };
+
+            // Create the chart
+            new Highcharts.StockChart(Highcharts.merge(statistika, {
+              chart: {
+                renderTo: 'graf_veter',
+              },
+
+              title: null,
+
+              series: [{
+                name: document.querySelector('i18n-msg').getMsg('trenutno_veter_sunek'),
+                type: 'spline',
+                data: data.veter_sunek,
+                pointStart: data.pointStart,
+                pointInterval: data.pointInterval,
+                tooltip: {
+                  valueDecimals: 2,
+                  valueSuffix: 'm/s'
+                }
+              }, {
+                name: document.querySelector('i18n-msg').getMsg('trenutno_veter_hitrost'),
+                type: 'spline',
+                data: data.veter_hitrost,
+                pointStart: data.pointStart,
+                pointInterval: data.pointInterval,
+                tooltip: {
+                  valueDecimals: 2,
+                  valueSuffix: 'm/s'
+                }
+              }]
+
+            }));
+
+
+
+
+          } else {
+            // We reached our target server, but it returned an error
+
+          }
+        };
+
+        request.onerror = function() {
+          // There was a connection error of some sort
+        };
+
+        request.send();
+
+        Polymer.RenderStatus.afterNextRender(this, function() {
+          setTimeout(function() {
+            this.loading = false;
+          }.bind(this), 250);
+        });
+
+        this.fire('app-shell-loaded');
+
+      },
+
+
+
+
+      statistika0: function() {
+
+
+        var d = new Date();
+        d.setUTCHours(0, 0, 0, 0);
+        prev = Date.parse(d);
+        next = prev + 172800000;
+
+
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://x.bazdara.com/zgodovina2.php?startDate=60&stat=statistika0', true);
+
+        request.onload = function() {
+          this.loading = false;
+
+          if (this.status >= 200 && this.status < 400) {
+            // Success!
+            var data = JSON.parse(this.response);
+
+            // Create a timer
+            var start = +new Date();
+
+            var statistika = {
+              chart: {
+                type: 'StockChart',
+                zoomType: 'x',
+                style: {
+                  fontFamily: 'Roboto, sans-serif'
+                }
+              },
+
+              rangeSelector: {
+
+                buttons: [{
+                  type: 'day',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('day')
+                }, {
+                  type: 'week',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('week')
+                }, {
+                  type: 'month',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('month')
+                }, {
+                  type: 'all',
+                  text: document.querySelector('i18n-msg').getMsg('all')
+                }],
+                selected: 0
+              },
+
+              credits: {
+                enabled: false,
+              },
+
+              exporting: {
+                enabled: true
+              },
+
+
+              yAxis: {
+                title: null,
+              },
+
+              title: {
+                style: {
+                  "color": "#373a3c",
+                  "fontSize": "1.5rem",
+                  "fontWeight": "500",
+                  "marginTop": "15px"
+                }
+              },
+            };
+
+            // Create the chart
+            new Highcharts.StockChart(Highcharts.merge(statistika, {
+              chart: {
+                renderTo: 'graf_veter',
+              },
+
+              title: null,
+
+              series: [{
+                name: document.querySelector('i18n-msg').getMsg('trenutno_veter_sunek'),
+                type: 'spline',
+                data: data.veter_sunek,
+                pointStart: data.pointStart,
+                pointInterval: data.pointInterval,
+                tooltip: {
+                  valueDecimals: 2,
+                  valueSuffix: 'm/s'
+                }
+              }, {
+                name: document.querySelector('i18n-msg').getMsg('trenutno_veter_hitrost'),
+                type: 'spline',
+                data: data.veter_hitrost,
+                pointStart: data.pointStart,
+                pointInterval: data.pointInterval,
+                tooltip: {
+                  valueDecimals: 2,
+                  valueSuffix: 'm/s'
+                }
+              }]
+
+            }));
+
+
+
+
+          } else {
+            // We reached our target server, but it returned an error
+
+          }
+        };
+
+        request.onerror = function() {
+          // There was a connection error of some sort
+        };
+
+        request.send();
+
+      },
+
+
+
+      statistika1: function() {
+
+
+        var d = new Date();
+        d.setUTCHours(0, 0, 0, 0);
+        prev = Date.parse(d);
+        next = prev + 172800000;
+
+
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://x.bazdara.com/zgodovina2.php?startDate=60&stat=statistika1', true);
+
+        request.onload = function() {
+          if (this.status >= 200 && this.status < 400) {
+            // Success!
+            var data = JSON.parse(this.response);
+
+            // Create a timer
+            var start = +new Date();
+
+            var statistika = {
+              chart: {
+                type: 'StockChart',
+                zoomType: 'x',
+                style: {
+                  fontFamily: 'Roboto, sans-serif'
+                }
+              },
+
+              rangeSelector: {
+
+                buttons: [{
+                  type: 'day',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('day')
+                }, {
+                  type: 'week',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('week')
+                }, {
+                  type: 'month',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('month')
+                }, {
+                  type: 'all',
+                  text: document.querySelector('i18n-msg').getMsg('all')
+                }],
+                selected: 0
+              },
+
+              credits: {
+                enabled: false,
+              },
+
+              exporting: {
+                enabled: true
+              },
+
+
+              yAxis: {
+                title: null,
+              },
+
+              title: {
+                style: {
+                  "color": "#373a3c",
+                  "fontSize": "1.5rem",
+                  "fontWeight": "500",
+                  "marginTop": "15px"
+                }
+              },
+            };
+
+
+
+
+            // Create the chart
+            new Highcharts.StockChart(Highcharts.merge(statistika, {
+              chart: {
+                renderTo: 'graf_val',
+              },
+
+              title: null,
+
+              series: [{
+                name: document.querySelector('i18n-msg').getMsg('trenutno_val_max'),
+                type: 'spline',
+                data: data.val_max,
+                pointStart: data.pointStart,
+                pointInterval: data.pointInterval,
+                tooltip: {
+                  valueDecimals: 2,
+                  valueSuffix: 'm'
+                }
+              }, {
+                name: document.querySelector('i18n-msg').getMsg('trenutno_val_norm'),
+                type: 'spline',
+                data: data.val_norm,
+                pointStart: data.pointStart,
+                pointInterval: data.pointInterval,
+                tooltip: {
+                  valueDecimals: 2,
+                  valueSuffix: 'm'
+                }
+              }]
+
+            }));
+
+
+
+          } else {
+            // We reached our target server, but it returned an error
+
+          }
+        };
+
+        request.onerror = function() {
+          // There was a connection error of some sort
+        };
+
+        request.send();
+
+      },
+
+
+
+      statistika2: function() {
+
+
+        var d = new Date();
+        d.setUTCHours(0, 0, 0, 0);
+        prev = Date.parse(d);
+        next = prev + 172800000;
+
+
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://x.bazdara.com/zgodovina2.php?startDate=60&stat=statistika2', true);
+
+        request.onload = function() {
+          if (this.status >= 200 && this.status < 400) {
+            // Success!
+            var data = JSON.parse(this.response);
+
+            // Create a timer
+            var start = +new Date();
+
+            var statistika = {
+              chart: {
+                type: 'StockChart',
+                zoomType: 'x',
+                style: {
+                  fontFamily: 'Roboto, sans-serif'
+                }
+              },
+
+              rangeSelector: {
+
+                buttons: [{
+                  type: 'day',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('day')
+                }, {
+                  type: 'week',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('week')
+                }, {
+                  type: 'month',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('month')
+                }, {
+                  type: 'all',
+                  text: document.querySelector('i18n-msg').getMsg('all')
+                }],
+                selected: 0
+              },
+
+              credits: {
+                enabled: false,
+              },
+
+              exporting: {
+                enabled: true
+              },
+
+
+              yAxis: {
+                title: null,
+              },
+
+              title: {
+                style: {
+                  "color": "#373a3c",
+                  "fontSize": "1.5rem",
+                  "fontWeight": "500",
+                  "marginTop": "15px"
+                }
+              },
+            };
+
+
+
+
+            // Create the chart
+            new Highcharts.StockChart(Highcharts.merge(statistika, {
+              chart: {
+                renderTo: 'graf_morje'
+              },
+
+              title: null,
+
+              series: [{
+                name: document.querySelector('i18n-msg').getMsg('trenutno_morje_naslov') + '&nbsp' + document.querySelector('i18n-msg').getMsg('trenutno_morje_2m'),
+                type: 'spline',
+                data: data.morje_vrh,
+                pointStart: data.pointStart,
+                pointInterval: data.pointInterval,
+                tooltip: {
+                  valueDecimals: 2,
+                  valueSuffix: '°C'
+                }
+              }, {
+                name: document.querySelector('i18n-msg').getMsg('trenutno_morje_naslov') + '&nbsp' + document.querySelector('i18n-msg').getMsg('trenutno_morje_20m'),
+                type: 'spline',
+                data: data.morje_dno,
+                pointStart: data.pointStart,
+                pointInterval: data.pointInterval,
+                tooltip: {
+                  valueDecimals: 2,
+                  valueSuffix: '°C'
+                }
+              }]
+
+            }));
+
+
+
+          } else {
+            // We reached our target server, but it returned an error
+
+          }
+        };
+
+        request.onerror = function() {
+          // There was a connection error of some sort
+        };
+
+        request.send();
+
+      },
+
+
+
+      statistika3: function() {
+
+
+        var d = new Date();
+        d.setUTCHours(0, 0, 0, 0);
+        prev = Date.parse(d);
+        next = prev + 172800000;
+
+
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://x.bazdara.com/zgodovina2.php?startDate=60&stat=statistika3', true);
+
+        request.onload = function() {
+          if (this.status >= 200 && this.status < 400) {
+            // Success!
+            var data = JSON.parse(this.response);
+
+            // Create a timer
+            var start = +new Date();
+
+            var statistika = {
+              chart: {
+                type: 'StockChart',
+                zoomType: 'x',
+                style: {
+                  fontFamily: 'Roboto, sans-serif'
+                }
+              },
+
+              rangeSelector: {
+
+                buttons: [{
+                  type: 'day',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('day')
+                }, {
+                  type: 'week',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('week')
+                }, {
+                  type: 'month',
+                  count: 1,
+                  text: document.querySelector('i18n-msg').getMsg('month')
+                }, {
+                  type: 'all',
+                  text: document.querySelector('i18n-msg').getMsg('all')
+                }],
+                selected: 0
+              },
+
+              credits: {
+                enabled: false,
+              },
+
+              exporting: {
+                enabled: true
+              },
+
+
+              yAxis: {
+                title: null,
+              },
+
+              title: {
+                style: {
+                  "color": "#373a3c",
+                  "fontSize": "1.5rem",
+                  "fontWeight": "500",
+                  "marginTop": "15px"
+                }
+              },
+            };
+
+
+
+
+            new Highcharts.StockChart(Highcharts.merge(statistika, {
+              chart: {
+                renderTo: 'graf_zrak'
+              },
+
+              title: null,
+
+              series: [{
+                name: document.querySelector('i18n-msg').getMsg('trenutno_temp_naslov'),
+                type: 'spline',
+                data: data.zrak_temp,
+                pointStart: data.pointStart,
+                pointInterval: data.pointInterval,
+                tooltip: {
+                  valueDecimals: 2,
+                  valueSuffix: '°C'
+                }
+              }]
+
+
+            }));
+
+
+
+          } else {
+            // We reached our target server, but it returned an error
+
+          }
+        };
+
+        request.onerror = function() {
+          // There was a connection error of some sort
+        };
+
+        request.send();
+
+      }
+    });
+  </script>
+</dom-module>

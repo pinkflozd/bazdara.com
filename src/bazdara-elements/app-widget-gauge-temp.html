@@ -1,0 +1,119 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../app-imports/gauge-import.html">
+
+<dom-module id="app-widget-gauge-temp">
+
+  <template>
+
+  <style include="shared-styles">
+     :host {
+      display: block;
+      box-sizing: border-box;
+    }
+
+    .outer {
+      width: 250px;
+      height: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+  </style>
+
+    <div class="outer">
+      <canvas id="gaugeTemp" style="height:150px;width:250px"></canvas>
+  </div>
+
+  </template>
+
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'app-widget-gauge-temp',
+
+    properties: {
+
+      /**
+       * `temp` the wind temp in m/s.
+       */
+      temp: {
+        type: Number,
+        observer: '_tempChange'
+      },
+
+    },
+
+
+
+    _tempChange: function(e) {
+
+      //  canvas.update({ value: this.live.currentWindtemp });
+      var gaugeTemp = document.gauges.get('gaugeTemp');
+      gaugeTemp.value = this.temp;
+
+    },
+
+    _decimalFormat: function(value) {
+      return value ? value.toFixed(1) : '0.0';
+    },
+
+    attached: function() {
+
+      gaugeTemp = new LinearGauge({
+        renderTo: 'gaugeTemp',
+        width: 250,
+        height: 150,
+        minValue: -10,
+        maxValue: 40,
+        majorTicks: [-10,
+          0,
+          10,
+          20,
+          30,
+          40
+        ],
+        minorTicks: 5,
+        strokeTicks: true,
+        ticksWidth: 15,
+        ticksWidthMinor: 7.5,
+        highlights: [{
+            "from": -10,
+            "to": 0,
+            "color": "#E57373"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "color": "#64B5F6"
+          },
+          {
+            "from": 30,
+            "to": 40,
+            "color": "#E57373"
+          },
+        ],
+        borderShadowWidth: 0,
+        borders: false,
+        needleType: "arrow",
+        needleWidth: 3,
+        animationDuration: 1500,
+        animationRule: "linear",
+        colorNeedle: "#222",
+        colorNeedleEnd: "",
+        colorBarProgress: "#B71C1C",
+        colorBar: "#f5f5f5",
+        barStroke: 0,
+        barWidth: 8,
+        barBeginCircle: false,
+        colorPlate: "transparent"
+      });
+
+      gaugeTemp.draw();
+
+    }
+
+  });
+</script>

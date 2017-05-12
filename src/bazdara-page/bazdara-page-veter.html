@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 
 <link rel="import" href="../bazdara-import/font-import.html">
 <link rel="import" href="../bazdara-import/jquery-import.html">
@@ -42,6 +43,24 @@
         }
       }
 
+      @media (min-width: 991px) {
+        .ad1 {
+          width: 468px;
+          height: 60px;
+          position: fixed;
+          bottom: 25px;
+          right: 15px;
+          z-index: 1000;
+          background-color: transparent;
+        }
+
+        .ad2 {
+          width: 468px;
+          height: 60px;
+          margin: 0 auto;
+        }
+      }
+
       @media (max-width: 580px) {
         :host #map2 {
           height: calc(100vh - 114px)
@@ -54,17 +73,31 @@
       }
 
       #google {
-        width:320px;
-        height:50px
+        width: 320px;
+        height: 50px
       }
     </style>
+
+    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
+
+
     <div class="overflo">
       <div id="map2"></div>
 
       <div class="ad1">
         <div class="ad2">
-          <div class="fb-ad" data-placementid="585902811569495_586787858147657" data-format="320x50" data-testmode="false"></div>
-          <ins id="google" class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8065525462923936" data-ad-slot="8763591051"></ins>
+          <template is="dom-if" if="[[mobile]]">
+          <ins class="adsbygoogle" style="display:inline-block;width:320px;height:50px" data-ad-client="ca-pub-8065525462923936" data-ad-slot="6031949459"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+          </template>
+          <template is="dom-if" if="[[!mobile]]">
+          <ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="ca-pub-8065525462923936" data-ad-slot="6031949459"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+          </template>
         </div>
       </div>
 
@@ -79,7 +112,7 @@
         },
         loading: {
           type: Boolean,
-          value: false,
+          value: true,
           notify: true
         },
         android: {
@@ -94,62 +127,41 @@
 
       _map2: undefined,
 
-      observers: [
-        '_lockScroll(isLoading)'
-      ],
-      _lockScroll: function(isLoading) {
-        if (isLoading) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'visible';
-        }
-      },
-
       genTitle: function() {
-        var title = 'Radarska animacija in napoved hitrosti vetra';
-        document.title = title + ' | Bazdara';
-        document.querySelector('meta[name="description"]').setAttribute("content",
-          "Radarska animacija in napoved hitrosti vetra");
+
+          if (I18nMsg.lang == 'sl') {
+
+            var title = 'Radarska animacija in napoved hitrosti vetra Jadransko morje';
+            document.title = title + ' | Bazdara';
+            document.querySelector('meta[name="description"]').setAttribute("content",
+              "Radarska animacija in napoved hitrosti vetra");
+
+          } else if (I18nMsg.lang == 'en') {
+
+            var title = 'Wind forecast Adriatic sea';
+            document.title = title + ' | Bazdara';
+
+          } else if (I18nMsg.lang == 'it') {
+
+            var title = 'Previsioni vento mare Adriatico';
+            document.title = title + ' | Bazdara';
+
+          } else if (I18nMsg.lang == 'hr') {
+
+            var title = 'Prognoza vijetra Jadransko more';
+            document.title = title + ' | Bazdara';
+
+          }
       },
       attached: function() {
         var self = this;
         self.genTitle();
-
-        //$('#facebook-jssdk, #fb-root').remove();
-        if (document.getElementById('facebook-jssdk') !== null) {
-          document.getElementById('facebook-jssdk').remove();
-          document.getElementById('fb-root').remove();
-          delete FB;
-        };
-
-        window.fbAsyncInit = function() {
-          FB.Event.subscribe(
-            'ad.loaded',
-            function(placementId) {
-              console.log('Audience Network ad loaded');
-            }
-          );
-          FB.Event.subscribe(
-            'ad.error',
-            function(errorCode, errorMessage, placementId) {
-              console.log('Audience Network error (' + errorCode + ') ' + errorMessage);
-
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            }
-          );
-        };
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/sl_SI/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=585902811569495";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
       },
 
 
-
       ready: function() {
+        this.loading = true;
+
         // TODO09: Workaround for removed domReady event
         var me = this;
         setTimeout(function() {
@@ -164,12 +176,19 @@
           zoom: 8,
           timeDimension: true,
           fullscreenControl: true,
+          detectRetina: true,
+          reuseTiles: true,
           timeDimensionOptions: {
             // times: "2014-12-01T06:00:00Z,2014-12-01T09:00:00Z,2014-12-01T12:00:00Z,2014-12-01T15:00:00Z,2014-12-01T18:00:00Z,2014-12-01T21:00:00Z,2014-12-02T00:00:00Z,2014-12-02T03:00:00Z,2014-12-02T06:00:00Z,2014-12-02T09:00:00Z,2014-12-02T12:00:00Z,2014-12-02T15:00:00Z,2014-12-02T18:00:00Z,2014-12-02T21:00:00Z,2014-12-03T00:00:00Z,2014-12-03T03:00:00Z,2014-12-03T06:00:00Z,2014-12-03T09:00:00Z,2014-12-03T12:00:00Z,2014-12-03T15:00:00Z,2014-12-03T18:00:00Z,2014-12-03T21:00:00Z,2014-12-04T00:00:00Z,2014-12-04T03:00:00Z,2014-12-04T06:00:00Z,2014-12-04T12:00:00Z,2014-12-04T18:00:00Z,2014-12-05T00:00:00Z,2014-12-05T06:00:00Z,2014-12-05T12:00:00Z,2014-12-05T18:00:00Z,2014-12-06T00:00:00Z,2014-12-06T06:00:00Z,2014-12-06T12:00:00Z,2014-12-06T18:00:00Z,2014-12-07T00:00:00Z,2014-12-07T06:00:00Z,2014-12-07T12:00:00Z,2014-12-07T18:00:00Z,2014-12-08T00:00:00Z,2014-12-08T06:00:00Z,2014-12-08T12:00:00Z,2014-12-08T18:00:00Z,2014-12-09T00:00:00Z,2014-12-09T06:00:00Z,2014-12-09T12:00:00Z,2014-12-09T18:00:00Z,2014-12-10T00:00:00Z,2014-12-10T06:00:00Z"
           },
           center: [45.5282, 13.5681],
         });
 
+        map2.timeDimension.on('timeload', function(data) {
+          Polymer.RenderStatus.afterNextRender(this, function() {
+            this.loading = false;
+          });
+        }.bind(this));
 
         L.Control.TimeDimensionCustom = L.Control.TimeDimension.extend({
 
@@ -218,7 +237,7 @@
             outsideMapBoundsMsg: "Zgleda da se nahajaš izven območja zemljevida" // default message for onLocationOutsideMapBounds
           },
           locateOptions: {
-          //  enableHighAccuracy: true,
+            //  enableHighAccuracy: true,
             maxZoom: 10,
             minZoom: 10,
           } // define location options e.g enableHighAccuracy: true or maxZoom: 10
@@ -247,10 +266,10 @@
 
 
         // https://ogcie.iblsoft.com/metocean/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
-        var testWMS = "https://x.bazdara.com/metocean/"
+        var testWMS = "https://ogcie.iblsoft.com/metocean/wms"
 
         this._map2 = map2;
-        var baseLayer = L.tileLayer('https://x.bazdara.com/tile/{z}/{x}/{y}.png', {
+        var baseLayer = L.tileLayer('https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
           attribution: '<a href="https://www.bazdara.com">Bazdara</a> | <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a>'
         });
         this._baseLayer = baseLayer;
@@ -260,7 +279,7 @@
           layers: 'gfs-wind-agl', // isobaric levels, or -agl for above ground levels
           format: 'image/png; mode=8bit',
           transparent: true,
-          opacity: 0.8,
+          opacity: 0.7,
           crs: L.CRS.EPSG4326,
           attribution: 'OGC MetOcean'
         });
@@ -270,6 +289,8 @@
           updateTimeDimension: true,
         });
         testTimeLayer.addTo(map2);
+
+        this.fire('app-shell-loaded');
 
       },
 

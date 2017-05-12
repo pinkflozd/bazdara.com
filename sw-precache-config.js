@@ -1,26 +1,79 @@
 module.exports = {
+  cacheId: 'bazdara-app-v2',
+
   staticFileGlobs: [
     '/index.html',
     '/manifest.json',
     '/bower_components/webcomponentsjs/webcomponents-lite.min.js',
-    '/images/vreme/meteogram-symbols-30px.png',
-    '/images/map/wreck-icon.png',
-    '/images/map/yellow-icon.png',
-    '/images/map/white-icon.png',
-    '/images/map/silver-icon.png',
-    '/images/map/red-icon.png',
-    '/images/map/green-icon.png',
-    '/src/bazdara-icons/font/fontello.woff2?77810097',
-    '/src/bazdara-icons/font/fontello.woff?77810097',
-    '/src/bazdara-icons/font/fontello.ttf?77810097',
-    '/images/icons/favicon-16x16.png',
-    '/images/icons/favicon-96x96.png',
-    '/images/icons/favicon-192x192.png',
+    '/src/bazdara-icons/font/fontello.woff2?40347705',
+    '/src/bazdara-icons/font/fontello.woff?40347705',
+    '/src/bazdara-icons/font/fontello.ttf?40347705',
+    '/images/vreme/**/*.*',
+    '/images/map/**/*.*',
     '/bower_components/leaflet/dist/images/layers.png',
-    '/locales/sl.json',
-    '/locales/en.json',
-    '/locales/it.json',
-    '/locales/data.xml'
+    '/locales/*.*',
   ],
-  navigateFallback: '/index.html'
+  navigateFallback: '/index.html',
+
+  navigateFallbackWhitelist: [/^(?!.*\.html$|\/data\/).*/],
+
+  runtimeCaching: [{
+      /* Google Analytics */
+      urlPattern: /https?:\/\/((www|ssl)\.)?google-analytics\.com\/analytics.js/,
+      handler: 'networkFirst'
+    }, {
+      urlPattern: /https?:\/\/fonts.+/,
+      handler: 'cacheFirst'
+    }, {
+      urlPattern: /^https:\/\/x\.bazdara\.com\/.*/,
+      handler: 'networkFirst'
+    },
+    {
+      urlPattern: /^https:\/\/firebasestorage\.googleapis\.com\/.*/,
+      handler: 'networkFirst'
+    },
+    {
+      urlPattern: /^https:\/\/bazdara\-99a47\.firebaseio\.com\/.*/,
+      handler: 'networkFirst'
+    },
+    {
+      urlPattern: /^https:\/\/cdn\.polyfill\.io\/.*/,
+      handler: 'networkFirst'
+    },
+    {
+      urlPattern: /^https:\/\/ogcie\.iblsoft\.com\/.*/,
+      handler: 'networkFirst'
+    },
+    {
+      urlPattern: /^https:\/\/cartodb\-basemaps\-a\.global\.ssl\.fastly\.net\/.*/,
+      handler: 'cacheFirst',
+      options: {
+        cache: {
+          maxEntries: 500,
+          name: 'map1-cache'
+        }
+      }
+    },
+    {
+      urlPattern: /^https:\/\/x\.bazdara\.com\/arcgis\/.*/,
+      handler: 'cacheFirst',
+      options: {
+        cache: {
+          maxEntries: 1000,
+          name: 'map3-cache'
+        }
+      }
+    },
+    {
+      urlPattern: /\/images\/.*/,
+      handler: 'cacheFirst',
+      options: {
+        cache: {
+          maxEntries: 200,
+          name: 'images-cache'
+        }
+      }
+    }
+  ]
+
 };

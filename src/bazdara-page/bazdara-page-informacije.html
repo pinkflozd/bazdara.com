@@ -1,7 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
-<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
-
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 
 <link rel="import" href="../styles/shared-styles.html">
 
@@ -11,118 +10,70 @@
       :host {
         display: block;
       }
-
-      #ad_root4 {
-        display: none;
-        font-size: 16px;
-        line-height: 1.5;
-        position: relative;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        overflow: hidden;
-      }
-
-      .thirdPartyMediaClass {
-        width: 100%;
-        height: 170px;
-        overflow: hidden;
-      }
-
-      .thirdPartyTitleClass {
-        font-weight: 500;
-        font-size: 1.35rem;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        line-height: 1.1;
-        margin-top: 1rem;
-        margin-bottom: 0.85rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+      .oglas {
         text-align: center;
-      }
-
-      .thirdPartyBodyClass {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        overflow: hidden;
-      }
-
-      .thirdPartyCallToActionClass {
-        color: #1e88e5;
-        font-weight: 500;
-        margin-top: 8px;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        padding-bottom:  1.25rem;
-      }
-
-      .noads {
-        height: 335px;
-        min-width: 100% !important;
+        width:100%;
       }
     </style>
+
+    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
+
     <div class="container">
       <h2 class="page-title"><i18n-msg msgid="informacije_naslov">Informacije</i18n-msg></h2>
 
       <div class="card-columns">
         <div class="card">
           <div class="card-block text-xs-center">
-            <h4 class="card-title">Kaj je to?</h4>
+            <h4 class="card-title"><i18n-msg msgid="informacije_1">Kaj je to?</i18n-msg></h4>
 
             <div class="card-text">
-              Razni podatki o vremenu in stanju morja v Piranskem zalivu.
-            </div>
-          </div>
-        </div>
-
-          <div class="card">
-            <ins id="google" class="adsbygoogle" style="display:none" data-ad-client="ca-pub-8065525462923936" data-ad-slot="7206132655" data-ad-format="auto"></ins>
-            <div class="fb-ad" data-placementid="585902811569495_586333584859751" data-format="native" data-nativeadid="ad_root4" data-testmode="false"></div>
-            <div id="ad_root4">
-              <a class="fbAdLink">
-                <div class="fbAdMedia thirdPartyMediaClass"></div>
-                <div class="fbAdTitle thirdPartyTitleClass"></div>
-                <div class="fbAdBody thirdPartyBodyClass"></div>
-                <div class="thirdPartyCallToActionClass">Preberi več</div>
-              </a>
-            </div>
-            <paper-ripple></paper-ripple>
-          </div>
-
-        <div class="card">
-          <div class="card-block text-xs-center">
-            <h4 class="card-title">Kaj je to Obvestilo ob neurju?</h4>
-            <div class="card-text">
-              Ta funkcija je še v izdelavi, ko bo dokončana te bo stran obvestila pred nevihtami, močnim vetrom in poplavo morja (Android + Chrome Browser).
+              <i18n-msg msgid="informacije_2">Razni podatki o vremenu in stanju morja v Piranskem zalivu.</i18n-msg>
             </div>
           </div>
         </div>
         <div class="card">
           <div class="card-block text-xs-center">
-            <h4 class="card-title">A to je vse?</h4>
+            <h4 class="card-title"><i18n-msg msgid="informacije_3">Kaj je to Obvestilo ob neurju?</i18n-msg></h4>
             <div class="card-text">
-              Stran je še v izdelavi. Nekatere funkcije še ne delajo ali so v izdelavi.
+              <i18n-msg msgid="informacije_4">Ta funkcija je še v izdelavi, ko bo dokončana te bo stran obvestila pred nevihtami, močnim vetrom in poplavo morja (Android + Chrome Browser).</i18n-msg>
+            </div>
+          </div>
+        </div>
+        <template is="dom-if" if="[[!mobile]]">
+              <ins class="adsbygoogle card" style="display:inline-block;width:100%;height:100px" data-ad-client="ca-pub-8065525462923936" data-ad-slot="5392821055"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </template>
+
+        <template is="dom-if" if="[[mobile]]">
+            <ins class="adsbygoogle card" style="display:inline-block;width:100%" data-ad-client="ca-pub-8065525462923936" data-ad-slot="6171550258" data-ad-format="auto"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </template>
+        <div class="card">
+          <div class="card-block text-xs-center">
+            <h4 class="card-title"><i18n-msg msgid="informacije_5">A to je vse?</i18n-msg></h4>
+            <div class="card-text">
+              <i18n-msg msgid="informacije_6">Stran je še v izdelavi. Nekatere funkcije še ne delajo ali so v izdelavi.</i18n-msg>
 
             </div>
           </div>
         </div>
         <div class="card">
           <div class="card-block text-xs-center">
-            <h4 class="card-title">Zakaj?</h4>
+            <h4 class="card-title"><i18n-msg msgid="informacije_7">Zakaj?</i18n-msg></h4>
             <div class="card-text">
-              Ker živim ob Slovenski Obali, z barko plujem po našem morju in mam auto ob obali, tako da rabim vir informacij o stanju morja.
+              <i18n-msg msgid="informacije_8">Živim ob Slovenski Obali, imam barko in plujem po našem morju in imam avto parkiran ob obali, tako da rabim vir informacij o stanju morja.</i18n-msg>
             </div>
           </div>
         </div>
         <div class="card">
           <div class="card-block text-xs-center">
-            <h4 class="card-title">Želiš več informacij?</h4>
+            <h4 class="card-title"><i18n-msg msgid="informacije_9">Želiš več informacij ali želiš pomagati?</i18n-msg></h4>
             <div class="card-text text-xs-center">
-              <a href="mailto:info@bazdara.com">piši mi</a>!
+              <a href="mailto:info@bazdara.com"><i18n-msg msgid="informacije_10">piši mi</i18n-msg></a>!
             </div>
           </div>
         </div>
@@ -140,7 +91,7 @@
       properties: {
         loading: {
           type: Boolean,
-          value: false,
+          value: true,
           notify: true
         },
         android: {
@@ -154,58 +105,41 @@
       },
 
       genTitle: function() {
-        var title = 'Informacije';
-        document.title = title + ' | Bazdara';
+        if (I18nMsg.lang == 'sl') {
+
+          var title = 'Informacije';
+          document.title = title + ' | Bazdara';
+
+        } else if (I18nMsg.lang == 'en') {
+
+          var title = 'Informations';
+          document.title = title + ' | Bazdara';
+
+        } else if (I18nMsg.lang == 'it') {
+
+          var title = 'Informazioni';
+          document.title = title + ' | Bazdara';
+
+        } else if (I18nMsg.lang == 'hr') {
+
+          var title = 'Informacije';
+          document.title = title + ' | Bazdara';
+
+        }
       },
       attached: function() {
         var self = this;
         self.genTitle();
-
-        //$('#facebook-jssdk, #fb-root').remove();
-        if (document.getElementById('facebook-jssdk') !== null) {
-          document.getElementById('facebook-jssdk').remove();
-          document.getElementById('fb-root').remove();
-          delete FB;
-        };
-
-        window.fbAsyncInit = function() {
-          FB.Event.subscribe(
-            'ad.loaded',
-            function(placementId) {
-              console.log('Audience Network ad loaded');
-              document.getElementById('ad_root4').style.display = 'block';
-            }
-          );
-          FB.Event.subscribe(
-            'ad.error',
-            function(errorCode, errorMessage, placementId) {
-              console.log('Audience Network error (' + errorCode + ') ' + errorMessage);
-
-              document.getElementById('google').style.display = 'block';
-              (adsbygoogle = window.adsbygoogle || []).push({});
-
-            }
-          );
-        };
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s);
-          js.id = id;
-          js.src = "//connect.facebook.net/sl_SI/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=585902811569495";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
       },
 
-      observers: [
-        '_lockScroll(isLoading)'
-      ],
-      _lockScroll: function(isLoading) {
-        if (isLoading) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'visible';
-        }
+      ready: function() {
+        this.fire('app-shell-loaded');
+        Polymer.RenderStatus.afterNextRender(this, function() {
+          setTimeout(function() {
+            this.loading = false;
+          }.bind(this), 250);
+        });
+
       },
 
     });

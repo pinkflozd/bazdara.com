@@ -1,4 +1,10 @@
+<script>
+  // Create namespace for app behaviors
+  window.AppBehaviors = window.AppBehaviors || {};
+</script>
+
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
 
 <link rel="import" href="../../bower_components/app-route/app-location.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
@@ -15,22 +21,18 @@
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 
-<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
-<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
 <link rel="import" href="../../bower_components/i18n-msg/i18n-msg.html">
 
 <link rel="import" href="../bazdara-import/font-import.html">
-
 <link rel="import" href="../app-icons/app-icons.html">
-<link rel="import" href="../bazdara-elements/bazdara-push.html">
-<link rel="import" href="../bazdara-elements/bazdara-cache.html">
-<link rel="import" href="../bazdara-elements/bazdara-spletna.html">
-<link rel="import" href="../bazdara-page/bazdara-page-404.html">
 <link rel="import" href="../styles/shared-styles.html">
 
+<link rel="import" href="../../bower_components/polymerfire/firebase.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="../../bower_components/geo-location/geo-location.html">
 
 <dom-module id="bazdara-app">
   <template>
@@ -41,7 +43,11 @@
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         display: block;
         font-family: 'Roboto', sans-serif;
-        background-color: var(--paper-grey-50);
+        background-color: var(--paper-grey-100);
+      }
+
+      body {
+        background-color: #f5f5f5
       }
 
       .overlay {
@@ -54,7 +60,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: #fafafa;
+        background: #f5f5f5;
         z-index: 1001;
       }
 
@@ -135,7 +141,8 @@
         font-size: 2.0em;
         font-weight: 300;
         text-align: center;
-        margin-top: 10px margin-bottom: .5rem;
+        margin-top: 10px;
+        margin-bottom: .5rem;
       }
 
       @media (min-width: 360px) {
@@ -206,7 +213,7 @@
         -moz-appearance: none;
         appearance: none;
         color: #fff;
-        font-size: 20px
+        font-size: 18px
       }
 
       select::-ms-expand {
@@ -224,34 +231,45 @@
     </style>
 
     <div class="overlay" hidden$="[[!isLoading]]">
-      <paper-spinner active></paper-spinner>
+      <paper-spinner active$="[[isLoading]]"></paper-spinner>
     </div>
 
+    <firebase-app name="bazdara"
+              api-key="AIzaSyD2PAdzxrpNtJWqKGUm2RW441euKOT6p6Y"
+              auth-domain="bazdara-99a47.firebaseapp.com"
+              database-url="https://bazdara-99a47.firebaseio.com"
+              messaging-sender-id="544509936614"
+              storage-bucket="bazdara-99a47.appspot.com"></firebase-app>
 
-
+    <geo-location latitude="{{lat}}" longitude="{{lng}}"></geo-location>
 
     <!-- setup routes -->
     <app-location route="{{route}}"></app-location>
-    <app-route route="{{route}}" pattern="/:page" data="{{routeData}}"></app-route>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
 
     <app-scrollpos-control selected="{{routeData.page}}"></app-scrollpos-control>
 
-    <app-drawer-layout drawer-width="310px" responsive-width="1439px">
+    <app-drawer-layout fullbleed drawer-width="310px" responsive-width="1439px">
       <!-- nav panel -->
-      <app-drawer swipe-open id="drawer">
+      <app-drawer id="drawer">
         <app-header-layout has-scrolling-region>
-          <app-header fixed>
-            <bazdara-spletna></bazdara-spletna>
+          <app-header fixed style="height:175px">
+            <bazdara-spletna lat="[[lat]]" lng="[[lng]]"></bazdara-spletna>
           </app-header>
           <!-- nav menu -->
-          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation" on-iron-activate="_drawerSelected">
+          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
             <!-- <a name="home" href="/"><i class="icona bazdara-home"></i> <i18n-msg msgid="menu_1">Predstavitev</i18n-msg></a> -->
-            <a name="trenutno" href="/trenutno"><i class="icona bazdara-compass"></i> <i18n-msg msgid="menu_2">Trenutne razmere</i18n-msg></a>
+            <a name="trenutno" href="/"><i class="icona bazdara-compass"></i> <i18n-msg msgid="menu_2">Trenutne razmere</i18n-msg></a>
             <a name="napoved" href="/napoved"><i class="icona bazdara-sun-inv"></i> <i18n-msg msgid="menu_3">Vremenska napoved</i18n-msg></a>
             <a name="plimovanje" href="/plimovanje"><i class="icona bazdara-plima"></i> <i18n-msg msgid="menu_4">Plimovanje morja</i18n-msg></a>
             <a name="padavine" href="/padavine"><i class="icona bazdara-hail-inv"></i> <i18n-msg msgid="menu_5">Napoved padavin</i18n-msg></a>
             <a name="veter" href="/veter"><i class="icona bazdara-wind"></i> <i18n-msg msgid="menu_6">Napoved vetra</i18n-msg></a>
             <a name="navigacija" href="/navigacija"><i class="icona bazdara-ship"></i> <i18n-msg msgid="menu_7">Kartografija</i18n-msg></a>
+            <a name="statistika" href="/statistika"><i class="icona bazdara-chart-line"></i> <i18n-msg msgid="menu_9">Statistika</i18n-msg></a>
             <a name="informacije" href="/informacije"><i class="icona bazdara-info"></i> <i18n-msg msgid="menu_8">Informacije</i18n-msg></a>
           </iron-selector>
           <bazdara-push></bazdara-push>
@@ -266,12 +284,13 @@
           <app-toolbar>
             <paper-icon-button icon="app:menu" drawer-toggle></paper-icon-button>
             <h1 title>Bazdara</h1>
-            <!-- google signin -->
+
             <div class="jezik_outer">
-              <select id="jezik" onclick="ga('send', 'event', 'view', 'Jezik');">
+              <select id="jezik">
                 <option value="sl">SL</option>
                 <option value="en">EN</option>
                 <option value="it">IT</option>
+                <option value="hr">HR</option>
               </select>
               <paper-ripple recenters></paper-ripple>
             </div>
@@ -280,7 +299,10 @@
         </app-header>
       </app-header-layout>
 
-      <iron-pages role="main" selected="[[page]]" attr-for-selected="name" fallback-selection="404">
+      <iron-pages selected="[[page]]"
+      attr-for-selected="name"
+      fallback-selection="404"
+      role="main">
         <!-- <bazdara-page-home name="home" loading="{{isLoading}}"></bazdara-page-home> -->
         <bazdara-page-trenutno name="trenutno" loading="{{isLoading}}"></bazdara-page-trenutno>
         <bazdara-page-napoved name="napoved" loading="{{isLoading}}"></bazdara-page-napoved>
@@ -288,10 +310,13 @@
         <bazdara-page-veter name="veter" loading="{{isLoading}}"></bazdara-page-veter>
         <bazdara-page-plimovanje name="plimovanje" loading="{{isLoading}}"></bazdara-page-plimovanje>
         <bazdara-page-navigacija name="navigacija" loading="{{isLoading}}"></bazdara-page-navigacija>
+        <bazdara-page-statistika name="statistika" loading="{{isLoading}}"></bazdara-page-statistika>
         <bazdara-page-informacije name="informacije" loading="{{isLoading}}"></bazdara-page-informacije>
         <bazdara-page-404 name="404"></bazdara-page-404>
       </iron-pages>
     </app-drawer-layout>
+
+    <bazdara-service-worker></bazdara-service-worker>
 
   </template>
 
@@ -311,44 +336,94 @@
           reflectToAttribute: true,
           observer: '_pageChanged'
         },
+        subroute: {
+          type: String,
+          reflectToAttribute: true
+        },
+        isLoading: {
+          type: Boolean,
+          value: true,
+          notify: true
+        },
 
+      },
+
+      listeners: {
+        'app-shell-loaded': '_onAppShellLoaded'
+      },
+
+      _onAppShellLoaded: function() {
+        // Load lazy resources after render.
+        Polymer.RenderStatus.afterNextRender(this, function() {
+          this.importHref(this.resolveUrl('../bazdara-elements/bazdara-lazy-resources.html'), function() {
+            this.importHref(this.resolveUrl('../bazdara-elements/bazdara-service-worker.html'), function() {
+
+            });
+          });
+        });
       },
 
       observers: [
-        '_routePageChanged(routeData.page)'
+        '_routePageChanged(routeData.page)',
+        '_lockScroll(isLoading)'
       ],
+
+      _lockScroll: function(isLoading) {
+        if (isLoading) {
+          document.body.style.overflow = 'hidden';
+
+        } else {
+          document.body.style.overflow = 'visible';
+        }
+      },
+
+
 
       _routePageChanged: function(page) {
         this.page = page || 'trenutno';
-      },
 
-      _pageChanged: function(page) {
-        // load page import on demand.
-        this.importHref(
-          this.resolveUrl('../bazdara-page/bazdara-page-' + page + '.html'), null, null, true);
-        ga('send', 'pageview', '/' + page);
-      },
-
-      _drawerSelected: function() {
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
         }
       },
 
+      _pageChanged: function(page) {
+        // load page import on demand.
+        //this.isLoading = true;
+        var resolvedPageUrl = this.resolveUrl('../bazdara-page/bazdara-page-' + page + '.html');
+        this.importHref(resolvedPageUrl, null, this._showPage404, true);
+        ga('send', 'pageview', '/' + page);
+      },
+
+      _showPage404: function() {
+        var resolvedPageUrl = this.resolveUrl('../bazdara-page/bazdara-page-404.html');
+        this.importHref(resolvedPageUrl, null, this._showPage404, true);
+        this.page = '404';
+      },
+
 
       ready: function() {
-          //ready
-          if (navigator && navigator.splashscreen) navigator.splashscreen.hide();
-        }
-        //created: function() {
-        // created
-        //},
-        //attached: function() {
-        //this._activateToolBarButtons();
-        //},
-        //detached: function() {
-        //this._deactivateToolBarButtons();
-        //}
+
+
+        var config = {
+          storageBucket: "bazdara-99a47.appspot.com"
+        };
+        firebase.initializeApp(config);
+
+
+
+        //ready
+        if (navigator && navigator.splashscreen) navigator.splashscreen.hide();
+      }
+      //created: function() {
+      // created
+      //},
+      //attached: function() {
+      //this._activateToolBarButtons();
+      //},
+      //detached: function() {
+      //this._deactivateToolBarButtons();
+      //}
 
     });
 
@@ -406,11 +481,23 @@
 
     if (url.match("english")) {
       document.documentElement.lang = 'en';
+      ga('send', 'event', 'jezik', 'en');
       I18nMsg.lang = 'en';
       setCookie('jezik', I18nMsg.lang, '365');
     } else if (url.match("italiano")) {
       document.documentElement.lang = 'it';
       I18nMsg.lang = 'it';
+      ga('send', 'event', 'jezik', 'it');
+      setCookie('jezik', I18nMsg.lang, '365');
+    } else if (url.match("hrvatski")) {
+      document.documentElement.lang = 'hr';
+      I18nMsg.lang = 'hr';
+      ga('send', 'event', 'jezik', 'hr');
+      setCookie('jezik', I18nMsg.lang, '365');
+    } else if (url.match("slovenscina")) {
+      document.documentElement.lang = 'sl';
+      I18nMsg.lang = 'sl';
+      ga('send', 'event', 'jezik', 'sl');
       setCookie('jezik', I18nMsg.lang, '365');
     } else {
       I18nMsg.lang = getCookie('jezik') || document.documentElement.lang || 'sl';
@@ -425,6 +512,7 @@
       document.documentElement.lang = this.value;
       setCookie('jezik', this.value, '365');
       I18nMsg.lang = this.value;
+      ga('send', 'event', 'jezik', this.value);
       Platform.performMicrotaskCheckpoint();
     });
   </script>

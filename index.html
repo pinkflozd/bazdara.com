@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="sl">
+<html lang="sl" id="ht" class="loading">
 
 <head>
   <base href="/">
@@ -7,50 +7,168 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title></title>
-  <meta name="description" content="">
+  <meta name="description" content="Vremenska napoved za Slovenske morjeplovce. Navigacijske karte, plimovanje, hitrost vetra, valovanje. V ŽIVO. Nautični vodni za Slovenske morjeplovce">
   <meta name="keywords" content="Vreme,Temperatura,Veter,Val,Plimovanje,Piran,Obala,Slovenija,Morje,Kartografija,Boja,Vida,Plima,Oseka,Napoved">
-  <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/images/icons/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
-  <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
-  <meta name="msapplication-TileColor" content="#FFFFFF">
-  <meta name="theme-color" content="#1e88e5">
-  <meta name="msapplication-navbutton-color" content="#FFFFFF">
-  <meta name="msapplication-starturl" content="/trenutno?utm_source=App&amp;utm_medium=WebApp&amp;utm_campaign=App" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="#1e88e5">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="preconnect" href="https://x.bazdara.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <meta name="theme-color" content="#2196f3">
+  <!-- Blue 500 -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="32x32" href="images/icons/bazdara-icon-32.png">
+  <link rel="apple-touch-icon" sizes="128x128" href="images/icons/bazdara-icon-128.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="images/icons/bazdara-icon-144.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="images/icons/bazdara-icon-192.png">
+  <link rel="apple-touch-icon" sizes="384x384" href="images/icons/bazdara-icon-384.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="images/icons/bazdara-icon-512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/icons/bazdara-icon-32.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="images/icons/bazdara-icon-128.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="images/icons/bazdara-icon-144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/bazdara-icon-192.png">
+  <link rel="icon" type="image/png" sizes="384x384" href="images/icons/bazdara-icon-384.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/icons/bazdara-icon-512.png">
+  <meta name="msapplication-TileImage" content="images/icons/bazdara-icon-144.png">
+  <meta name="msapplication-TileColor" content="#2196f3">
+  <meta name="msapplication-navbutton-color" content="#2196f3">
+  <meta name="msapplication-starturl" content="/?utm_source=App&amp;utm_medium=WebApp&amp;utm_campaign=App" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#2196f3">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="Bazdara">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Bazdara">
   <meta name="google-site-verification" content="twWiK2UYGW1eR4hUZ1pECBtAI6J9oCtXPiTbrJgR08A" />
   <meta name="author" content="Luka Karinja">
-  <link rel="preconnect" href="https://x.bazdara.com">
-  <link rel="dns-prefetch" href="https://www.google-analytics.com">
-  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
 
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": "Bazdara",
-      "alternateName": "Bazdara Vreme Piran, Podatki iz oceanografske boje Vide, Plimovanje morja, Kartografija morja, Nautične karte",
-      "url": "https://www.bazdara.com"
-    }, {
-      "@context": "http://schema.org",
-      "@type": "Organization",
-      "url": "https://www.bazdara.com",
-      "logo": "https://www.bazdara.com/images/icons/android-icon-192x192.png"
+  <script src="https://www.google-analytics.com/analytics.js" async></script>
+
+  <script>
+    'use strict';
+
+    // Setup Polymer options
+    window.Polymer = {
+      dom: 'shady',
+      lazyRegister: true
+    };
+
+    // Initializes the analytics.js command queue.
+    window.ga = window.ga || function() {
+      (ga.q = ga.q || []).push(arguments)
+    };
+    ga.l = +new Date;
+    // Creates the tracker.
+    ga('create', {
+      trackingId: 'UA-68400284-1',
+      cookieDomain: 'auto',
+      siteSpeedSampleRate: 10 // 10% of users.
+    });
+
+    // Setup error tracking before anything else runs.
+    window.onerror = function(message, file, lineNumber, columnNumber, error) {
+      // We don't want to trigger any errors inside window.onerror, so wrap in a try/catch.
+      try {
+        // Some browsers don't support error param yet.
+        if (error !== undefined) {
+          message = error.stack;
+        }
+        ga('send', 'event', 'error', file + ':' + lineNumber, message);
+      } catch (e) {
+        // no-op
+      }
+    };
+
+    /**
+     * @param {string} param URL parameter to look for.
+     * @return {string|undefined} undefined if the URL parameter does not exist.
+     */
+    function getUrlParameter(param) {
+      if (!window.location.search) {
+        return;
+      }
+      var m = new RegExp(param + '=([^&]*)').exec(window.location.search.substring(1));
+      if (!m) {
+        return;
+      }
+      return decodeURIComponent(m[1]);
+    }
+    // If ?ignore_browser_check=true is in the URL, the user is coming back from
+    // "upgrade your browser" and we let them proceed.
+    var ignoreCheck = getUrlParameter('ignore_browser_check') == 'true';
+    // Check if browser is supported by web components polyfill.
+    // Feature detection isn't sufficient; webcomponentsjs attempts to polyfill
+    // missing features, but some browsers are known to not work under it.
+    // https://www.polymer-project.org/resources/compatibility.html
+    var supported = ignoreCheck || (function whatBrowserYouBe() {
+      var uaString = navigator.userAgent;
+      // Sorry IE < 11.
+      var msie = /MSIE +([\d\.]+)/.exec(uaString);
+      if (msie && msie[1]) {
+        if (msie[1] === '7.0') {
+          var tridentVersion = /Trident\/(\d.\d)/.exec(uaString);
+          if (tridentVersion && tridentVersion[1]) {
+            return parseInt(tridentVersion[1], 10) >= 6;
+          } else {
+            return false;
+          }
+        } else {
+          return parseInt(msie[1], 10) >= 11;
+        }
+      }
+      // Sorry older Android browser.
+      if (uaString.indexOf('Chrome') === -1 && uaString.indexOf('Android') !== -1) {
+        return !/^Google/.test(navigator.vendor);
+      }
+      // Sorry Opera < 15.
+      if (uaString.indexOf('Opera') !== -1) {
+        return false;
+      }
+      // Everyone else goes through.
+      return true;
+    })();
+
+    if (!supported) {
+      var redirectToUpgradePage = function() {
+        window.location = 'https://browser-update.org/update.html';
+      };
+      // Sends a pageview here because this code will run before IOWA.Analytics is initialized.
+      ga('send', 'pageview');
+      ga('send', 'event', 'browser', 'unsupported-polymer', navigator.userAgent, {
+        hitCallback: setTimeout(redirectToUpgradePage, 3000)
+      });
+      // Adds a timeout to redirect in the event that analytics.js fails to
+      // load or is blocked by a browser extension.
+      setTimeout(redirectToUpgradePage, 3000);
+    }
+    // Get Chrome, Chromium, Opera, Vivaldi version
+    function getChromeVersion() {
+      var raw = navigator.userAgent.match(/Chrome\/([0-9]+)\./);
+      return raw ? parseInt(raw[1], 10) : false;
+    };
+    // Get Firefox version
+    function getFirefoxVersion() {
+      var raw = navigator.userAgent.match(/Firefox\/([0-9]+)\./);
+      return raw ? parseInt(raw[1], 10) : false;
+    };
+    var chromeVer = getChromeVersion();
+    var firefoxVer = getFirefoxVersion();
+    // Load ES6, Internationalization polyfills if browser does not support it
+    // TODO: Add Fetch polyfill - resolve app routing issue in IE11
+    if (!(chromeVer && chromeVer >= 46 || firefoxVer && firefoxVer >= 40)) {
+      var script = document.createElement('script');
+      //script.async = true;
+      script.src = 'https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,intl';
+      document.head.appendChild(script);
+      ga('send', 'event', 'browser', 'unsupported-es6-intl', navigator.userAgent);
+    }
+    // Adds User Timing marks for relevant perf events.
+    // These events correspond to the values tracked in analytics.js;
+    // changes made here must be made there as well.
+    var perfEvents = ['HTMLImportsLoaded', 'WebComponentsReady'];
+    if (window.performance && window.performance.mark) {
+      perfEvents.forEach(function(eventName) {
+        document.addEventListener(eventName, function() {
+          performance.mark(eventName);
+        });
+      });
     }
   </script>
 
@@ -59,22 +177,107 @@
       overflow-y: scroll;
     }
 
+    html.loading {
+      overflow: hidden;
+    }
+
     body {
       margin: 0;
     }
+
+    body {
+      width: 100% !important;
+    }
+
+    body.loading {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #loadingScreen {
+      z-index: 2000;
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      opacity: 1 !important;
+      background: url(images/icons/bazdara-icon-192.png) #1e88e5 center center no-repeat;
+      background-size: 96px 96px;
+      transition: opacity 400ms;
+      -webkit-animation: heartbeat 2000ms infinite;
+      animation: heartbeat 2000ms infinite;
+    }
+
+    .ready #loadingScreen {
+      opacity: 0 !important;
+    }
+
+    @-webkit-keyframes heartbeat {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      20% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+      40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      60% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+      80% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    @keyframes heartbeat {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      20% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+      40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      60% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+      80% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
   </style>
 
-  <link rel="import" href="/src/bazdara-app/bazdara-app.html" async>
+  <link rel="import" id="bundle" href="/src/bazdara-app/bazdara-app.html" async>
+
 </head>
 
-<body>
-  <bazdara-cache></bazdara-cache>
+<body class="fullbleed loading">
+  <div id="loadingScreen"></div>
+
+
   <bazdara-app></bazdara-app>
 
   <script>
-    // Load webcomponentsjs polyfill if browser does not support native Web Components
-    (function() {
+
       'use strict';
+      // Store a time stamp for timing analysis toolkit.
+      window.performance && performance.mark && performance.mark('index.html');
       var onload = function() {
         // For native Imports, manually fire WebComponentsReady so user code
         // can use the same code path for native and polyfill'd imports.
@@ -87,137 +290,55 @@
         }
       };
       var webComponentsSupported = (
-        'registerElement' in document && 'import' in document.createElement('link') && 'content' in document.createElement('template')
+        'registerElement' in document &&
+        'import' in document.createElement('link') &&
+        'content' in document.createElement('template')
       );
+      // Load webcomponentsjs polyfill if browser doesn't support native Web Components.
       if (!webComponentsSupported) {
         var script = document.createElement('script');
         script.async = true;
         script.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
         script.onload = onload;
         document.head.appendChild(script);
+        script.onload = finishLazyLoading;
+        ga('send', 'event', 'browser', 'unsupported-web-components', navigator.userAgent);
       } else {
         onload();
-      }
-    })();
-
-    //  if ('serviceWorker' in navigator) {
-    //    navigator.serviceWorker.register('/service-worker.js', {
-    //      scope: '/'
-    //    }).then(function(registration) {
-    //
-    //    }).catch(function(error) {
-    //      // error
-    //    });
-    //  };
-
-    function getAndroidVersion(ua) {
-      ua = (ua || navigator.userAgent).toLowerCase();
-      var match = ua.match(/android\s([0-9\.]*)/);
-      return match ? match[1] : false;
-    };
-
-    // getAndroidVersion(); //"4.2.1"
-    // parseInt(getAndroidVersion(), 10); //4
-    // parseFloat(getAndroidVersion()); //4.2
-
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-68400284-1', 'auto');
-
-
-    // Web App Manifest Polyfill for iOS
-    (function(){
-
-      var xhr = new XMLHttpRequest()
-
-      xhr.onload = function() {
-        var manifestJson = JSON.parse(xhr.responseText);
-        addTags(manifestJson);
-      };
-
-      var manifestEl = document.head.querySelector("link[rel=manifest]");
-      if(!!manifestEl === true) {
-
-        xhr.open("GET", manifestEl.href);
-        xhr.send();
+        finishLazyLoading();
       }
 
-      var addTags = function(manifest) {
-
-        var webAppCapable = document.createElement("meta");
-        var webAppTitle = document.createElement("meta");
-        var webAppStartUrl = document.createElement("meta");
-        webAppCapable.setAttribute("name", "apple-mobile-web-app-capable");
-        var isWebAppCapable = (manifest['display'] == 'standalone' || manifest['display'] == 'fullscreen') ? 'yes' : 'no';
-        webAppCapable.setAttribute("content", isWebAppCapable);
-        webAppTitle.setAttribute("name", "apple-mobile-web-app-title");
-        webAppTitle.setAttribute("content", manifest['short_name'] || manifest['name'] || "");
-
-        webAppStartUrl.setAttribute("name", "msapplication-starturl");
-        webAppStartUrl.setAttribute("content", manifest['start_url'] || location.href);
-
-        // Parse the icons.
-
-        var icons = manifest["icons"] || [];
-
-        for(var iconIdx = 0; iconIdx < icons.length; iconIdx++) {
-          var iconElement = document.createElement("link");
-          var icon = icons[iconIdx];
-
-          iconElement.setAttribute("rel", "apple-touch-icon");
-          iconElement.setAttribute("href", icon.src);
-          iconElement.setAttribute("sizes", icon.sizes);
-
-          document.head.appendChild(iconElement);
-        }
-        document.head.appendChild(webAppCapable);
-        document.head.appendChild(webAppTitle);
-        document.head.appendChild(webAppStartUrl);
+    function finishLazyLoading() {
+      var link = document.querySelector('#bundle');
+      if (link.import && link.import.readyState === 'complete') {
+        onImportLoaded();
+      } else {
+        link.addEventListener('load', onImportLoaded);
       }
-    })();
+    }
 
-
-
-    // This all simulates the start URL.
-    (function() {
-      var startUrlEl = document.querySelector("meta[name=msapplication-starturl]");
-      if(!!startUrlEl === true && navigator.standalone === true) {
-        var lastUrl = localStorage["navigate"];
-        history.pushState({launched: (!!lastUrl == false && history.length === 1)}, undefined, lastUrl || startUrlEl.content);
-        localStorage.removeItem("navigate");
-
-        // Intercept all anchor clicks and keep fullscreen if in origin
-        document.addEventListener("click", function(e) {
-          var target = e.target;
-          if(target.tagName === 'A') {
-
-            var href = target.getAttribute("href");
-            var linkedUrl = new URL(target.href);
-            if(linkedUrl.origin === location.origin) {
-              e.preventDefault();
-              location.href = href;
-            }
-            else {
-              // When we are navigating away store the state so we can resume.
-              localStorage["navigate"] = location.href;
-            }
-          }
-        });
-      }
-    })();
-
+    function onImportLoaded() {
+      var loadingScreen = document.querySelector('#loadingScreen');
+      loadingScreen.addEventListener('transitionend', function() {
+        // Remove the loading screen from DOM after CSS transition.
+        document.body.removeChild(loadingScreen);
+      });
+      document.body.classList.remove('loading');
+      setTimeout(function() {
+        document.getElementById('ht').classList.remove('loading');
+      }, 400);
+      document.body.classList.add('ready');
+    }
   </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-8065525462923936",
+      enable_page_level_ads: true
+    });
+  </script>
+
 </body>
 
 </html>

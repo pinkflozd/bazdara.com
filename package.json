@@ -1,12 +1,15 @@
 {
   "version": "1.0.2",
   "description": "Bazdara",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:pinkflozd/bazdara.com.git"
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.0",
+    "eslint-plugin-html": "^2.0.0"
   },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "private": true
+  "scripts": {
+    "lint": "npm run lint:javascript",
+    "lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
+    "test": "polymer test",
+    "test:integration": "polymer build # test that psk builds without error with the CLI"
+  }
 }

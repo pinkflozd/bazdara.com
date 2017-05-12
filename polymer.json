@@ -1,4 +1,15 @@
 {
+  "builds": [{
+   "bundle": false,
+   "js": {"minify": false, "compile": true},
+   "css": {"minify": true},
+   "html": {"minify": true}
+ }],
+"lint": {
+  "rules": [
+    "polymer-2-hybrid"
+  ]
+},
   "entrypoint": "index.html",
   "shell": "src/bazdara-app/bazdara-app.html",
   "fragments": [
@@ -8,6 +19,28 @@
     "src/bazdara-page/bazdara-page-plimovanje.html",
     "src/bazdara-page/bazdara-page-veter.html",
     "src/bazdara-page/bazdara-page-padavine.html",
-    "src/bazdara-page/bazdara-page-navigacija.html"
-  ]
+    "src/bazdara-page/bazdara-page-statistika.html",
+    "src/bazdara-page/bazdara-page-404.html",
+    "src/bazdara-page/bazdara-page-navigacija.html",
+
+    "src/bazdara-elements/bazdara-lazy-resources.html",
+    "src/bazdara-elements/bazdara-service-worker.html"
+  ],
+  "extraDependencies": [
+    "robots.txt",
+    "clear-cache.html",
+    "favicon.ico",
+    "manifest.json",
+    "sitemap.xml",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js",
+    "firebase-messaging-sw.js"
+  ],
+  "sources": [
+    "src/**/*",
+    "locales/**/*",
+    "bower_components/**/*.png",
+    "bower_components/**/*.jpg",
+    "bower_components/**/*.svg",
+    "images/**/*"
+    ]
 }

@@ -642,14 +642,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           self.genTitle();
         },
 
+        ready: function() {
+          this.fire('app-shell-loaded');
+        },
+
         observers: [
           '_lockScroll(isLoading)'
         ],
         _lockScroll: function(isLoading) {
           if (isLoading) {
             document.body.style.overflow = 'hidden';
+            console.log("hidden");
           } else {
             document.body.style.overflow = 'visible';
+            console.log("visible");
           }
         },
 

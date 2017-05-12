@@ -5,49 +5,72 @@
     <loc>https://www.bazdara.com/</loc>
     <changefreq>hourly</changefreq>
     <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/?slovenscina"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/?english"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/?italiano"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://www.bazdara.com/?hrvatski"/>
   </url>
   <url>
     <loc>https://www.bazdara.com/napoved</loc>
-    <changefreq>daily</changefreq>
+    <changefreq>hourly</changefreq>
     <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/napoved"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/napoved?slovenscina"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/napoved?english"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/napoved?italiano"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://www.bazdara.com/napoved?hrvatski"/>
   </url>
   <url>
     <loc>https://www.bazdara.com/padavine</loc>
     <changefreq>daily</changefreq>
     <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/padavine"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/padavine?slovenscina"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/padavine?english"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/padavine?italiano"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://www.bazdara.com/padavine?hrvatski"/>
   </url>
   <url>
     <loc>https://www.bazdara.com/veter</loc>
     <changefreq>daily</changefreq>
     <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/veter"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/veter?slovenscina"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/veter?english"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/veter?italiano"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://www.bazdara.com/veter?hrvatski"/>
   </url>
   <url>
     <loc>https://www.bazdara.com/plimovanje</loc>
     <changefreq>daily</changefreq>
     <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/plimovanje"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/plimovanje?slovenscina"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/plimovanje?english"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/plimovanje?italiano"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://www.bazdara.com/plimovanje?hrvatski"/>
   </url>
   <url>
     <loc>https://www.bazdara.com/navigacija</loc>
     <changefreq>monthly</changefreq>
     <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/navigacija"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/navigacija?slovenscina"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/navigacija?english"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/navigacija?italiano"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://www.bazdara.com/navigacija?hrvatski"/>
+  </url>
+  <url>
+    <loc>https://www.bazdara.com/statistika</loc>
+    <changefreq>daily</changefreq>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/statistika"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/statistika?slovenscina"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/statistika?english"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/statistika?italiano"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://www.bazdara.com/statistika?hrvatski"/>
   </url>
   <url>
     <loc>https://www.bazdara.com/informacije</loc>
     <changefreq>monthly</changefreq>
     <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/informacije"/>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://www.bazdara.com/informacije?slovenscina"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.bazdara.com/informacije?english"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.bazdara.com/informacije?italiano"/>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://www.bazdara.com/informacije?hrvatski"/>
   </url>
 </urlset>

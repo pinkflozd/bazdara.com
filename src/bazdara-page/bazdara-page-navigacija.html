@@ -1,10 +1,14 @@
-<link rel="import" href="../../bower_components/polymer/polymer.html">
+poly<link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 
 <link rel="import" href="../bazdara-import/font-import.html">
+<link rel="import" href="../bazdara-import/jquery-import.html">
 <link rel="import" href="../bazdara-import/leaflet-import.html">
 <link rel="import" href="../bazdara-import/leaflet-zemljevid.html">
+<link rel="import" href="../bazdara-import/leaflet-time.html">
+
 
 <dom-module id="bazdara-page-navigacija">
   <template>
@@ -35,7 +39,7 @@
       }
 
       paper-toast {
-        z-index: 1003;
+        z-index: 1006;
       }
 
       .ad1 {
@@ -72,11 +76,31 @@
         overflow: hidden;
       }
 
+      @media (min-width: 991px) {
+        .ad1 {
+          width: 468px;
+          height: 60px;
+          position: fixed;
+          bottom: 25px;
+          right: 15px;
+          z-index: 1000;
+          background-color: transparent;
+        }
+
+        .ad2 {
+          width: 468px;
+          height: 60px;
+          margin: 0 auto;
+        }
+      }
+
       #google {
-        width:320px;
-        height:50px
+        width: 320px;
+        height: 50px
       }
     </style>
+
+    <iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
 
     <div class="overflo">
       <div id="map"></div>
@@ -85,8 +109,18 @@
 
       <div class="ad1">
         <div class="ad2">
-          <div class="fb-ad" data-placementid="585902811569495_586787858147657" data-format="320x50" data-testmode="false"></div>
-          <ins id="google" class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8065525462923936" data-ad-slot="8763591051"></ins>
+          <template is="dom-if" if="[[mobile]]">
+          <ins class="adsbygoogle" style="display:inline-block;width:320px;height:50px" data-ad-client="ca-pub-8065525462923936" data-ad-slot="6031949459"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+          </template>
+          <template is="dom-if" if="[[!mobile]]">
+          <ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="ca-pub-8065525462923936" data-ad-slot="6031949459"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+          </template>
         </div>
       </div>
 
@@ -115,56 +149,36 @@
       },
 
       genTitle: function() {
-        var title = 'Navigacijske karte slovenskega morja';
-        document.title = title + ' | Bazdara';
-        document.querySelector('meta[name="description"]').setAttribute("content",
-          'Pomorske navigacijske karte in navigacija online');
+
+
+          if (I18nMsg.lang == 'sl') {
+
+            var title = 'Navigacijske karte Tržaški zaliv';
+            document.title = title + ' | Bazdara';
+            document.querySelector('meta[name="description"]').setAttribute("content",
+              'Pomorske navigacijske karte in navigacija online');
+
+          } else if (I18nMsg.lang == 'en') {
+
+            var title = 'Navigation charts Trieste bay';
+            document.title = title + ' | Bazdara';
+
+          } else if (I18nMsg.lang == 'it') {
+
+            var title = 'Carte di navigazione golfo di Trieste';
+            document.title = title + ' | Bazdara';
+
+          } else if (I18nMsg.lang == 'hr') {
+
+            var title = 'Navigacijske karte Trščanski zaljev';
+            document.title = title + ' | Bazdara';
+
+          }
       },
       attached: function() {
         var self = this;
         self.genTitle();
 
-        //$('#facebook-jssdk, #fb-root').remove();
-        if (document.getElementById('facebook-jssdk') !== null) {
-          document.getElementById('facebook-jssdk').remove();
-          document.getElementById('fb-root').remove();
-          delete FB;
-        };
-
-        window.fbAsyncInit = function() {
-          FB.Event.subscribe(
-            'ad.loaded',
-            function(placementId) {
-              console.log('Audience Network ad loaded');
-            }
-          );
-          FB.Event.subscribe(
-            'ad.error',
-            function(errorCode, errorMessage, placementId) {
-              console.log('Audience Network error (' + errorCode + ') ' + errorMessage);
-
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            }
-          );
-        };
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/sl_SI/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=585902811569495";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-      },
-
-      observers: [
-        '_lockScroll(isLoading)'
-      ],
-      _lockScroll: function(isLoading) {
-        if (isLoading) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = 'visible';
-        }
       },
 
       /**
@@ -179,6 +193,8 @@
       _arso: undefined,
 
       ready: function() {
+        this.loading = true;
+
         // TODO09: Workaround for removed domReady event
         var me = this;
         setTimeout(function() {
@@ -187,20 +203,34 @@
         setInterval(function() {
           document.querySelector('bazdara-page-navigacija').redrawMap()
         }, 100);
+
+
+
       },
       domReady: function() {
 
-        var southWest = L.latLng(73.4483, -27.4813),
-          northEast = L.latLng(27.6393, 39.3650),
+
+
+        var southWest = L.latLng(45.85, 12.9),
+          northEast = L.latLng(45.33, 14),
           mybounds = L.latLngBounds(southWest, northEast);
 
         var map = L.map(this.$.map, {
           fullscreenControl: true,
           maxBounds: mybounds,
-          zoom: 15,
-          minZoom: 5,
+          detectRetina: false,
+          reuseTiles: true,
+          zoom: 13,
+          minZoom: 13,
           maxZoom: 18
-        });
+        }).on('load', function(e) {
+           Polymer.RenderStatus.afterNextRender(this, function() {
+             this.loading = false;
+           });
+         }.bind(this));
+
+
+
 
         // `fullscreenchange` Event that's fired when entering or exiting fullscreen.
         map.on('fullscreenchange', function() {
@@ -214,32 +244,50 @@
         });
 
         this._map = map;
-        map.setView([45.5282, 13.5681], 15);
-        var baseLayer = L.tileLayer('https://x.bazdara.com/tile/{z}/{x}/{y}.png', {
-          attribution: '<a href="https://www.bazdara.com">Bazdara</a> | <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a>'
-        });
-        this._baseLayer = baseLayer;
-        this._baseLayer.addTo(map);
+        map.setView([45.5282, 13.5681], 13);
+//        var baseLayer = L.tileLayer('https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+//          attribution: '<a href="https://www.bazdara.com">Bazdara</a> | <a href="http://osm.org/copyright" target="_blank">OpenStreetMap</a>'
+//        });
+//        this._baseLayer = baseLayer;
+//        this._baseLayer.addTo(map);
 
-        this._baseLayer.on("load",function() {
+//        this._baseLayer.on("load", function() {
+//          console.log("all visible tiles have been loaded")
+//        });
 
-          console.log("all visible tiles have been loaded");
+//        var arso = L.tileLayer('https://x.bazdara.com/navigacija.php?z={z}&x={x}&y={y}', {
+//          attribution: '| Arso',
+//          tms: true,
+//          minZoom: 14,
+//          maxNativeZoom: 16,
+//          transparent: true,
+//          opacity: 0.75
+//        });
+//        this._arso = arso;
+//        this._arso.addTo(map);
 
-          this.loading =
-
-       });
-
-
-        var arso = L.tileLayer('https://x.bazdara.com/navigacija.php?z={z}&x={x}&y={y}', {
+        var arso = L.tileLayer.wms('https://x.bazdara.com/arcgis/services/AO_POMORSKE_KRT_AG101/MapServer/WMSServer?', {
           attribution: '| Arso',
-          tms: true,
-          minZoom: 14,
-          maxNativeZoom: 16,
-          transparent: true,
-          opacity: 0.75
+          layers: '0,1,2,3',
+          format: 'image/png8',
+          crs: L.CRS.EPSG4326,
+          transparent: false,
+          maxNativeZoom: 18,
+          opacity: 1,
+          tileSize: 256
         });
         this._arso = arso;
         this._arso.addTo(map);
+
+
+
+        var measureControl = L.control.measure({ primaryLengthUnit: 'miles', secondaryLengthUnit: 'meters', activeColor: '#000', completedColor: '#333' });
+        this._measureControl = measureControl;
+        this._measureControl.addTo(map);
+
+        var scales = L.control.scale();
+        this._scales = scales;
+        this._scales.addTo(map);
 
         L.Icon.Default.imagePath = '/images/map';
 
@@ -248,30 +296,33 @@
         });
         track.addTo(map);
 
+
+
+
         //var izobate = new L.KML("/data/izobate.kml", {async: true});
         //this._map.addLayer(izobate);
         //this._map.addControl(new L.Control.Layers({}, {'Izobate':izobate}));
 
-        var geometWind = L.tileLayer.wms("https://x.bazdara.com/geomet/", {
-          layers: 'GDPS.ETA_UU',
-          format: 'image/png',
-          transparent: true,
-          attribution: "Environment Canada",
-          opacity: 0.40
-        });
+//        var geometWind = L.tileLayer.wms("https://x.bazdara.com/geomet/", {
+//          layers: 'GDPS.ETA_UU',
+//          format: 'image/png',
+//          transparent: true,
+//          attribution: "Environment Canada",
+//          opacity: 0.40
+//        });
 
-        var geometRain = L.tileLayer.wms("https://x.bazdara.com/geomet/", {
-          layers: 'GDPS.ETA_RT',
-          format: 'image/png',
-          transparent: true,
-          attribution: "Environment Canada",
-          opacity: 0.40
-        });
+//        var geometRain = L.tileLayer.wms("https://x.bazdara.com/geomet/", {
+//          layers: 'GDPS.ETA_RT',
+//          format: 'image/png',
+//          transparent: true,
+//          attribution: "Environment Canada",
+//          opacity: 0.40
+//        });
 
-        this._map.addControl(new L.Control.Layers({}, {
-          'Trenutni veter': geometWind,
-          'Trenutne padavine': geometRain
-        }));
+//        this._map.addControl(new L.Control.Layers({}, {
+//          'Trenutni veter': geometWind,
+//          'Trenutne padavine': geometRain
+//        }));
 
         var lc = L.control.locate({
           position: 'topleft', // set the location of the control
@@ -311,7 +362,7 @@
           },
           locateOptions: {
             enableHighAccuracy: true,
-            maxZoom: 16,
+            maxZoom: 15,
             minZoom: 14,
           } // define location options e.g enableHighAccuracy: true or maxZoom: 10
         }).addTo(map);
@@ -372,7 +423,7 @@
             icon: 'bazdara-cloud_download', // and define its properties
             title: 'Shrani vidni zemljevid na napravo', // like its title
             onClick: function(btn, map) { // and its callback
-              if (map.getZoom() > 10) {
+              if (map.getZoom() > 14) {
                 document.querySelector('bazdara-page-navigacija').downloadTiles();
                 ga('send', 'event', 'view', 'Cache Navigacija');
                 this.disable();
@@ -394,6 +445,8 @@
           }]
         });
         cacheButton.addTo(map);
+
+        this.fire('app-shell-loaded');
 
       },
 
@@ -534,7 +587,7 @@
         var tilePoint;
         tilePoint = this._createNormalizedTilePoint(x, y, z);
         return this._arso.getTileUrl(tilePoint);
-        return this._baseLayer.getTileUrl(tilePoint);
+      //  return this._baseLayer.getTileUrl(tilePoint);
       },
       _createTileKey: function(x, y, z) {
         var tilePoint;

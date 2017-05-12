@@ -1,0 +1,135 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../app-imports/gauge-import.html">
+
+<dom-module id="app-widget-gauge-wind">
+
+  <template>
+
+  <style include="shared-styles">
+     :host {
+      display: block;
+      box-sizing: border-box;
+    }
+
+    .outer {
+      width: 200px;
+      height: 200px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    .windName {
+      text-align: center;
+      position: absolute;
+      top: 145px;
+      width: 200px;
+      font-size: 24px
+    }
+
+    .windDirection {
+      text-align: center;
+      position: absolute;
+      top: 170px;
+      width: 200px;
+      font-size: 12px
+    }
+
+  </style>
+
+    <div class="outer">
+      <canvas id="gaugeSpeed" style="height:200px;width:200px"></canvas>
+  </div>
+
+  </template>
+
+</dom-module>
+
+<script>
+  Polymer({
+
+    is: 'app-widget-gauge-wind',
+
+    properties: {
+
+      /**
+       * `speed` the wind speed in m/s.
+       */
+      speed: {
+        type: Number,
+        observer: '_speedChange'
+      },
+      /**
+       * `gust` the wind gust in m/s.
+       */
+      gust: {
+        type: Number,
+        value: 0.0,
+      },
+
+    },
+
+
+
+    _speedChange: function(e) {
+
+      //  canvas.update({ value: this.live.currentWindSpeed });
+      var gaugeSpeed = document.gauges.get('gaugeSpeed');
+      gaugeSpeed.value = this.speed;
+
+    },
+
+    _decimalFormat: function(value) {
+      return value ? value.toFixed(1) : '0.0';
+    },
+
+    attached: function() {
+
+        gaugeSpeed = new RadialGauge({
+          renderTo: 'gaugeSpeed',
+          height: 200,
+          width: 200,
+          units: "m/s",
+          minValue: 0,
+          valueBox: false,
+          maxValue: 25,
+          borderShadowWidth: 0,
+          borders: false,
+          exactTicks: true,
+          majorTicks: [
+            "0.3",
+            "1.5",
+            "3.3",
+            "5.5",
+            "8",
+            "10.8",
+            "13.9",
+            "17.2",
+            "20.7",
+            "24.5"
+          ],
+          strokeTicks: true,
+          highlights: [{
+            "from": 17.2,
+            "to": 25,
+            "color": "rgba(200, 50, 50, .75)"
+          }],
+          needleType: "arrow",
+          needleWidth: 3,
+          needleCircleSize: 7,
+          needleCircleOuter: false,
+          needleCircleInner: false,
+          animationDuration: 1500,
+          animationRule: "linear",
+          barWidth: "10",
+          barShadow: false,
+          colorBarProgress: "rgba(50,200,50,.75)",
+          colorPlate: "transparent"
+        });
+
+        gaugeSpeed.draw();
+
+    }
+
+  });
+</script>

@@ -17,10 +17,10 @@
     "paper-styles": "PolymerElements/paper-styles#^1.0.0",
     "paper-ripple": "PolymerElements/paper-ripple#^1.0.0",
     "paper-toast": "PolymerElements/paper-toast#^1.0.0",
-    "paper-toggle-button": "PolymerElements/paper-toggle-button#^1.0.0",
+    "paper-toggle-button": "^1.2.1",
     "paper-tooltip": "PolymerElements/paper-tooltip#^1.0.0",
-    "paper-ripple": "PolymerElements/paper-ripple#^1.0.0",
     "paper-card": "PolymerElements/paper-card#^1.0.0",
+    "paper-tabs": "PolymerElements/paper-tabs#^1.0.0",
     "paper-button": "PolymerElements/paper-button#^1.0.0",
     "platinum-sw": "PolymerElements/platinum-sw#^1.0.0",
     "polymer": "Polymer/polymer#^1.5.0",
@@ -29,12 +29,24 @@
     "leaflet.locatecontrol": "^0.52.0",
     "Leaflet.EasyButton": "^1.2.0",
     "leaflet-plugins": "^1.6.1",
+    "fullscreen-api": "^1.1.1",
+    "iron-icons": "^1.2.0",
+    "hls.js": "^0.6.15",
+    "geo-location": "^1.0.6",
     "leaflet-timedimension": "^1.0.3",
     "i18n-msg": "^1.0.5",
-    "paper-dropdown-menu": "^1.2.1"
+    "paper-dropdown-menu": "^1.2.1",
+    "wind-direction-indicator": "wintersandroid/wind-direction-indicator#^1.0.0",
+    "chart-elements": "^3.1.3",
+    "polymerfire": "firebase/polymerfire#^v0.10.3",
+    "promise-polyfill": "^6.0.2",
+    "canvas-gauges": "canv-gauge#^2.1.2",
+    "esri-leaflet": "^2.0.8",
+    "leaflet-measure": "^2.1.7"
   },
   "private": true,
   "resolutions": {
-    "leaflet": "^1.0.0"
+    "leaflet": "^1.0.0",
+    "promise-polyfill": "^1.0.0"
   }
 }
